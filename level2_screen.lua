@@ -26,7 +26,7 @@ local physics = require( "physics" )
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "level1_screen"
+sceneName = "level2_screen"
 
 -----------------------------------------------------------------------------------------
 
@@ -367,7 +367,7 @@ function scene:create( event )
 -- Fifth Wall
     wall5 = display.newRect(0, 0, 10, display.contentHeight - 150)
     wall5.x = 210
-    wall5.y = display.contentCenterY - 75
+    wall5.y = display.contentCenterY + 75
     wall5:setFillColor(0, 0, 0)
     wall5:toFront()
 
@@ -376,7 +376,7 @@ function scene:create( event )
 -- Sixth Wall
     wall6 = display.newRect(0, 0, 10, display.contentHeight - 150)
     wall6.x = 420
-    wall6.y = display.contentCenterY + 75
+    wall6.y = display.contentCenterY - 75
     wall6:setFillColor(0, 0, 0)
     wall6:toFront()
 
@@ -385,7 +385,7 @@ function scene:create( event )
 -- Seventh Wall
     wall7 = display.newRect(0, 0, 10, display.contentHeight - 150)
     wall7.x = 600
-    wall7.y = display.contentCenterY - 75
+    wall7.y = display.contentCenterY + 75
     wall7:setFillColor(0, 0, 0)
     wall7:toFront()
 
@@ -403,7 +403,7 @@ function scene:create( event )
 -- Ninth 
     wall9 = display.newRect(0, 0, 198, 10)
     wall9.x = 694
-    wall9.y = display.contentCenterY + 238
+    wall9.y = display.contentCenterY + 150
     wall9:setFillColor(0, 0, 0)
     wall9:toFront()
 
@@ -429,7 +429,7 @@ function scene:create( event )
    meat1.anchorX = 0
    meat1.anchorY = 0
    meat1.x = 30
-   meat1.y = 400
+   meat1.y = 300
 
    -- scale the lion
    meat1:scale(0.3, 0.3)
@@ -484,8 +484,8 @@ function scene:create( event )
     -- positioning the lion 
     lion.anchorX = 0
     lion.anchorY = 0 
-    lion.x = 60
-    lion.y = 20
+    lion.x = 80
+    lion.y = 500
 
     -- scale the lion (make it larger)
     lion:scale( 1.5, 1.5 )
@@ -499,7 +499,7 @@ function scene:create( event )
    sun.anchorX = 0
    sun.anchorY = 0
    sun.x = 620
-   sun.y = 450   
+   sun.y = 590   
 
 -----------------------------------------------------------------
 -- COLLISION EVENT LISTENERS
@@ -516,7 +516,7 @@ function scene:create( event )
 -------------------------------------------------------------------
     
 -- Creating the background image
-    bkg_image = display.newImageRect("Images/level1_screen.png", display.contentWidth, display.contentHeight)
+    bkg_image = display.newImageRect("Images/Level2Screen1AliceR@2x.png", display.contentWidth, display.contentHeight)
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
