@@ -702,7 +702,7 @@ function scene:create( event )
     --meat1
     meat1 = display.newImageRect ("Images/meat.png", 70, 70)
     meat1.x = 400
-    meat1.y = 300
+    meat1.y = 570
     meat1.myName = "meat1"
 
     -- Insert objects into the scene group in order to ONLY be associated with this scene
@@ -710,8 +710,8 @@ function scene:create( event )
 
     --meat2
     meat2 = display.newImageRect ("Images/meat.png", 70, 70)
-    meat2.x = 100
-    meat2.y = 400
+    meat2.x = 650
+    meat2.y = 560
     meat2.myName = "meat2"
 
     -- Insert objects into the scene group in order to ONLY be associated with this scene
@@ -729,7 +729,7 @@ function scene:create( event )
     --meat3
     meat4 = display.newImageRect ("Images/meat.png", 70, 70)
     meat4.x = 700
-    meat4.y = 600
+    meat4.y = 500
     meat4.myName = "meat4"
 
      -- Insert objects into the scene group in order to ONLY be associated with this scene
