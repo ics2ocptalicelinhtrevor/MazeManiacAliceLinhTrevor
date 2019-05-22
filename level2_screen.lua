@@ -61,14 +61,6 @@ local wall12
 local wall13
 local wall14
 
-local spikes1
-local spikes2
-local spikes3
-
-local spikes1platform
-local spikes2platform
-local spikes3platform
-
 local torchesAndSign
 local door
 local character
@@ -92,6 +84,7 @@ local floor
 local meat1
 local meat2
 local meat3
+local meat4
 local theMeat
 
 local questionsAnswered = 0
@@ -381,6 +374,8 @@ local function AddCollisionListeners()
     meat2:addEventListener( "collision" )
     meat3.collision = onCollision
     meat3:addEventListener( "collision" )
+    meat3.collision = onCollision
+    meat3:addEventListener( "collision" )
 
     door.collision = onCollision
     door:addEventListener( "collision" )
@@ -391,6 +386,7 @@ local function RemoveCollisionListeners()
 
     meat1:removeEventListener( "collision" )
     meat2:removeEventListener( "collision" )
+    meat3:removeEventListener( "collision" )
     meat3:removeEventListener( "collision" )
 
     door:removeEventListener( "collision")
@@ -422,6 +418,7 @@ local function AddPhysicsBodies()
 
     physics.addBody(meat1, "static",  {density=0, friction=0, bounce=0} )
     physics.addBody(meat2, "static",  {density=0, friction=0, bounce=0} )
+    physics.addBody(meat3, "static",  {density=0, friction=0, bounce=0} )
     physics.addBody(meat3, "static",  {density=0, friction=0, bounce=0} )
     physics.addBody(door, "static", {density=0, friction=0.0 } )
 
@@ -509,7 +506,7 @@ function scene:create( event )
     local sceneGroup = self.view
 
     -- Insert the background image
-    bkg_image = display.newImageRect("Images/Level-1BKG.png", display.contentWidth, display.contentHeight)
+    bkg_image = display.newImageRect("Images/Level2Screen1AliceR@2x.png", display.contentWidth, display.contentHeight)
     bkg_image.x = display.contentWidth / 2 
     bkg_image.y = display.contentHeight / 2
 
