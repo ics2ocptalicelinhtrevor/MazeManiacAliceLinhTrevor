@@ -265,6 +265,7 @@ local function MakeMeatVisible()
     meat1.isVisible = true
     meat2.isVisible = true
     meat3.isVisible = true
+    meat4.isvisible = true
 end
 
 local function MakeHeartsVisible()
@@ -289,24 +290,6 @@ local function onCollision( self, event )
     --print( event.otherElement )  --the element (number) of the second object which was hit in the collision
     --print( event.target.myName .. ": collision began with " .. event.other.myName )
 
-    if ( event.phase == "began" ) then
-
-        --Pop sound
-        popSoundChannel = audio.play(popSound)
-
-        if  (event.target.myName == "spikes1") or 
-            (event.target.myName == "spikes2") or
-            (event.target.myName == "spikes3") then
-
-            -- remove runtime listeners that move the character
-
-            RemoveRuntimeListeners()
-
-            -- remove the character from the display
-            display.remove(character)
-
-            -- decrease number of lives
-            numLives = numLives - 1
 
            if (numLives == 2) then
                 -- update hearts
@@ -335,7 +318,8 @@ local function onCollision( self, event )
 
         if  (event.target.myName == "meat1") or
             (event.target.myName == "meat2") or
-            (event.target.myName == "meat3") then
+            (event.target.myName == "meat3") or
+            (event.target.myName == "meat4") then
 
             -- get the meat that the user hit
             theMeat = event.target
@@ -359,10 +343,8 @@ local function onCollision( self, event )
                 -- after getting 3 questions right, go to the you win screen
                 composer.gotoScene("you_win")
             end
-        end        
 
-    end
-end
+        end       
 
 
 local function AddCollisionListeners()
@@ -374,8 +356,8 @@ local function AddCollisionListeners()
     meat2:addEventListener( "collision" )
     meat3.collision = onCollision
     meat3:addEventListener( "collision" )
-    meat3.collision = onCollision
-    meat3:addEventListener( "collision" )
+    meat4.collision = onCollision
+    meat4:addEventListener( "collision" )
 
     door.collision = onCollision
     door:addEventListener( "collision" )
@@ -387,7 +369,7 @@ local function RemoveCollisionListeners()
     meat1:removeEventListener( "collision" )
     meat2:removeEventListener( "collision" )
     meat3:removeEventListener( "collision" )
-    meat3:removeEventListener( "collision" )
+    meat4:removeEventListener( "collision" )
 
     door:removeEventListener( "collision")
 
