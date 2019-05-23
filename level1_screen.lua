@@ -59,7 +59,7 @@ local wall10
 local wall11
 local wall12
 local wall13
-local wall14
+
 
 local torchesAndSign
 local door
@@ -84,6 +84,8 @@ local floor
 local meat1
 local meat2
 local meat3
+local meat4
+local meat5
 local theMeat
 
 local questionsAnswered = 0
@@ -263,6 +265,8 @@ local function MakeMeatVisible()
     meat1.isVisible = true
     meat2.isVisible = true
     meat3.isVisible = true
+    meat4.isVisible = true
+    meat5.isVisible = true
 end
 
 local function MakeHeartsVisible()
@@ -289,8 +293,10 @@ local function onCollision( self, event )
 
 
     if  (event.target.myName == "meat1") or
-            (event.target.myName == "meat2") or
-            (event.target.myName == "meat3") then
+        (event.target.myName == "meat2") or
+        (event.target.myName == "meat3") or
+        (event.target.myName == "meat4") or
+        (event.target.myName == "meat5") then
 
         -- get the meat that the user hit
         theMeat = event.target
@@ -310,9 +316,10 @@ local function onCollision( self, event )
 
     if (event.target.myName == "door") then
         --check to see if the user has answered 5 questions
-        if (questionsAnswered == 3) then
-            -- after getting 3 questions right, go to the you win screen
-            composer.gotoScene("you_win")
+        if (questionsAnswered == 5) then
+        -- after getting 3 questions right, go to the you win screen
+        YouWinTransition()
+
         end
     end       
 end
@@ -327,6 +334,11 @@ local function AddCollisionListeners()
     meat2:addEventListener( "collision" )
     meat3.collision = onCollision
     meat3:addEventListener( "collision" )
+    meat4.collision = onCollision
+    meat4:addEventListener( "collision" )
+    meat5.collision = onCollision
+    meat5:addEventListener( "collision" )
+
 
     door.collision = onCollision
     door:addEventListener( "collision" )
@@ -336,7 +348,8 @@ local function RemoveCollisionListeners()
     meat1:removeEventListener( "collision" )
     meat2:removeEventListener( "collision" )
     meat3:removeEventListener( "collision" )
-
+    meat4:removeEventListener( "collision" )
+    meat5:removeEventListener( "collision" )
     door:removeEventListener( "collision")
 
 end
@@ -357,7 +370,8 @@ local function AddPhysicsBodies()
     physics.addBody(wall11, "static", {friction = 0})
     physics.addBody(wall12, "static", {friction = 0})
     physics.addBody(wall13, "static", {friction = 0})
-    physics.addBody(wall14, "static", {friction = 0})
+
+
 
     physics.addBody(leftW, "static", {friction = 0})
     physics.addBody(topW, "static", {friction = 0})
@@ -367,6 +381,8 @@ local function AddPhysicsBodies()
     physics.addBody(meat1, "static",  {density=0, friction=0, bounce=0} )
     physics.addBody(meat2, "static",  {density=0, friction=0, bounce=0} )
     physics.addBody(meat3, "static",  {density=0, friction=0, bounce=0} )
+    physics.addBody(meat4, "static",  {density=0, friction=0, bounce=0} )
+    physics.addBody(meat5, "static",  {density=0, friction=0, bounce=0} )
     physics.addBody(door, "static", {density=0, friction=0.0 } )
 
 end
@@ -386,7 +402,6 @@ local function RemovePhysicsBodies()
     physics.removeBody(wall11)
     physics.removeBody(wall12)
     physics.removeBody(wall13)
-    physics.removeBody(wall14)
 
     physics.removeBody(leftW)
     physics.removeBody(topW)
@@ -497,20 +512,20 @@ function scene:create( event )
 
     wall6 = display.newRect(0, 0, 10, display.contentHeight - 150)
     wall6.x = 600
-    wall6.y = 650
+    wall6.y = 642
     wall6:setFillColor(0, 0, 0)
     wall6:toFront()
     wall6.rotation = 90
     
 
-    wall7 = display.newRect(0, 0, 10, display.contentHeight - 150)
+    wall7 = display.newRect(0, 0, 10, display.contentHeight - 50)
     wall7.x = 300
     wall7.y = 100
     wall7:setFillColor(0, 0, 0)
     wall7:toFront()
     
 
-    wall8 = display.newRect(0, 0, 10, display.contentHeight - 281)
+    wall8 = display.newRect(0, 0, 10, display.contentHeight - 300)
     wall8.x = 450
     wall8.y = 405
     wall8:setFillColor(0, 0, 0)
@@ -522,9 +537,9 @@ function scene:create( event )
     wall9:setFillColor(0, 0, 0)
     wall9:toFront()
 
-    wall10 = display.newRect(0, 0, 10, display.contentHeight - 500)
+    wall10 = display.newRect(0, 0, 10, display.contentHeight - 245)
     wall10.x = 890
-    wall10.y = 280
+    wall10.y = 270
     wall10:setFillColor(0, 0, 0)
     wall10:toFront()
 
@@ -544,13 +559,7 @@ function scene:create( event )
     wall13.x = 750
     wall13.y = 348
     wall13:setFillColor(0, 0, 0)
-    wall13:toFront()
-
-    wall14 = display.newRect(0, 0, 10, display.contentHeight - 890)
-    wall14.x = 904
-    wall14.y = 584
-    wall14:setFillColor(0, 0, 0)
-    wall14:toFront()    
+    wall13:toFront() 
 
     -- Creating Joystick
     analogStick = joystick.new( 50, 75 ) 
@@ -576,7 +585,7 @@ function scene:create( event )
     sceneGroup:insert( wall11 )
     sceneGroup:insert( wall12 )
     sceneGroup:insert( wall13 )
-    sceneGroup:insert( wall14 )
+
 
     -- Insert the torchesAndSign Objects
     torchesAndSign = display.newImageRect("Images/Level-1Random.png", display.contentWidth, display.contentHeight)
@@ -588,9 +597,10 @@ function scene:create( event )
 
     -- Insert the Door
     door = display.newImage("Images/Level-1Door.png", 200, 200)
-    door.x = 530
-    door.y = 222
+    door.x = 955
+    door.y = 70
     door.myName = "door"
+    door:scale( 0.6, 0.6 )
 
     -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( door )
@@ -624,7 +634,6 @@ function scene:create( event )
     leftW = display.newLine( 0, 0, 0, display.contentHeight)
     leftW.isVisible = true
 
-
     -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( leftW )
 
@@ -650,7 +659,7 @@ function scene:create( event )
 
     --meat1
     meat1 = display.newImageRect ("Images/meat.png", 70, 70)
-    meat1.x = 300
+    meat1.x = 220
     meat1.y = 700
     meat1.myName = "meat1"
 
@@ -659,8 +668,8 @@ function scene:create( event )
 
     --meat2
     meat2 = display.newImageRect ("Images/meat.png", 70, 70)
-    meat2.x = 500
-    meat2.y = 100
+    meat2.x = 380
+    meat2.y = 450
     meat2.myName = "meat2"
 
     -- Insert objects into the scene group in order to ONLY be associated with this scene
@@ -668,12 +677,29 @@ function scene:create( event )
 
     --meat3
     meat3 = display.newImageRect ("Images/meat.png", 70, 70)
-    meat3.x = 700
-    meat3.y = 700
+    meat3.x = 500
+    meat3.y = 100
     meat3.myName = "meat3"
 
-     -- Insert objects into the scene group in order to ONLY be associated with this scene
+    -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( meat3 )
+
+    --meat4
+    meat4 = display.newImageRect ("Images/meat.png", 70, 70)
+    meat4.x = 800
+    meat4.y = 530
+    meat4.myName = "meat4"
+
+    -- Insert objects into the scene group in order to ONLY be associated with this scene
+    sceneGroup:insert( meat4 )
+    --meat5
+    meat5 = display.newImageRect ("Images/meat.png", 70, 70)
+    meat5.x = 950
+    meat5.y = 200
+    meat5.myName = "meat5"
+
+    -- Insert objects into the scene group in order to ONLY be associated with this scene
+    sceneGroup:insert( meat5 )
 
     -- creating mute button
     muteButton = display.newImageRect("Images/Mute Button Unpressed.png", 100, 100)

@@ -8,6 +8,9 @@
 --with piant a trivia question will come up. they will have a limided time to click on the answer
 -----------------------------------------------------------------------------------------
 
+-- things to add 
+-- major priority: losing lives, transition to lose screen
+-- second priority: scores, 
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
@@ -60,8 +63,8 @@ local textTouched = false
 
 numLives = 3
 
-local totalSeconds = 31
-local secondsLeft = 30
+local totalSeconds = 10
+local secondsLeft = 10
 local clockText
 local countDownTimer
 -----------------------------------------------------------------------------------------
@@ -81,11 +84,12 @@ end
 -----------------------------------------------------------------------------------------
 --checking to see if the user pressed the right answer and bring them back to level 1
 local function TouchListenerAnswer(touch)
+
     userAnswer = answerText.text
-    
+
     if (touch.phase == "ended") then
 
-        BackToLevel1( )
+        BackToLevel1()
     
     end 
 end
@@ -95,7 +99,12 @@ local function TouchListenerWrongAnswer(touch)
     userAnswer = wrongText1.text
     numLives = numLives - 1
 
-    BackToLevel1()
+    if (touch.phase == "ended") then
+
+        BackToLevel1()
+
+    
+    end 
 
 end
 
@@ -104,7 +113,11 @@ local function TouchListenerWrongAnswer2(touch)
     userAnswer = wrongText2.text
     numLives = numLives - 1
 
-    BackToLevel1()
+        if (touch.phase == "ended") then
+
+        BackToLevel1()
+
+    end 
 end
 
 --checking to see if the user pressed the right answer and bring them back to level 1
@@ -112,9 +125,18 @@ local function TouchListenerWrongAnswer3(touch)
     userAnswer = wrongText3.text
     numLives = numLives - 1
 
-    BackToLevel1()
+    if (touch.phase == "ended") then
+
+        BackToLevel1( )
+        
+    end 
 
 end
+
+local function hideTimer()
+    clockText.isVisible = false
+end
+
 
 --adding the event listeners 
 local function AddTextListeners ( )
@@ -219,9 +241,8 @@ local function UpdateTime()
 
     if (secondsLeft == 0) then
         -- reset the number of seconds left
-        secondsLeft = totalSeconds 
         numLives = numLives - 1
-        AskQuestion()
+        BackToLevel1()
 
         if (lives == 2) then
             heart1.isVisible = false
@@ -346,6 +367,7 @@ function scene:hide( event )
     elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
         RemoveTextListeners()
+        hideTimer()
     end
 
 end --function scene:hide( event )
