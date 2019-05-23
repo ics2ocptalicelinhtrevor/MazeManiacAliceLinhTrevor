@@ -186,12 +186,12 @@ local function PositionAnswers()
 end
 
 -- Transitioning Function to YouWin screen
-local function YouWinTransitionLevel1( )
+local function YouWinTransitionLevel2( )
     composer.gotoScene("you_win", {effect = "fade", time = 500})
 end
 
 -- Function to Restart Level 1
-local function RestartLevel1()
+local function RestartLevel2()
     DisplayQuestion()
     DetermineAlternateAnswers()
     PositionAnswers()    
@@ -403,7 +403,7 @@ function scene:create( event )
     ----------------------------------------------------------------------------------
 
     -- Insert the background image
-    bkg_image = display.newImageRect("Images/Game Screen.png", 2048, 1536)
+    bkg_image = display.newImageRect("Images/level2screen1AliceR@2x.png", 2048, 1536)
     bkg_image.anchorX = 0
     bkg_image.anchorY = 0
     bkg_image.width = display.contentWidth
@@ -414,16 +414,12 @@ function scene:create( event )
     questionText.x = display.contentWidth * 0.3
     questionText.y = display.contentHeight * 0.9
 
-    -- create the soccer ball and place it on the scene
-    soccerball = display.newImageRect("Images/soccerball.png", 60, 60, 0, 0)
-    soccerball.x = display.contentWidth*0.385
-    soccerball.y = display.contentHeight * 12/20
-
     -- boolean variables stating whether or not the answer was touched
     answerboxAlreadyTouched = false
     alternateAnswerBox1AlreadyTouched = false
     alternateAnswerBox2AlreadyTouched = false
     alternateAnswerBox3AlreadyTouched = false
+
     --create answerbox alternate answers and the boxes to show them
     answerbox = display.newText("", display.contentWidth * 0.9, 0, nil, 100)
     alternateAnswerBox1 = display.newText("", display.contentWidth * 0.9, 0, nil, 100)
@@ -452,7 +448,6 @@ function scene:create( event )
     sceneGroup:insert( answerbox )
     sceneGroup:insert( alternateAnswerBox1 )
     sceneGroup:insert( alternateAnswerBox2 )
-    sceneGroup:insert( soccerball )
 
 end --function scene:create( event )
 
@@ -476,7 +471,7 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
-        RestartLevel1()
+        RestartLevel2()
         AddAnswerBoxEventListeners() 
 
     end
