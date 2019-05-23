@@ -56,15 +56,15 @@ local cover
 local X1 = display.contentWidth*2/7
 local X2 = display.contentWidth*4/7
 local Y1 = display.contentHeight*1/2
-local Y2 = display.contentHeight*5.5/7
+local Y2 = display.contentHeight*5/7
 
 local userAnswer
 local textTouched = false
 
 numLives = 3
 
-local totalSeconds = 10
-local secondsLeft = 10
+local totalSeconds = 31
+local secondsLeft = 30
 local clockText
 local countDownTimer
 -----------------------------------------------------------------------------------------
@@ -73,7 +73,7 @@ local countDownTimer
 
 --making transition to next scene
 local function BackToLevel1() 
-    composer.hideOverlay("crossFade", 400 )
+    composer.hideOverlay("crossFade", 500 )
   
     ResumeGame()
 end 
@@ -113,7 +113,7 @@ local function TouchListenerWrongAnswer2(touch)
     userAnswer = wrongText2.text
     numLives = numLives - 1
 
-        if (touch.phase == "ended") then
+    if (touch.phase == "ended") then
 
         BackToLevel1()
 
@@ -139,7 +139,7 @@ end
 
 
 --adding the event listeners 
-local function AddTextListeners ( )
+local function AddTextListeners ()
     answerText:addEventListener( "touch", TouchListenerAnswer )
     wrongText1:addEventListener( "touch", TouchListenerWrongAnswer)
     wrongText2:addEventListener( "touch", TouchListenerWrongAnswer2)
@@ -156,8 +156,8 @@ end
 
 local function DisplayQuestion()
     --creating random numbers
-    firstNumber = math.random (0,15)
-    secondNumber = math.random (0,15)
+    firstNumber = math.random (0, 15)
+    secondNumber = math.random (0, 15)
 
     -- calculate answer
     answer = firstNumber + secondNumber
@@ -362,12 +362,13 @@ function scene:hide( event )
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
         --parent:resumeGame()
+        hideTimer()
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
         RemoveTextListeners()
-        hideTimer()
+
     end
 
 end --function scene:hide( event )
