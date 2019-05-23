@@ -68,7 +68,7 @@ local character
 local heart1
 local heart2
 local heart3
-local numLives = 3
+
 
 local motionx = 0
 local SPEED = 6
@@ -107,6 +107,9 @@ local mainMenuChannel
 
 -- set the boolean variable to be true
 soundOn = true
+
+numLives = 3
+
 -----------------------------------------------------------------------------------------
 -- LOCAL SCENE FUNCTIONS
 ----------------------------------------------------------------------------------------- 
@@ -457,6 +460,60 @@ function ResumeGame()
 
 end
 
+function lives()
+    -- User begins editing "numericField"
+    if (event.phase == "began") then
+
+        -- clear text field
+        event.target.text = ""
+
+    elseif event.phase == "submitted" then
+
+        -- when the answer is submitted (enter key is pressed) set user input to user's answer
+        userAnswer = tonumber(event.target.text)
+
+        -- if the users answer is correct
+        if (userAnswer == correctAnswer) then
+            correctObject.isVisible = true
+            incorrectObject.isVisible = false
+            correctSoundChannel = audio.play(correctSound)
+            timer.performWithDelay(2500, HideCorrect)
+            points = points + 1
+            pointsObject.text = "Points" .. " = ".. points
+
+        elseif (userAnswer) then
+            correctObject.isVisible = false
+            incorrectObject.isVisible = true
+            wrongSoundChannel = audio.play(wrongSound)
+            timer.performWithDelay(2500, HideIncorrect)
+            lives = lives - 1
+
+    elseif (lives == 3) then
+        heart1.isVisible = true
+        heart2.isVisible = true
+        heart3.isVisible = true
+
+    elseif (lives == 2) then
+        heart1.isVisible = true
+        heart2.isVisible = true
+        heart3.isVisible = false
+
+    elseif (lives == 1) then
+        heart1.isVisible = true
+        heart2.isVisible = false
+        heart3.isVisible = false
+
+    elseif (lives == 0) then
+        heart1.isVisible = false
+        heart2.isVisible = false
+        heart3.isVisible = false
+
+            YouLoseTransition()
+            
+        end
+
+    end 
+end
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
