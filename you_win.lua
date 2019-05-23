@@ -30,14 +30,35 @@ local scene = composer.newScene( sceneName )
 
 -- local variables for the scene
 local bkg
+local backButton
+local level2Button
+-----------------------------------------------------------------------------------------
+-- SOUNDS 
+-----------------------------------------------------------------------------------------
 
-----------------------------------------------------------------------------------------
+local youWin = audio.loadSound("Sounds/Cheerw.m4a")
+local youWinChannel
+
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
-local youWin = audio.loadSound("Sounds/Cheerw.m4a")
-local youWinChannel 
+
+-- Creating Transitioning Function back to main menu
+local function BackTransition( )
+    composer.gotoScene( "main_menu", {effect = "zoomOutInFade", time = 500})
+end 
+
+-----------------------------------------------------------------------------------------
+
+-- Creating Transition Function to Level2 Screen
+local function Level2ScreenTransition( )       
+    composer.gotoScene( "level2_screen", {effect = "slideRight", time = 500})
+end 
+
 --------------------------------------------------------------------------------------
+-- GLOBAL SCENE FUNCTIONS
+--------------------------------------------------------------------------------------
+
 -- The function called when the screen doesn't exist
 function scene:create( event )
 
@@ -50,11 +71,61 @@ function scene:create( event )
     bkg.y = display.contentCenterY
     bkg.width = display.contentWidth
     bkg.height = display.contentHeight
+
    -- Playing the you Win sound
    youWinChannel = audio.play(youWin)
 
+    -----------------------------------------------------------------------------------------
+    -- BUTTON WIDGETS
+    ----------------------------------------------------------------------------------------- 
+    
+   -- Creating Back Button
+    backButton = widget.newButton( 
+    {
+        -- Setting Position
+        x = 100,
+        y = 700,
+
+        -- Setting Dimensions
+        width = 200,
+        height = 100,
+
+        -- Setting Visual Properties
+        defaultFile = "Images/BackButtonUnpressedLinhH.png",
+        overFile = "Images/BackButtonPressedLinhH.png",
+
+        -- Setting Functional Properties
+        onRelease = BackTransition
+
+    } )
+
+    -- send backButton to the front
+        backButton:toFront()
+
+    -- Creating level2 Button
+    level2Button = widget.newButton( 
+        {
+            -- Set its position on the screen relative to the screen size
+            x = 930,
+            y = 700,
+
+            width = 200,
+            height = 100,
+            
+            -- Insert the images here
+            defaultFile = "Images/level2UnpressedLinhH@2x.png",
+            overFile = "Images/level2PressedLinhH@2x.png",
+
+            -- When the button is released, call the Credits transition function
+            onRelease = Level2ScreenTransition
+        } ) 
+
+    -----------------------------------------------------------------------------------------
+
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg )
+    sceneGroup:insert( backButton )
+    sceneGroup:insert( level2Button )
   
 end    
 
