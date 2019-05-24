@@ -68,18 +68,9 @@ local character
 local heart1
 local heart2
 local heart3
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
+
 local numLives = 3
->>>>>>> parent of 556ba8c... Update level1_screen.lua
-=======
-local numLives = 3
->>>>>>> parent of 556ba8c... Update level1_screen.lua
-=======
-local numLives = 3
->>>>>>> parent of 556ba8c... Update level1_screen.lua
 
 local motionx = 0
 local SPEED = 6
@@ -468,9 +459,7 @@ function ResumeGame()
 
 end
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 function lives()
     -- User begins editing "numericField"
     if (event.phase == "began") then
@@ -522,12 +511,7 @@ function lives()
 
     end 
 end
-=======
->>>>>>> parent of 556ba8c... Update level1_screen.lua
-=======
->>>>>>> parent of 556ba8c... Update level1_screen.lua
-=======
->>>>>>> parent of 556ba8c... Update level1_screen.lua
+
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
