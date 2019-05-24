@@ -68,6 +68,10 @@ local character
 local heart1
 local heart2
 local heart3
+<<<<<<< HEAD
+=======
+local numLives = 3
+>>>>>>> parent of 556ba8c... Update level1_screen.lua
 
 local motionx = 0
 local SPEED = 6
@@ -106,9 +110,6 @@ local mainMenuChannel
 
 -- set the boolean variable to be true
 soundOn = true
-
-numLives = 3
-
 -----------------------------------------------------------------------------------------
 -- LOCAL SCENE FUNCTIONS
 ----------------------------------------------------------------------------------------- 
@@ -459,6 +460,7 @@ function ResumeGame()
 
 end
 
+<<<<<<< HEAD
 function lives()
     -- User begins editing "numericField"
     if (event.phase == "began") then
@@ -510,6 +512,8 @@ function lives()
 
     end 
 end
+=======
+>>>>>>> parent of 556ba8c... Update level1_screen.lua
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------

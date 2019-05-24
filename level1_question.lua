@@ -61,10 +61,15 @@ local Y2 = display.contentHeight*5/7
 local userAnswer
 local textTouched = false
 
-numLives = 3
+------------------------------------------------------------------------------------------
+-- GLOBAL VARIABLES
+------------------------------------------------------------------------------------------
 
-local totalSeconds = 31
-local secondsLeft = 30
+lives = 3
+
+totalSeconds = 31
+secondsLeft = 30
+
 local clockText
 local countDownTimer
 -----------------------------------------------------------------------------------------
@@ -97,7 +102,7 @@ end
 --checking to see if the user pressed the right answer and bring them back to level 1
 local function TouchListenerWrongAnswer(touch)
     userAnswer = wrongText1.text
-    numLives = numLives - 1
+    lives = lives - 1
 
     if (touch.phase == "ended") then
 
@@ -111,7 +116,7 @@ end
 --checking to see if the user pressed the right answer and bring them back to level 1
 local function TouchListenerWrongAnswer2(touch)
     userAnswer = wrongText2.text
-    numLives = numLives - 1
+    lives = lives - 1
 
     if (touch.phase == "ended") then
 
@@ -123,7 +128,7 @@ end
 --checking to see if the user pressed the right answer and bring them back to level 1
 local function TouchListenerWrongAnswer3(touch)
     userAnswer = wrongText3.text
-    numLives = numLives - 1
+    lives = lives - 1
 
     if (touch.phase == "ended") then
 
@@ -231,6 +236,12 @@ local function PositionAnswers()
     end
 end
 
+-- function that calls the timer
+local function StartTimer()
+    -- create a countdown timer that loops infinitely
+    countDownTimer = timer.performWithDelay(1000, UpdateTime, 0)
+end
+
 local function UpdateTime()
 
     -- decrement the number of seconds
@@ -241,9 +252,8 @@ local function UpdateTime()
 
     if (secondsLeft == 0) then
         -- reset the number of seconds left
-        numLives = numLives - 1
+        lives = lives - 1
         BackToLevel1()
-
         if (lives == 2) then
             heart1.isVisible = false
         elseif (lives == 1) then
@@ -256,13 +266,6 @@ local function UpdateTime()
         end
     end
 end
-
--- function that calls the timer
-local function StartTimer()
-    -- create a countdown timer that loops infinitely
-    countDownTimer = timer.performWithDelay(1000, UpdateTime, 0)
-end
-
 -----------------------------------------------------------------------------------------
 -- OBJECT CREATIONS
 -----------------------------------------------------------------------------------------
