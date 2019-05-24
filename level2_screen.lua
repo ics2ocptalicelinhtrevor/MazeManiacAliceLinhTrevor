@@ -65,11 +65,6 @@ local torchesAndSign
 local door
 local character
 
-local heart1
-local heart2
-local heart3
-local numLives = 3
-
 local motionx = 0
 local SPEED = 6
 local SPEED1 = -6
@@ -265,13 +260,7 @@ local function MakeMeatVisible()
     meat1.isVisible = true
     meat2.isVisible = true
     meat3.isVisible = true
-    meat4.isvisible = true
-end
-
-local function MakeHeartsVisible()
-    heart1.isVisible = true
-    heart2.isVisible = true
-    heart3.isVisible = true
+    meat4.isVisible = true
 end
 
 local function YouLoseTransition()
@@ -283,6 +272,7 @@ local function YouWinTransition()
 end
 
 local function onCollision( self, event )
+
     -- for testing purposes
     --print( event.target )        --the first object in the collision
     --print( event.other )         --the second object in the collision
@@ -290,31 +280,6 @@ local function onCollision( self, event )
     --print( event.otherElement )  --the element (number) of the second object which was hit in the collision
     --print( event.target.myName .. ": collision began with " .. event.other.myName )
 
-
-           if (numLives == 2) then
-                -- update hearts
-                heart3.isVisible = false
-                heart2.isVisible = true
-                heart1.isVisible = true
-                timer.performWithDelay(200, ReplaceCharacter) 
-
-            elseif (numLives == 1) then
-                -- update hearts
-                heart3.isVisible = false
-                heart2.isVisible = false
-                heart1.isVisible = true 
-                timer.performWithDelay(200, ReplaceCharacter)
-
-            elseif (numLives == 0) then
-                -- update hearts
-                heart3.isVisible = false
-                heart2.isVisible = false
-                heart1.isVisible = false 
-                timer.performWithDelay(200, YouLoseTransition)
-
-            end
-        
-        end
 
         if  (event.target.myName == "meat1") or
             (event.target.myName == "meat2") or
@@ -343,9 +308,9 @@ local function onCollision( self, event )
                 -- after getting 3 questions right, go to the you win screen
                 composer.gotoScene("you_win")
             end
-
-        end       
-
+        end 
+    end
+end
 
 local function AddCollisionListeners()
 
@@ -401,7 +366,7 @@ local function AddPhysicsBodies()
     physics.addBody(meat1, "static",  {density=0, friction=0, bounce=0} )
     physics.addBody(meat2, "static",  {density=0, friction=0, bounce=0} )
     physics.addBody(meat3, "static",  {density=0, friction=0, bounce=0} )
-    physics.addBody(meat3, "static",  {density=0, friction=0, bounce=0} )
+    physics.addBody(meat4, "static",  {density=0, friction=0, bounce=0} )
     physics.addBody(door, "static", {density=0, friction=0.0 } )
 
 end
@@ -625,31 +590,6 @@ function scene:create( event )
     -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( door )
 
-    -- Insert the Hearts
-    heart1 = display.newImageRect("Images/heart.png", 80, 80)
-    heart1.x = 60
-    heart1.y = 60
-    heart1.isVisible = true
-
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( heart1 )
-
-    heart2 = display.newImageRect("Images/heart.png", 80, 80)
-    heart2.x = 150
-    heart2.y = 60
-    heart2.isVisible = true
-
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( heart2 )
-
-    heart3 = display.newImageRect("Images/heart.png", 80, 80)
-    heart3.x = 240
-    heart3.y = 60
-    heart3.isVisible = true
-
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( heart3 )
-
     --WALLS--
     leftW = display.newLine( 0, 0, 0, display.contentHeight)
     leftW.isVisible = true
@@ -775,9 +715,6 @@ function scene:show( event )
 
         -- make all meat visible
         MakeMeatVisible()
-
-        -- make all lives visible
-        MakeHeartsVisible()
 
         -- add physics bodies to each object
         AddPhysicsBodies()

@@ -85,11 +85,7 @@ end
     composer.gotoScene( "level3_screen", {effect = "slideLeft", time = 500})
 end  
 
--- Creating Transition to Level3 Screen
- 
- local function Level3ScreenTransition( )
-    composer.gotoScene( "level3_screen", {effect = "slideLeft", time = 500})
-end  
+------------------------------------------------------------------------------------------
 
 -- Creating Transitioning Function back to main menu
 local function BackTransition( )
