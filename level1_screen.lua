@@ -69,7 +69,6 @@ local heart1
 local heart2
 local heart3
 
-
 local motionx = 0
 local SPEED = 6
 local SPEED1 = -6
@@ -464,13 +463,10 @@ function lives()
     -- User begins editing "numericField"
     if (event.phase == "began") then
 
-        -- clear text field
-        event.target.text = ""
-
     elseif event.phase == "submitted" then
 
         -- when the answer is submitted (enter key is pressed) set user input to user's answer
-        userAnswer = tonumber(event.target.text)
+        -- userAnswer = tonumber(event.target.text)
 
         -- if the users answer is correct
         if (userAnswer == correctAnswer) then
