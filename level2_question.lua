@@ -167,26 +167,26 @@ local function PositionAnswers()
         correctAnswer.y = Y2
         
         alternateAnswer1.x = X2
-        alternateAnswer1.y = Y1
+        alternateAnswer1.y = Y2
         
         alternateAnswer2.x = X2
-        alternateAnswer2.y = Y2
+        alternateAnswer2.y = Y1
 
         alternateAnswer3.x = X1
         alternateAnswer3.y = Y1 
 
     elseif (answerPosition == 5) then
 
-        correctAnswer.x = X1
+        correctAnswer.x = X2
         correctAnswer.y = Y2
         
-        alternateAnswer1.x = X2
+        alternateAnswer1.x = X1
         alternateAnswer1.y = Y1
         
-        alternateAnswer2.x = X2
+        alternateAnswer2.x = X1
         alternateAnswer2.y = Y2
 
-        alternateAnswer3.x = X1
+        alternateAnswer3.x = X2
         alternateAnswer3.y = Y1 
 
     elseif (answerPosition == 6) then
@@ -206,7 +206,7 @@ local function PositionAnswers()
     elseif (answerPosition == 7) then
 
         correctAnswer.x = X1
-        correctAnswer.y = Y2
+        correctAnswer.y = Y1
         
         alternateAnswer1.x = X2
         alternateAnswer1.y = Y1
@@ -215,49 +215,49 @@ local function PositionAnswers()
         alternateAnswer2.y = Y2
 
         alternateAnswer3.x = X1
-        alternateAnswer3.y = Y1 
+        alternateAnswer3.y = Y2 
 
     elseif (answerPosition == 8) then
 
         correctAnswer.x = X1
         correctAnswer.y = Y2
         
-        alternateAnswer1.x = X2
+        alternateAnswer1.x = X1
         alternateAnswer1.y = Y1
         
         alternateAnswer2.x = X2
-        alternateAnswer2.y = Y2
+        alternateAnswer2.y = Y1
 
-        alternateAnswer3.x = X1
-        alternateAnswer3.y = Y1 
+        alternateAnswer3.x = X2
+        alternateAnswer3.y = Y2 
 
     elseif (answerPosition == 9) then
 
-        correctAnswer.x = X1
+        correctAnswer.x = X2
         correctAnswer.y = Y2
         
         alternateAnswer1.x = X2
         alternateAnswer1.y = Y1
         
-        alternateAnswer2.x = X2
-        alternateAnswer2.y = Y2
+        alternateAnswer2.x = X1
+        alternateAnswer2.y = Y1
 
         alternateAnswer3.x = X1
-        alternateAnswer3.y = Y1 
+        alternateAnswer3.y = Y2 
 
     elseif (answerPosition == 10) then
 
         correctAnswer.x = X1
-        correctAnswer.y = Y2
+        correctAnswer.y = Y1
         
         alternateAnswer1.x = X2
         alternateAnswer1.y = Y1
         
         alternateAnswer2.x = X2
-        alternateAnswer2.y = Y2
+        alternateAnswer2.y = Y1
 
         alternateAnswer3.x = X1
-        alternateAnswer3.y = Y1 
+        alternateAnswer3.y = Y2 
     end
 end
 
