@@ -31,13 +31,24 @@ local scene = composer.newScene( sceneName )
 local bkg_image
 
 --the text that displays the question
-local questionText 
+local questionObject
+
+-- display the lives
+local life1
+local life2
+local life3
 
 --the alternate numbers randomly generated
 local correctAnswer
 local alternateAnswer1
 local alternateAnswer2
-local alternateAnswer3    
+local alternateAnswer3  
+
+-- display answers
+local X1 = display.contentWidth*2/7
+local X2 = display.contentWidth*4/7
+local Y1 = display.contentHeight*1/2
+local Y2 = display.contentHeight*5.5/7  
 
 -- Variables containing the user answer and the actual answer
 local userAnswer
@@ -46,6 +57,7 @@ local userAnswer
 local answerboxAlreadyTouched = false
 local alternateAnswerBox1AlreadyTouched = false
 local alternateAnswerBox2AlreadyTouched = false
+local alternateAnswerBox3AlreadyTouched = false
 
 --create textboxes holding answer and alternate answers 
 local answerbox
@@ -89,22 +101,7 @@ local function DisplayQuestion()
     alternateAnswerBox3AlreadyTouched = false
 
 end
-
-local function DetermineAlternateAnswers()    
-
-        
-    -- generate incorrect answer and set it in the textbox
-    alternateAnswer1 = correctAnswer + math.random(3, 5)
-    alternateAnswerBox1.text = alternateAnswer1
-
-    -- generate incorrect answer and set it in the textbox
-    alternateAnswer2 = correctAnswer - math.random(1, 2)
-    alternateAnswerBox2.text = alternateAnswer2
-
-    -- generate incorrect answer and set it in the textbox
-    alternateAnswer3 = correctAnswer + math.random(6, 10)
-    alternateAnswerBox3.text = alternateAnswer3
--------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 -- RESET ALL X POSITIONS OF ANSWER BOXES (because the x-position is changed when it is
 -- placed into the black box)
 -----------------------------------------------------------------------------------------
@@ -117,7 +114,152 @@ local function DetermineAlternateAnswers()
 end
 
 local function PositionAnswers()
-    local randomPosition
+
+ --creating random start position in a cretain area
+    answerPosition = math.random(1,10)
+
+    if (answerPosition == 1) then
+
+        correctAnswer.x = X1
+        correctAnswer.y = Y1
+        
+        alternateAnswer1.x = X2
+        alternateAnswer1.y = Y1
+        
+        alternateAnswer2.x = X1
+        alternateAnswer2.y = Y2
+
+        alternateAnswer3.x = X2
+        alternateAnswer3.y = Y2
+
+        
+    elseif (answerPosition == 2) then
+
+        correctAnswer.x = X2
+        correctAnswer.y = Y1
+        
+        alternateAnswer1.x = X1
+        alternateAnswer1.y = Y1
+        
+        alternateAnswer2.x = X1
+        alternateAnswer2.y = Y2
+
+        alternateAnswer3.x = X2
+        alternateAnswer3.y = Y2
+
+    elseif (answerPosition == 3) then
+
+        correctAnswer.x = X1
+        correctAnswer.y = Y2
+        
+        alternateAnswer1.x = X2
+        alternateAnswer1.y = Y1
+        
+        alternateAnswer2.x = X2
+        alternateAnswer2.y = Y2
+
+        alternateAnswer3.x = X1
+        alternateAnswer3.y = Y1 
+
+    elseif (answerPosition == 4) then
+
+        correctAnswer.x = X1
+        correctAnswer.y = Y2
+        
+        alternateAnswer1.x = X2
+        alternateAnswer1.y = Y2
+        
+        alternateAnswer2.x = X2
+        alternateAnswer2.y = Y1
+
+        alternateAnswer3.x = X1
+        alternateAnswer3.y = Y1 
+
+    elseif (answerPosition == 5) then
+
+        correctAnswer.x = X2
+        correctAnswer.y = Y2
+        
+        alternateAnswer1.x = X1
+        alternateAnswer1.y = Y1
+        
+        alternateAnswer2.x = X1
+        alternateAnswer2.y = Y2
+
+        alternateAnswer3.x = X2
+        alternateAnswer3.y = Y1 
+
+    elseif (answerPosition == 6) then
+
+        correctAnswer.x = X1
+        correctAnswer.y = Y2
+        
+        alternateAnswer1.x = X2
+        alternateAnswer1.y = Y1
+        
+        alternateAnswer2.x = X2
+        alternateAnswer2.y = Y2
+
+        alternateAnswer3.x = X1
+        alternateAnswer3.y = Y1 
+
+    elseif (answerPosition == 7) then
+
+        correctAnswer.x = X1
+        correctAnswer.y = Y1
+        
+        alternateAnswer1.x = X2
+        alternateAnswer1.y = Y1
+        
+        alternateAnswer2.x = X2
+        alternateAnswer2.y = Y2
+
+        alternateAnswer3.x = X1
+        alternateAnswer3.y = Y2 
+
+    elseif (answerPosition == 8) then
+
+        correctAnswer.x = X1
+        correctAnswer.y = Y2
+        
+        alternateAnswer1.x = X1
+        alternateAnswer1.y = Y1
+        
+        alternateAnswer2.x = X2
+        alternateAnswer2.y = Y1
+
+        alternateAnswer3.x = X2
+        alternateAnswer3.y = Y2 
+
+    elseif (answerPosition == 9) then
+
+        correctAnswer.x = X2
+        correctAnswer.y = Y2
+        
+        alternateAnswer1.x = X2
+        alternateAnswer1.y = Y1
+        
+        alternateAnswer2.x = X1
+        alternateAnswer2.y = Y1
+
+        alternateAnswer3.x = X1
+        alternateAnswer3.y = Y2 
+
+    elseif (answerPosition == 10) then
+
+        correctAnswer.x = X1
+        correctAnswer.y = Y1
+        
+        alternateAnswer1.x = X2
+        alternateAnswer1.y = Y1
+        
+        alternateAnswer2.x = X2
+        alternateAnswer2.y = Y1
+
+        alternateAnswer3.x = X1
+        alternateAnswer3.y = Y2 
+    end
+end
 
     -------------------------------------------------------------------------------------------
     --ROMDOMLY SELECT ANSWER BOX POSITIONS
@@ -193,7 +335,6 @@ end
 -- Function to Restart Level 1
 local function RestartLevel2()
     DisplayQuestion()
-    DetermineAlternateAnswers()
     PositionAnswers()    
 end
 
@@ -409,10 +550,23 @@ function scene:create( event )
     bkg_image.width = display.contentWidth
     bkg_image.height = display.contentHeight
 
+    -- Insert the life images
+    life1 = display.newImageRect("Images/heart.png", 100, 100)
+    life1.x = display.contentWidth * 5 / 8
+    life1.y = display.contentHeight * 1 / 7
+
+    life2 = display.newImageRect("Images/heart.png", 100, 100)
+    life2.x = display.contentWidth * 6 / 8
+    life2.y = display.contentHeight * 1 / 7
+
+    life3 = display.newImageRect("Images/heart.png", 100, 100)
+    life3.x = display.contentWidth * 7 / 8
+    life3.y = display.contentHeight * 1 / 7
+
     --the text that displays the question
-    questionText = display.newText( "" , 0, 0, nil, 100)
-    questionText.x = display.contentWidth * 0.3
-    questionText.y = display.contentHeight * 0.9
+    questionObject = display.newText( "Drag the right word into the shape." , 0, 0, nil, 100)
+    questionObject.x = display.contentWidth * 0.3
+    questionObject.y = display.contentHeight * 0.9
 
     -- boolean variables stating whether or not the answer was touched
     answerboxAlreadyTouched = false
