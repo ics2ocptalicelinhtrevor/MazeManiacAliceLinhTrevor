@@ -1,5 +1,3 @@
-
-    
 -----------------------------------------------------------------------------------------
 --
 -- level1_screen.lua
@@ -7,9 +5,9 @@
 -- Date: May 6th
 -- Description: This is the level 1 screen of the game.
 -- Date: May 6th, 2019
--- Description: This is the level 1 screen of the game. The goal of the level screen is 
--- to have a maze game, and everytime the lion collides into something, it transitions 
--- to a math question.
+-- Description: This is the level 1 screen of the game. Everytime lion touches a 
+-- question mark, it asks a math question. If the timer runs out, you lose a life
+-- To win, you must answer 5 math questions. 
 -----------------------------------------------------------------------------------------
 
 -- hide the status bar
@@ -60,7 +58,6 @@ local wall11
 local wall12
 local wall13
 
-
 local torchesAndSign
 local door
 local character
@@ -69,14 +66,8 @@ local heart1
 local heart2
 local heart3
 
-
-local numLives = 3
-
+-- character movement
 local motionx = 0
-local SPEED = 6
-local SPEED1 = -6
-local LINEAR_VELOCITY = -100
-local GRAVITY = 6
 
 local leftW 
 local topW
@@ -109,12 +100,15 @@ local mainMenuChannel
 
 -- set the boolean variable to be true
 soundOn = true
+
+-- Number of lives
+numLives = 3
+
 -----------------------------------------------------------------------------------------
 -- LOCAL SCENE FUNCTIONS
 ----------------------------------------------------------------------------------------- 
  
- -- Creating a function which limits the characters' movement to the visible screen
-
+-- Creating a function which limits the characters' movement to the visible screen
 local function ScreenLimit( character )   
 
     -- Checking if the the character is about to go off the right side of the screen
@@ -197,26 +191,23 @@ local function RuntimeEvents( )
                 facingWhichDirection = "left"
 
             end
+
         end
-
-        -----------------------------------------------------------------------------------------
-
+-----------------------------------------------------------------------------------------
 end -- local function RuntimeEvents( )
 
 -- Creating Joystick function that determines whether or not joystick is pressed
 local function Movement( touch )
 
     if touch.phase == "began" then
-
         -- Setting a boolean to true to simulate the holding of a button
         joystickPressed = true
 
     elseif touch.phase == "ended" then
-
         -- Setting a boolean to false to simulate the release of a held button
         joystickPressed = false
-
     end
+
 end --local function Movement( touch )
 
 -- Move character horizontally
@@ -226,9 +217,11 @@ end
  
 -- Stop character movement when no arrow is pushed
 local function stop (event)
+
     if (event.phase =="ended") then
         motionx = 0
     end
+
 end
 
 
@@ -241,7 +234,6 @@ local function RemoveRuntimeListeners()
     Runtime:removeEventListener("enterFrame", movePlayer)
     Runtime:removeEventListener("touch", stop )
 end
-
 
 local function ReplaceCharacter()
     character = display.newImageRect("Images/lion.png", 150, 150)
@@ -373,8 +365,6 @@ local function AddPhysicsBodies()
     physics.addBody(wall12, "static", {friction = 0})
     physics.addBody(wall13, "static", {friction = 0})
 
-
-
     physics.addBody(leftW, "static", {friction = 0})
     physics.addBody(topW, "static", {friction = 0})
     physics.addBody(floor, "static", {friction = 0})
@@ -441,15 +431,34 @@ local function Unmute(touch)
     end
 end
 
+local function UpdatingLives()
+
+    if (numLives == 3) then
+        heart1.isVisible = true
+        heart2.isVisible = true
+        heart3.isVisible = true
+    elseif (numLives == 2) then
+        heart1.isVisible = false
+    elseif (numLives == 1) then
+        heart2.isVisible = false
+    elseif (numLives == 0) then
+        heart3.isVisible = false
+        YouLoseTransition()
+    end
+end
+
 -----------------------------------------------------------------------------------------
 -- GLOBAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 
-function ResumeGame()
+function ResumeLevel1()
 
     -- make character visible again
     character.isVisible = true
-    
+
+    -- Updating the lives
+    UpdatingLives()
+
     if (questionsAnswered > 0) then
         if (theMeat ~= nil) and (theMeat.isBodyActive == true) then
             physics.removeBody(theMeat)
@@ -457,59 +466,6 @@ function ResumeGame()
         end
     end
 
-end
-
-
-function lives()
-    -- User begins editing "numericField"
-    if (event.phase == "began") then
-
-    elseif event.phase == "submitted" then
-
-        -- when the answer is submitted (enter key is pressed) set user input to user's answer
-        -- userAnswer = tonumber(event.target.text)
-
-        -- if the users answer is correct
-        if (userAnswer == correctAnswer) then
-            correctObject.isVisible = true
-            incorrectObject.isVisible = false
-            correctSoundChannel = audio.play(correctSound)
-            timer.performWithDelay(2500, HideCorrect)
-            points = points + 1
-            pointsObject.text = "Points" .. " = ".. points
-
-        elseif (userAnswer) then
-            correctObject.isVisible = false
-            incorrectObject.isVisible = true
-            wrongSoundChannel = audio.play(wrongSound)
-            timer.performWithDelay(2500, HideIncorrect)
-            lives = lives - 1
-
-    elseif (lives == 3) then
-        heart1.isVisible = true
-        heart2.isVisible = true
-        heart3.isVisible = true
-
-    elseif (lives == 2) then
-        heart1.isVisible = true
-        heart2.isVisible = true
-        heart3.isVisible = false
-
-    elseif (lives == 1) then
-        heart1.isVisible = true
-        heart2.isVisible = false
-        heart3.isVisible = false
-
-    elseif (lives == 0) then
-        heart1.isVisible = false
-        heart2.isVisible = false
-        heart3.isVisible = false
-
-            YouLoseTransition()
-            
-        end
-
-    end 
 end
 
 -----------------------------------------------------------------------------------------
@@ -536,27 +492,23 @@ function scene:create( event )
     wall1:setFillColor(0, 0, 0)
     wall1:toFront()
     
-
     wall2 = display.newRect(0, 0,display.contentWidth, 20)
     wall2.x = display.contentCenterX
     wall2.y = display.contentHeight
     wall2:setFillColor(0, 0, 0)
     wall2:toFront()
     
-
     wall3 = display.newRect(0, 0, 20, display.contentHeight)
     wall3.x = display.contentWidth
     wall3.y = display.contentCenterY
     wall3:setFillColor(0, 0, 0)
     wall3:toFront()
     
-
     wall4 = display.newRect(0, 0, 20, display.contentHeight)
     wall4.x = 0
     wall4.y = display.contentCenterY
     wall4:setFillColor(0, 0, 0)
     wall4:toFront()
-    
 
     wall5 = display.newRect(0, 0, 10, display.contentHeight - 150)
     wall5.x = 150
@@ -564,7 +516,6 @@ function scene:create( event )
     wall5:setFillColor(0, 0, 0)
     wall5:toFront()
     
-
     wall6 = display.newRect(0, 0, 10, display.contentHeight - 150)
     wall6.x = 600
     wall6.y = 642
@@ -572,14 +523,12 @@ function scene:create( event )
     wall6:toFront()
     wall6.rotation = 90
     
-
     wall7 = display.newRect(0, 0, 10, display.contentHeight - 50)
     wall7.x = 300
     wall7.y = 100
     wall7:setFillColor(0, 0, 0)
     wall7:toFront()
     
-
     wall8 = display.newRect(0, 0, 10, display.contentHeight - 300)
     wall8.x = 450
     wall8.y = 405
@@ -626,29 +575,10 @@ function scene:create( event )
     -- Changing transparency
     analogStick.alpha = 0.5
 
-    sceneGroup:insert( analogStick )
-    sceneGroup:insert( wall1 )
-    sceneGroup:insert( wall2 )
-    sceneGroup:insert( wall3 )
-    sceneGroup:insert( wall4 )
-    sceneGroup:insert( wall5 )
-    sceneGroup:insert( wall6 )
-    sceneGroup:insert( wall7 )
-    sceneGroup:insert( wall8 )
-    sceneGroup:insert( wall9 )
-    sceneGroup:insert( wall10 )
-    sceneGroup:insert( wall11 )
-    sceneGroup:insert( wall12 )
-    sceneGroup:insert( wall13 )
-
-
     -- Insert the torchesAndSign Objects
     torchesAndSign = display.newImageRect("Images/Level-1Random.png", display.contentWidth, display.contentHeight)
     torchesAndSign.x = display.contentCenterX
     torchesAndSign.y = display.contentCenterY + 10
-
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( torchesAndSign )
 
     -- Insert the Door
     door = display.newImage("Images/Level-1Door.png", 200, 200)
@@ -657,60 +587,36 @@ function scene:create( event )
     door.myName = "door"
     door:scale( 0.6, 0.6 )
 
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( door )
-
     -- Insert the Hearts
     heart1 = display.newImageRect("Images/heart.png", 80, 80)
     heart1.x = 60
     heart1.y = 60
     heart1.isVisible = true
 
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( heart1 )
-
     heart2 = display.newImageRect("Images/heart.png", 80, 80)
     heart2.x = 150
     heart2.y = 60
     heart2.isVisible = true
-
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( heart2 )
 
     heart3 = display.newImageRect("Images/heart.png", 80, 80)
     heart3.x = 240
     heart3.y = 60
     heart3.isVisible = true
 
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( heart3 )
-
-    --WALLS--
+    -- Walls outside of screen
     leftW = display.newLine( 0, 0, 0, display.contentHeight)
     leftW.isVisible = true
-
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( leftW )
 
     rightW = display.newLine( 0, 0, 0, display.contentHeight)
     rightW.x = display.contentCenterX * 2
     rightW.isVisible = true
 
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( rightW )
-
     topW = display.newLine( 0, 0, display.contentWidth, 0)
     topW.isVisible = true
-
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( topW )
 
     floor = display.newImageRect("Images/Level-1Floor.png", 1024, 100)
     floor.x = display.contentCenterX
     floor.y = display.contentHeight * 1.06
-    
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( floor )
 
     --meat1
     meat1 = display.newImageRect ("Images/meat.png", 70, 70)
@@ -718,26 +624,17 @@ function scene:create( event )
     meat1.y = 700
     meat1.myName = "meat1"
 
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( meat1 )
-
     --meat2
     meat2 = display.newImageRect ("Images/meat.png", 70, 70)
     meat2.x = 380
     meat2.y = 450
     meat2.myName = "meat2"
 
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( meat2 )
-
     --meat3
     meat3 = display.newImageRect ("Images/meat.png", 70, 70)
     meat3.x = 500
     meat3.y = 100
     meat3.myName = "meat3"
-
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( meat3 )
 
     --meat4
     meat4 = display.newImageRect ("Images/meat.png", 70, 70)
@@ -753,21 +650,45 @@ function scene:create( event )
     meat5.y = 200
     meat5.myName = "meat5"
 
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( meat5 )
-
-    -- creating mute button
+    -- mute button
     muteButton = display.newImageRect("Images/Mute Button Unpressed.png", 100, 100)
     muteButton.x = 340
     muteButton.y = 60
     muteButton.isVisible = true
 
-    -- creating unmute button
+    -- unmute button
     unmuteButton = display.newImageRect("Images/Mute Button Pressed.png", 100, 100)
     unmuteButton.x = 340
     unmuteButton.y = 60
     unmuteButton.isVisible = false
 
+    sceneGroup:insert( analogStick )
+    sceneGroup:insert( wall1 )
+    sceneGroup:insert( wall2 )
+    sceneGroup:insert( wall3 )
+    sceneGroup:insert( wall4 )
+    sceneGroup:insert( wall5 )
+    sceneGroup:insert( wall6 )
+    sceneGroup:insert( wall7 )
+    sceneGroup:insert( wall8 )
+    sceneGroup:insert( wall9 )
+    sceneGroup:insert( wall10 )
+    sceneGroup:insert( wall11 )
+    sceneGroup:insert( wall12 )
+    sceneGroup:insert( wall13 )
+    sceneGroup:insert( torchesAndSign )
+    sceneGroup:insert( door )
+    sceneGroup:insert( heart1 )
+    sceneGroup:insert( heart2 )
+    sceneGroup:insert( heart3 )
+    sceneGroup:insert( leftW )
+    sceneGroup:insert( rightW )
+    sceneGroup:insert( topW )
+    sceneGroup:insert( floor )
+    sceneGroup:insert( meat1 )
+    sceneGroup:insert( meat2 )
+    sceneGroup:insert( meat3 )
+    sceneGroup:insert( meat5 )
     sceneGroup:insert( muteButton )
     sceneGroup:insert( unmuteButton )
 
@@ -802,16 +723,21 @@ function scene:show( event )
 
         -- Play the background music for this scene
         mainMenuChannel = audio.play(mainMenu)
+
         -- display the mute button at the start, so it doesn't overlap when it's muted
         muteButton.isVisible = true
         unmuteButton.isVisible = false
+
         -- lower the volume
         audio.setVolume(0.5, { channel=1, loops=-1 } )
+
         -- mute button
         muteButton:addEventListener("touch", Mute)
+
         -- unmute button
         unmuteButton:addEventListener("touch", Unmute)
 
+        -- number of lives and questions answered
         numLives = 3
         questionsAnswered = 0
 
@@ -837,6 +763,7 @@ function scene:show( event )
         -----------------------------------------------------------------------------------------
         -- EVENT LISTENERS
         -----------------------------------------------------------------------------------------
+        
         -- Listening for the usage of the joystick
         analogStick:addEventListener( "touch", Movement )
         Runtime:addEventListener("enterFrame", RuntimeEvents)

@@ -61,15 +61,8 @@ local Y2 = display.contentHeight*5/7
 local userAnswer
 local textTouched = false
 
-------------------------------------------------------------------------------------------
--- GLOBAL VARIABLES
-------------------------------------------------------------------------------------------
-
-lives = 3
-
-totalSeconds = 31
-secondsLeft = 30
-
+local totalSeconds = 11
+local secondsLeft = 10
 local clockText
 local countDownTimer
 -----------------------------------------------------------------------------------------
@@ -80,7 +73,7 @@ local countDownTimer
 local function BackToLevel1() 
     composer.hideOverlay("crossFade", 500 )
   
-    ResumeGame()
+    ResumeLevel1()
 end 
 
 local function YouLoseTransition()
@@ -89,9 +82,7 @@ end
 -----------------------------------------------------------------------------------------
 --checking to see if the user pressed the right answer and bring them back to level 1
 local function TouchListenerAnswer(touch)
-
-    userAnswer = answerText.text
-
+    
     if (touch.phase == "ended") then
 
         BackToLevel1()
@@ -101,23 +92,18 @@ end
 
 --checking to see if the user pressed the right answer and bring them back to level 1
 local function TouchListenerWrongAnswer(touch)
-    userAnswer = wrongText1.text
-    lives = lives - 1
 
     if (touch.phase == "ended") then
-
+        
         BackToLevel1()
 
-    
     end 
 
 end
 
 --checking to see if the user pressed the right answer and bring them back to level 1
 local function TouchListenerWrongAnswer2(touch)
-    userAnswer = wrongText2.text
-    lives = lives - 1
-
+   
     if (touch.phase == "ended") then
 
         BackToLevel1()
@@ -126,9 +112,7 @@ local function TouchListenerWrongAnswer2(touch)
 end
 
 --checking to see if the user pressed the right answer and bring them back to level 1
-local function TouchListenerWrongAnswer3(touch)
-    userAnswer = wrongText3.text
-    lives = lives - 1
+local function TouchListenerWrongAnswer3(touch)   
 
     if (touch.phase == "ended") then
 
@@ -188,7 +172,7 @@ end
 local function PositionAnswers()
 
     --creating random start position in a cretain area
-    answerPosition = math.random(1,3)
+    answerPosition = math.random(1, 4)
 
     if (answerPosition == 1) then
 
@@ -233,13 +217,22 @@ local function PositionAnswers()
         
         wrongText3.x = X1
         wrongText3.y = Y2   
-    end
-end
 
--- function that calls the timer
-local function StartTimer()
-    -- create a countdown timer that loops infinitely
-    countDownTimer = timer.performWithDelay(1000, UpdateTime, 0)
+    elseif (answerPosition == 4) then
+
+        answerText.x = X2
+        answerText.y = Y2
+            
+        wrongText1.x = X2
+        wrongText1.y = Y1
+            
+        wrongText2.x = X1
+        wrongText2.y = Y2
+        
+        wrongText3.x = X1
+        wrongText3.y = Y1   
+
+    end
 end
 
 local function UpdateTime()
@@ -252,26 +245,18 @@ local function UpdateTime()
 
     if (secondsLeft == 0) then
         -- reset the number of seconds left
-        lives = lives - 1
+        numLives = numLives - 1
         BackToLevel1()
-        if (lives == 2) then
-            heart1.isVisible = false
-        elseif (lives == 1) then
-            heart2.isVisible = false
-        elseif (lives == 0) then
-            heart3.isVisible = false
-            clockText.isVisible = false
-            YouLoseTransition()
-
-        end
     end
 end
------------------------------------------------------------------------------------------
--- OBJECT CREATIONS
------------------------------------------------------------------------------------------
-    -- display the timer
-    clockText = display.newText("", 500, 500, Arial, 100)
-    
+
+-- function that calls the timer
+local function StartTimer()
+    -- create a countdown timer that loops infinitely
+    countDownTimer = timer.performWithDelay(1000, UpdateTime, 0)
+end
+
+   
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -308,6 +293,10 @@ function scene:create( event )
     wrongText3.anchorX = 0
 
 
+        -- display the timer
+    clockText = display.newText("", 500, 500, Arial, 100)
+    clockText:setFillColor(1,0,0)
+
     -----------------------------------------------------------------------------------------
 
     -- insert all objects for this scene into the scene group
@@ -318,6 +307,7 @@ function scene:create( event )
     sceneGroup:insert(wrongText1)
     sceneGroup:insert(wrongText2)
     sceneGroup:insert(wrongText3)
+    sceneGroup:insert(clockText)
 
 end --function scene:create( event )
 
