@@ -58,7 +58,6 @@ local wall11
 local wall12
 local wall13
 
-local torchesAndSign
 local door
 local character
 
@@ -438,11 +437,11 @@ local function UpdatingLives()
         heart2.isVisible = true
         heart3.isVisible = true
     elseif (numLives == 2) then
-        heart1.isVisible = false
+        heart3.isVisible = false
     elseif (numLives == 1) then
         heart2.isVisible = false
     elseif (numLives == 0) then
-        heart3.isVisible = false
+        heart1.isVisible = false
         YouLoseTransition()
     end
 end
@@ -575,11 +574,6 @@ function scene:create( event )
     -- Changing transparency
     analogStick.alpha = 0.5
 
-    -- Insert the torchesAndSign Objects
-    torchesAndSign = display.newImageRect("Images/Level-1Random.png", display.contentWidth, display.contentHeight)
-    torchesAndSign.x = display.contentCenterX
-    torchesAndSign.y = display.contentCenterY + 10
-
     -- Insert the Door
     door = display.newImage("Images/Level-1Door.png", 200, 200)
     door.x = 955
@@ -676,7 +670,6 @@ function scene:create( event )
     sceneGroup:insert( wall11 )
     sceneGroup:insert( wall12 )
     sceneGroup:insert( wall13 )
-    sceneGroup:insert( torchesAndSign )
     sceneGroup:insert( door )
     sceneGroup:insert( heart1 )
     sceneGroup:insert( heart2 )

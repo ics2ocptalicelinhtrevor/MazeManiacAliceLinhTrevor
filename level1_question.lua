@@ -8,9 +8,6 @@
 --with piant a trivia question will come up. they will have a limided time to click on the answer
 -----------------------------------------------------------------------------------------
 
--- things to add 
--- major priority: losing lives, transition to lose screen
--- second priority: scores, 
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
@@ -69,7 +66,7 @@ local countDownTimer
 --LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 
---making transition to next scene
+-- Transition Back to Level 1
 local function BackToLevel1() 
     composer.hideOverlay("crossFade", 500 )
   
@@ -80,7 +77,8 @@ local function YouLoseTransition()
     composer.gotoScene( "you_lose" )
 end
 -----------------------------------------------------------------------------------------
---checking to see if the user pressed the right answer and bring them back to level 1
+
+-- if user pressed the right answer, bring them back to level 1
 local function TouchListenerAnswer(touch)
     
     if (touch.phase == "ended") then
@@ -90,7 +88,9 @@ local function TouchListenerAnswer(touch)
     end 
 end
 
---checking to see if the user pressed the right answer and bring them back to level 1
+-----------------------------------------------------------------------------------------
+
+-- if user pressed wrong answer, bring them back to level 1
 local function TouchListenerWrongAnswer(touch)
 
     if (touch.phase == "ended") then
@@ -101,7 +101,9 @@ local function TouchListenerWrongAnswer(touch)
 
 end
 
---checking to see if the user pressed the right answer and bring them back to level 1
+-----------------------------------------------------------------------------------------
+
+-- if user pressed wrong answer, bring them back to level 1
 local function TouchListenerWrongAnswer2(touch)
    
     if (touch.phase == "ended") then
@@ -111,7 +113,9 @@ local function TouchListenerWrongAnswer2(touch)
     end 
 end
 
---checking to see if the user pressed the right answer and bring them back to level 1
+-----------------------------------------------------------------------------------------
+
+-- if user pressed wrong answer, bring them back to level 1
 local function TouchListenerWrongAnswer3(touch)   
 
     if (touch.phase == "ended") then
@@ -122,31 +126,18 @@ local function TouchListenerWrongAnswer3(touch)
 
 end
 
+-----------------------------------------------------------------------------------------
+
 local function hideTimer()
     clockText.isVisible = false
 end
 
-
---adding the event listeners 
-local function AddTextListeners ()
-    answerText:addEventListener( "touch", TouchListenerAnswer )
-    wrongText1:addEventListener( "touch", TouchListenerWrongAnswer)
-    wrongText2:addEventListener( "touch", TouchListenerWrongAnswer2)
-    wrongText3:addEventListener( "touch", TouchListenerWrongAnswer3)
-end
-
---removing the event listeners
-local function RemoveTextListeners()
-    answerText:removeEventListener( "touch", TouchListenerAnswer )
-    wrongText1:removeEventListener( "touch", TouchListenerWrongAnswer)
-    wrongText2:removeEventListener( "touch", TouchListenerWrongAnswer2)
-    wrongText3:removeEventListener( "touch", TouchListenerWrongAnswer3)
-end
+-----------------------------------------------------------------------------------------
 
 local function DisplayQuestion()
     --creating random numbers
-    firstNumber = math.random (0, 15)
-    secondNumber = math.random (0, 15)
+    firstNumber = math.random (0, 20)
+    secondNumber = math.random (1, 20)
 
     -- calculate answer
     answer = firstNumber + secondNumber
@@ -168,6 +159,8 @@ local function DisplayQuestion()
     wrongText2.text = wrongAnswer2
     wrongText3.text = wrongAnswer3
 end
+
+-----------------------------------------------------------------------------------------
 
 local function PositionAnswers()
 
@@ -235,6 +228,8 @@ local function PositionAnswers()
     end
 end
 
+-----------------------------------------------------------------------------------------
+
 local function UpdateTime()
 
     -- decrement the number of seconds
@@ -256,7 +251,22 @@ local function StartTimer()
     countDownTimer = timer.performWithDelay(1000, UpdateTime, 0)
 end
 
-   
+--adding the event listeners 
+local function AddTextListeners ()
+    answerText:addEventListener( "touch", TouchListenerAnswer )
+    wrongText1:addEventListener( "touch", TouchListenerWrongAnswer)
+    wrongText2:addEventListener( "touch", TouchListenerWrongAnswer2)
+    wrongText3:addEventListener( "touch", TouchListenerWrongAnswer3)
+end
+
+--removing the event listeners
+local function RemoveTextListeners()
+    answerText:removeEventListener( "touch", TouchListenerAnswer )
+    wrongText1:removeEventListener( "touch", TouchListenerWrongAnswer)
+    wrongText2:removeEventListener( "touch", TouchListenerWrongAnswer2)
+    wrongText3:removeEventListener( "touch", TouchListenerWrongAnswer3)
+end
+
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
