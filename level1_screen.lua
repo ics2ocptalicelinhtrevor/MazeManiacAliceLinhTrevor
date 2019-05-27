@@ -73,12 +73,12 @@ local topW
 local rightW
 local floor
 
-local meat1
-local meat2
-local meat3
-local meat4
-local meat5
-local theMeat
+local questionMark1
+local questionMark2
+local questionMark3
+local questionMark4
+local questionMark5
+local theQuestion
 
 local questionsAnswered = 0
 
@@ -254,12 +254,12 @@ local function ReplaceCharacter()
     AddRuntimeListeners()
 end
 
-local function MakeMeatVisible()
-    meat1.isVisible = true
-    meat2.isVisible = true
-    meat3.isVisible = true
-    meat4.isVisible = true
-    meat5.isVisible = true
+local function MakeQuestionMarkVisible()
+    questionMark1.isVisible = true
+    questionMark2.isVisible = true
+    questionMark3.isVisible = true
+    questionMark4.isVisible = true
+    questionMark5.isVisible = true
 end
 
 local function MakeHeartsVisible()
@@ -285,14 +285,14 @@ local function onCollision( self, event )
     --print( event.target.myName .. ": collision began with " .. event.other.myName )
 
 
-    if  (event.target.myName == "meat1") or
-        (event.target.myName == "meat2") or
-        (event.target.myName == "meat3") or
-        (event.target.myName == "meat4") or
-        (event.target.myName == "meat5") then
+    if  (event.target.myName == "questionMark1") or
+        (event.target.myName == "questionMark2") or
+        (event.target.myName == "questionMark3") or
+        (event.target.myName == "questionMark4") or
+        (event.target.myName == "questionMark5") then
 
-        -- get the meat that the user hit
-        theMeat = event.target
+        -- get the question mark that the user hit
+        theQuestion = event.target
 
         -- stop the character from moving
         motionx = 0
@@ -320,17 +320,17 @@ end
 
 local function AddCollisionListeners()
 
-    -- if character collides with meat, onCollision will be called    
-    meat1.collision = onCollision
-    meat1:addEventListener( "collision" )
-    meat2.collision = onCollision
-    meat2:addEventListener( "collision" )
-    meat3.collision = onCollision
-    meat3:addEventListener( "collision" )
-    meat4.collision = onCollision
-    meat4:addEventListener( "collision" )
-    meat5.collision = onCollision
-    meat5:addEventListener( "collision" )
+    -- if character collides with question mark, onCollision will be called    
+    questionMark1.collision = onCollision
+    questionMark1:addEventListener( "collision" )
+    questionMark2.collision = onCollision
+    questionMark2:addEventListener( "collision" )
+    questionMark3.collision = onCollision
+    questionMark3:addEventListener( "collision" )
+    questionMark4.collision = onCollision
+    questionMark4:addEventListener( "collision" )
+    questionMark5.collision = onCollision
+    questionMark5:addEventListener( "collision" )
 
 
     door.collision = onCollision
@@ -338,11 +338,11 @@ local function AddCollisionListeners()
 end
 
 local function RemoveCollisionListeners()
-    meat1:removeEventListener( "collision" )
-    meat2:removeEventListener( "collision" )
-    meat3:removeEventListener( "collision" )
-    meat4:removeEventListener( "collision" )
-    meat5:removeEventListener( "collision" )
+    questionMark1:removeEventListener( "collision" )
+    questionMark2:removeEventListener( "collision" )
+    questionMark3:removeEventListener( "collision" )
+    questionMark4:removeEventListener( "collision" )
+    questionMark5:removeEventListener( "collision" )
     door:removeEventListener( "collision")
 
 end
@@ -369,11 +369,11 @@ local function AddPhysicsBodies()
     physics.addBody(floor, "static", {friction = 0})
     physics.addBody(rightW, "static", {friction = 0})
 
-    physics.addBody(meat1, "static",  {density=0, friction=0, bounce=0} )
-    physics.addBody(meat2, "static",  {density=0, friction=0, bounce=0} )
-    physics.addBody(meat3, "static",  {density=0, friction=0, bounce=0} )
-    physics.addBody(meat4, "static",  {density=0, friction=0, bounce=0} )
-    physics.addBody(meat5, "static",  {density=0, friction=0, bounce=0} )
+    physics.addBody(questionMark1, "static",  {density=0, friction=0, bounce=0} )
+    physics.addBody(questionMark2, "static",  {density=0, friction=0, bounce=0} )
+    physics.addBody(questionMark3, "static",  {density=0, friction=0, bounce=0} )
+    physics.addBody(questionMark4, "static",  {density=0, friction=0, bounce=0} )
+    physics.addBody(questionMark5, "static",  {density=0, friction=0, bounce=0} )
     physics.addBody(door, "static", {density=0, friction=0.0 } )
 
 end
@@ -459,9 +459,9 @@ function ResumeLevel1()
     UpdatingLives()
 
     if (questionsAnswered > 0) then
-        if (theMeat ~= nil) and (theMeat.isBodyActive == true) then
-            physics.removeBody(theMeat)
-            theMeat.isVisible = false
+        if (theQuestion ~= nil) and (theQuestion.isBodyActive == true) then
+            physics.removeBody(theQuestion)
+            theQuestion.isVisible = false
         end
     end
 
@@ -612,37 +612,37 @@ function scene:create( event )
     floor.x = display.contentCenterX
     floor.y = display.contentHeight * 1.06
 
-    --meat1
-    meat1 = display.newImageRect ("Images/meat.png", 70, 70)
-    meat1.x = 220
-    meat1.y = 700
-    meat1.myName = "meat1"
+    --questionMark1
+    questionMark1 = display.newImageRect ("Images/mark.png", 70, 70)
+    questionMark1.x = 220
+    questionMark1.y = 700
+    questionMark1.myName = "questionMark1"
 
-    --meat2
-    meat2 = display.newImageRect ("Images/meat.png", 70, 70)
-    meat2.x = 380
-    meat2.y = 450
-    meat2.myName = "meat2"
+    --questionMark2
+    questionMark2 = display.newImageRect ("Images/mark.png", 70, 70)
+    questionMark2.x = 380
+    questionMark2.y = 450
+    questionMark2.myName = "questionMark2"
 
-    --meat3
-    meat3 = display.newImageRect ("Images/meat.png", 70, 70)
-    meat3.x = 500
-    meat3.y = 100
-    meat3.myName = "meat3"
+    --questionMark3
+    questionMark3 = display.newImageRect ("Images/mark.png", 70, 70)
+    questionMark3.x = 500
+    questionMark3.y = 100
+    questionMark3.myName = "questionMark3"
 
-    --meat4
-    meat4 = display.newImageRect ("Images/meat.png", 70, 70)
-    meat4.x = 800
-    meat4.y = 530
-    meat4.myName = "meat4"
+    --questionMark4
+    questionMark4 = display.newImageRect ("Images/mark.png", 70, 70)
+    questionMark4.x = 800
+    questionMark4.y = 530
+    questionMark4.myName = "questionMark4"
 
     -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( meat4 )
-    --meat5
-    meat5 = display.newImageRect ("Images/meat.png", 70, 70)
-    meat5.x = 950
-    meat5.y = 200
-    meat5.myName = "meat5"
+    sceneGroup:insert( questionMark4 )
+    --questionMark5
+    questionMark5 = display.newImageRect ("Images/mark.png", 70, 70)
+    questionMark5.x = 950
+    questionMark5.y = 200
+    questionMark5.myName = "questionMark5"
 
     -- mute button
     muteButton = display.newImageRect("Images/Mute Button Unpressed.png", 100, 100)
@@ -678,10 +678,10 @@ function scene:create( event )
     sceneGroup:insert( rightW )
     sceneGroup:insert( topW )
     sceneGroup:insert( floor )
-    sceneGroup:insert( meat1 )
-    sceneGroup:insert( meat2 )
-    sceneGroup:insert( meat3 )
-    sceneGroup:insert( meat5 )
+    sceneGroup:insert( questionMark1 )
+    sceneGroup:insert( questionMark2 )
+    sceneGroup:insert( questionMark3 )
+    sceneGroup:insert( questionMark5 )
     sceneGroup:insert( muteButton )
     sceneGroup:insert( unmuteButton )
 
@@ -734,8 +734,8 @@ function scene:show( event )
         numLives = 3
         questionsAnswered = 0
 
-        -- make all meat visible
-        MakeMeatVisible()
+        -- make all question mark visible
+        MakeQuestionMarkVisible()
 
         -- make all lives visible
         MakeHeartsVisible()
