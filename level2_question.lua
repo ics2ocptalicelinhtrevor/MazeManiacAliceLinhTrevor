@@ -109,9 +109,9 @@ end
     alternateAnswerBox1.x = display.contentWidth * 0.9
     alternateAnswerBox2.x = display.contentWidth * 0.9
     alternateAnswerBox3.x = display.contentWidth * 0.9
-
-
 end
+
+
 
 local function AskQuestion()
     -- create random questions
@@ -206,6 +206,8 @@ local function AskQuestion()
         alternateAnswer1.text = "hexagon"
         alternateAnswer2.text = "star"
         alternateAnswer3.text = "square"
+    end
+end
 
 
 local function PositionAnswers()
@@ -336,7 +338,7 @@ end
         alternateAnswerBox2PreviousY = alternateAnswerBox2.y
         answerboxPreviousY = answerbox.y 
     end
-end
+
 
 -- Transitioning Function to YouWin screen
 local function YouWinTransitionLevel2( )
@@ -575,7 +577,7 @@ function scene:create( event )
     life3.y = display.contentHeight * 1 / 7
 
     --the text that displays the question
-    questionObject = display.newText( "Drag the right word into the shape." , 0, 0, nil, 100)
+    questionObject = display.newText( "" , 0, 0, nil, 100)
     questionObject.x = display.contentWidth * 0.3
     questionObject.y = display.contentHeight * 0.9
 
