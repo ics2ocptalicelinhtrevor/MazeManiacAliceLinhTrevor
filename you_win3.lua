@@ -17,7 +17,7 @@ local widget = require( "widget" )
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "you_win1"
+sceneName = "you_win3"
 
 -----------------------------------------------------------------------------------------
 
@@ -31,7 +31,6 @@ local scene = composer.newScene( sceneName )
 -- local variables for the scene
 local bkg
 local backButton
-local level2Button
 
 -----------------------------------------------------------------------------------------
 -- SOUNDS 
@@ -42,13 +41,6 @@ local youWinChannel
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
------------------------------------------------------------------------------------------
-
--- Creating Transition Function to Level2 Screen
-local function Level2ScreenTransition( )       
-    composer.gotoScene( "level2_screen", {effect = "slideRight", time = 500})
-end 
-
 -----------------------------------------------------------------------------------------
 
 -- Creating Transitioning Function back to main menu
@@ -76,24 +68,6 @@ function scene:create( event )
    -- Playing the you Win sound
    youWinChannel = audio.play(youWin)
 
-    -- Creating level2 Button
-    level2Button = widget.newButton( 
-        {
-            -- Set its position on the screen relative to the screen size
-            x = 925,
-            y = 700,
-
-            width = 200,
-            height = 100,
-            
-            -- Insert the images here
-            defaultFile = "Images/level2UnpressedLinhH@2x.png",
-            overFile = "Images/level2PressedLinhH@2x.png",
-
-            -- When the button is released, call the Credits transition function
-            onRelease = Level2ScreenTransition
-        } ) 
-
     -- Creating Back Button
     backButton = widget.newButton( 
     {
@@ -120,7 +94,6 @@ function scene:create( event )
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg )
     sceneGroup:insert( backButton )
-    sceneGroup:insert( level2Button )
   
 end    
 

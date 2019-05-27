@@ -17,7 +17,7 @@ local widget = require( "widget" )
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "you_lose"
+sceneName = "you_win1"
 
 -----------------------------------------------------------------------------------------
 
@@ -30,16 +30,15 @@ local scene = composer.newScene( sceneName )
 
 -- local variables for the scene
 local bkg
-
-----------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
--- LOCAL VARIABLES
------------------------------------------------------------------------------------------
-local youLose = audio.loadSound("Sounds/YouLose.mp3")
-local youLoseChannel 
-
 local backButton
 local level2Button
+
+-----------------------------------------------------------------------------------------
+-- SOUNDS 
+-----------------------------------------------------------------------------------------
+
+local youWin = audio.loadSound("Sounds/lvl1win.mp3")
+local youWinChannel
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -57,9 +56,9 @@ local function BackTransition( )
     composer.gotoScene( "main_menu", {effect = "zoomOutInFade", time = 500})
 end
 
------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
 
 -- The function called when the screen doesn't exist
 function scene:create( event )
@@ -68,13 +67,14 @@ function scene:create( event )
     local sceneGroup = self.view
 
     -- Display background
-    bkg = display.newImage("Images/YouLose.png")
+    bkg = display.newImage("Images/You win.png")
     bkg.x = display.contentCenterX
     bkg.y = display.contentCenterY
     bkg.width = display.contentWidth
     bkg.height = display.contentHeight
-   -- Playing the you lose sound
-   youLoseChannel = audio.play(youLose)
+
+   -- Playing the you Win sound
+   youWinChannel = audio.play(youWin)
 
     -- Creating level2 Button
     level2Button = widget.newButton( 

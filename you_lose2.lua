@@ -17,7 +17,7 @@ local widget = require( "widget" )
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "you_win1"
+sceneName = "you_lose2"
 
 -----------------------------------------------------------------------------------------
 
@@ -25,28 +25,28 @@ sceneName = "you_win1"
 local scene = composer.newScene( sceneName )
 
 -----------------------------------------------------------------------------------------
--- FORWARD REFERENCES
+-- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
 
--- local variables for the scene
-local bkg
 local backButton
-local level2Button
+local level3Button
+
+local bkg
 
 -----------------------------------------------------------------------------------------
--- SOUNDS 
+-- SOUNDS
 -----------------------------------------------------------------------------------------
 
-local youWin = audio.loadSound("Sounds/lvl1win.mp3")
-local youWinChannel
+local youLose = audio.loadSound("Sounds/lvl1lose.mp3")
+local youLoseChannel 
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 
 -- Creating Transition Function to Level2 Screen
-local function Level2ScreenTransition( )       
-    composer.gotoScene( "level2_screen", {effect = "slideRight", time = 500})
+local function Level3ScreenTransition( )       
+    composer.gotoScene( "level3_screen", {effect = "slideRight", time = 500})
 end 
 
 -----------------------------------------------------------------------------------------
@@ -56,9 +56,9 @@ local function BackTransition( )
     composer.gotoScene( "main_menu", {effect = "zoomOutInFade", time = 500})
 end
 
---------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
---------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 
 -- The function called when the screen doesn't exist
 function scene:create( event )
@@ -67,17 +67,16 @@ function scene:create( event )
     local sceneGroup = self.view
 
     -- Display background
-    bkg = display.newImage("Images/You win.png")
+    bkg = display.newImage("Images/YouLose.png")
     bkg.x = display.contentCenterX
     bkg.y = display.contentCenterY
     bkg.width = display.contentWidth
     bkg.height = display.contentHeight
+   -- Playing the you lose sound
+   youLoseChannel = audio.play(youLose)
 
-   -- Playing the you Win sound
-   youWinChannel = audio.play(youWin)
-
-    -- Creating level2 Button
-    level2Button = widget.newButton( 
+    -- Creating level3 Button
+    level3Button = widget.newButton( 
         {
             -- Set its position on the screen relative to the screen size
             x = 925,
@@ -87,11 +86,11 @@ function scene:create( event )
             height = 100,
             
             -- Insert the images here
-            defaultFile = "Images/level2UnpressedLinhH@2x.png",
-            overFile = "Images/level2PressedLinhH@2x.png",
+            defaultFile = "Images/level3UnpressedLinhH@2x.png",
+            overFile = "Images/level3PressedLinhH@2x.png",
 
             -- When the button is released, call the Credits transition function
-            onRelease = Level2ScreenTransition
+            onRelease = Level3ScreenTransition
         } ) 
 
     -- Creating Back Button
@@ -120,7 +119,7 @@ function scene:create( event )
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg )
     sceneGroup:insert( backButton )
-    sceneGroup:insert( level2Button )
+    sceneGroup:insert( level3Button )
   
 end    
 
