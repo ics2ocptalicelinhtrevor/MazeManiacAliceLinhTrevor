@@ -113,10 +113,105 @@ end
 
 end
 
+local function AskQuestion()
+    -- create random questions
+    questionObject = math.random(1,10)
+
+    if (questionPosistion == 1) then
+
+        question.text = "Name the shape."
+
+        correctAnswer.text = "circle"
+        alternateAnswer1.text = "triangle"
+        alternateAnswer2.text = "square"
+        alternateAnswer3.text = "rectangle"
+
+    elseif (questionPosistion == 2) then
+
+        question.text = "Name the shape."
+
+        correctAnswer.text = "triangle"
+        alternateAnswer1.text = "circle"
+        alternateAnswer2.text = "star"
+        alternateAnswer3.text = "rectangle"
+
+    elseif (questionPosistion == 3) then
+
+        question.text = "Name the shape."
+
+        correctAnswer.text = "rectangle"
+        alternateAnswer1.text = "circle"
+        alternateAnswer2.text = "star"
+        alternateAnswer3.text = "oval"
+
+    elseif (questionPosistion == 4) then
+
+        question.text = "Name the shape."
+
+        correctAnswer.text = "square"
+        alternateAnswer1.text = "diamond"
+        alternateAnswer2.text = "star"
+        alternateAnswer3.text = "rectangle"
+
+    elseif (questionPosistion == 5) then
+
+        question.text = "Name the shape."
+
+        correctAnswer.text = "oval"
+        alternateAnswer1.text = "triangle"
+        alternateAnswer2.text = "circle"
+        alternateAnswer3.text = "rectangle"
+
+    elseif (questionPosistion == 6) then
+
+        question.text = "Name the shape."
+
+        correctAnswer.text = "octagon"
+        alternateAnswer1.text = "hexagon"
+        alternateAnswer2.text = "circle"
+        alternateAnswer3.text = "square"
+
+    elseif (questionPosistion == 7) then
+
+        question.text = "Name the shape."
+
+        correctAnswer.text = "penatagon"
+        alternateAnswer1.text = "octagon"
+        alternateAnswer2.text = "star"
+        alternateAnswer3.text = "square"
+
+    elseif (questionPosistion == 8) then
+
+        question.text = "Name the shape."
+
+        correctAnswer.text = "hexagon"
+        alternateAnswer1.text = "pentagon"
+        alternateAnswer2.text = "square"
+        alternateAnswer3.text = "circle"
+
+    elseif (questionPosistion == 9) then
+
+        question.text = "Name the shape."
+
+        correctAnswer.text = "star"
+        alternateAnswer1.text = "rectangle"
+        alternateAnswer2.text = "circle"
+        alternateAnswer3.text = "diamond"
+
+    elseif (questionPosistion == 10) then
+
+        question.text = "Name the shape."
+
+        correctAnswer.text = "diamond"
+        alternateAnswer1.text = "hexagon"
+        alternateAnswer2.text = "star"
+        alternateAnswer3.text = "square"
+
+
 local function PositionAnswers()
 
  --creating random start position in a cretain area
-    answerPosition = math.random(1,10)
+    answerPosition = math.random(1,4)
 
     if (answerPosition == 1) then
 
@@ -174,90 +269,6 @@ local function PositionAnswers()
 
         alternateAnswer3.x = X1
         alternateAnswer3.y = Y1 
-
-    elseif (answerPosition == 5) then
-
-        correctAnswer.x = X2
-        correctAnswer.y = Y2
-        
-        alternateAnswer1.x = X1
-        alternateAnswer1.y = Y1
-        
-        alternateAnswer2.x = X1
-        alternateAnswer2.y = Y2
-
-        alternateAnswer3.x = X2
-        alternateAnswer3.y = Y1 
-
-    elseif (answerPosition == 6) then
-
-        correctAnswer.x = X1
-        correctAnswer.y = Y2
-        
-        alternateAnswer1.x = X2
-        alternateAnswer1.y = Y1
-        
-        alternateAnswer2.x = X2
-        alternateAnswer2.y = Y2
-
-        alternateAnswer3.x = X1
-        alternateAnswer3.y = Y1 
-
-    elseif (answerPosition == 7) then
-
-        correctAnswer.x = X1
-        correctAnswer.y = Y1
-        
-        alternateAnswer1.x = X2
-        alternateAnswer1.y = Y1
-        
-        alternateAnswer2.x = X2
-        alternateAnswer2.y = Y2
-
-        alternateAnswer3.x = X1
-        alternateAnswer3.y = Y2 
-
-    elseif (answerPosition == 8) then
-
-        correctAnswer.x = X1
-        correctAnswer.y = Y2
-        
-        alternateAnswer1.x = X1
-        alternateAnswer1.y = Y1
-        
-        alternateAnswer2.x = X2
-        alternateAnswer2.y = Y1
-
-        alternateAnswer3.x = X2
-        alternateAnswer3.y = Y2 
-
-    elseif (answerPosition == 9) then
-
-        correctAnswer.x = X2
-        correctAnswer.y = Y2
-        
-        alternateAnswer1.x = X2
-        alternateAnswer1.y = Y1
-        
-        alternateAnswer2.x = X1
-        alternateAnswer2.y = Y1
-
-        alternateAnswer3.x = X1
-        alternateAnswer3.y = Y2 
-
-    elseif (answerPosition == 10) then
-
-        correctAnswer.x = X1
-        correctAnswer.y = Y1
-        
-        alternateAnswer1.x = X2
-        alternateAnswer1.y = Y1
-        
-        alternateAnswer2.x = X2
-        alternateAnswer2.y = Y1
-
-        alternateAnswer3.x = X1
-        alternateAnswer3.y = Y2 
     end
 end
 
