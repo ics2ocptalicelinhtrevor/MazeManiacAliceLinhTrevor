@@ -28,8 +28,17 @@ scene = composer.newScene( sceneName ) -- This function doesn't accept a string,
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
+
+local level1Button
+local level2Button
+local level3Button
+
 local bkg_image
 local backButton
+
+------------------------------------------------------------------------------------------
+-- SOUNDS
+------------------------------------------------------------------------------------------
 
 -- background music 
 local instructionScreen = audio.loadSound("Sounds/instructionScreen.mp3")
@@ -37,6 +46,28 @@ local instructionScreenChannel
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
+
+-- Creating Transition to Level1 Screen
+local function Level1ScreenTransition( )
+    composer.gotoScene( "level1_screen", {effect = "zoomInOutFade", time = 500})
+end    
+
+-----------------------------------------------------------------------------------------
+
+-- Creating Transition Function to Level2 Screen
+local function Level2ScreenTransition( )       
+    composer.gotoScene( "level2_screen", {effect = "slideRight", time = 500})
+end 
+
+-----------------------------------------------------------------------------------------
+
+-- Creating Transition to Level3 Screen
+ 
+ local function Level3ScreenTransition( )
+    composer.gotoScene( "level3_screen", {effect = "slideLeft", time = 500})
+end  
+
+------------------------------------------------------------------------------------------
 
 -- Creating Transitioning Function back to main menu
 local function BackTransition( )
