@@ -10,6 +10,10 @@
 -- To win, you must answer 5 math questions. 
 -----------------------------------------------------------------------------------------
 
+-- errors 
+-- would close after a few seconds
+-- would lose a life
+
 -- hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
 
@@ -269,11 +273,11 @@ local function MakeHeartsVisible()
 end
 
 local function YouLoseTransition()
-    composer.gotoScene( "you_lose" )
+    composer.gotoScene( "you_lose1" )
 end
 
 local function YouWinTransition()
-    composer.gotoScene( "you_win" )
+    composer.gotoScene( "you_win1" )
 end
 
 local function onCollision( self, event )

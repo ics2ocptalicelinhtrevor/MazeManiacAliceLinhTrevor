@@ -74,7 +74,7 @@ local function BackToLevel1()
 end 
 
 local function YouLoseTransition()
-    composer.gotoScene( "you_lose" )
+    composer.gotoScene( "you_lose1" )
 end
 -----------------------------------------------------------------------------------------
 
