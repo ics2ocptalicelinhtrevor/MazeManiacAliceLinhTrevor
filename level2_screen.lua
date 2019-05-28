@@ -1,15 +1,13 @@
-
-    
 -----------------------------------------------------------------------------------------
 --
--- level1_screen.lua
--- Created by: Linh Ho
+-- level2_screen.lua
+-- Created by: alice 
 -- Date: May 6th
 -- Description: This is the level 1 screen of the game.
 -- Date: May 6th, 2019
--- Description: This is the level 1 screen of the game. The goal of the level screen is 
--- to have a maze game, and everytime the lion collides into something, it transitions 
--- to a math question.
+-- Description: This is the level 1 screen of the game. Everytime lion touches a 
+-- question mark, it asks a math question. If the timer runs out, you lose a life
+-- To win, you must answer 5 math questions. 
 -----------------------------------------------------------------------------------------
 
 -- hide the status bar
@@ -59,28 +57,28 @@ local wall10
 local wall11
 local wall12
 local wall13
-local wall14
 
-local torchesAndSign
 local door
 local character
 
+local heart1
+local heart2
+local heart3
+
+-- character movement
 local motionx = 0
-local SPEED = 6
-local SPEED1 = -6
-local LINEAR_VELOCITY = -100
-local GRAVITY = 6
 
 local leftW 
 local topW
 local rightW
 local floor
 
-local meat1
-local meat2
-local meat3
-local meat4
-local theMeat
+local questionMark1
+local questionMark2
+local questionMark3
+local questionMark4
+local questionMark5
+local theQuestion
 
 local questionsAnswered = 0
 
@@ -102,12 +100,14 @@ local mainMenuChannel
 -- set the boolean variable to be true
 soundOn = true
 
+-- Number of lives
+numLives = 3
+
 -----------------------------------------------------------------------------------------
 -- LOCAL SCENE FUNCTIONS
 ----------------------------------------------------------------------------------------- 
  
- -- Creating a function which limits the characters' movement to the visible screen
-
+-- Creating a function which limits the characters' movement to the visible screen
 local function ScreenLimit( character )   
 
     -- Checking if the the character is about to go off the right side of the screen
@@ -190,26 +190,23 @@ local function RuntimeEvents( )
                 facingWhichDirection = "left"
 
             end
+
         end
-
-        -----------------------------------------------------------------------------------------
-
+-----------------------------------------------------------------------------------------
 end -- local function RuntimeEvents( )
 
 -- Creating Joystick function that determines whether or not joystick is pressed
 local function Movement( touch )
 
     if touch.phase == "began" then
-
         -- Setting a boolean to true to simulate the holding of a button
         joystickPressed = true
 
     elseif touch.phase == "ended" then
-
         -- Setting a boolean to false to simulate the release of a held button
         joystickPressed = false
-
     end
+
 end --local function Movement( touch )
 
 -- Move character horizontally
@@ -219,9 +216,11 @@ end
  
 -- Stop character movement when no arrow is pushed
 local function stop (event)
+
     if (event.phase =="ended") then
         motionx = 0
     end
+
 end
 
 
@@ -234,7 +233,6 @@ local function RemoveRuntimeListeners()
     Runtime:removeEventListener("enterFrame", movePlayer)
     Runtime:removeEventListener("touch", stop )
 end
-
 
 local function ReplaceCharacter()
     character = display.newImageRect("Images/lion.png", 150, 150)
@@ -256,23 +254,29 @@ local function ReplaceCharacter()
     AddRuntimeListeners()
 end
 
-local function MakeMeatVisible()
-    meat1.isVisible = true
-    meat2.isVisible = true
-    meat3.isVisible = true
-    meat4.isVisible = true
+local function MakeQuestionMarkVisible()
+    questionMark1.isVisible = true
+    questionMark2.isVisible = true
+    questionMark3.isVisible = true
+    questionMark4.isVisible = true
+    questionMark5.isVisible = true
+end
+
+local function MakeHeartsVisible()
+    heart1.isVisible = true
+    heart2.isVisible = true
+    heart3.isVisible = true
 end
 
 local function YouLoseTransition()
-    composer.gotoScene( "you_lose" )
+    composer.gotoScene( "you_lose2" )
 end
 
 local function YouWinTransition()
-    composer.gotoScene( "you_win" )
+    composer.gotoScene( "you_win2" )
 end
 
 local function onCollision( self, event )
-
     -- for testing purposes
     --print( event.target )        --the first object in the collision
     --print( event.other )         --the second object in the collision
@@ -281,61 +285,64 @@ local function onCollision( self, event )
     --print( event.target.myName .. ": collision began with " .. event.other.myName )
 
 
-        if  (event.target.myName == "meat1") or
-            (event.target.myName == "meat2") or
-            (event.target.myName == "meat3") or
-            (event.target.myName == "meat4") then
+    if  (event.target.myName == "questionMark1") or
+        (event.target.myName == "questionMark2") or
+        (event.target.myName == "questionMark3") or
+        (event.target.myName == "questionMark4") or
+        (event.target.myName == "questionMark5") then
 
-            -- get the meat that the user hit
-            theMeat = event.target
+        -- get the question mark that the user hit
+        theQuestion = event.target
 
-            -- stop the character from moving
-            motionx = 0
+        -- stop the character from moving
+        motionx = 0
 
-            -- make the character invisible
-            character.isVisible = false
+        -- make the character invisible
+        character.isVisible = false
 
-            -- show overlay with math question
-            composer.showOverlay( "level2_question", { isModal = true, effect = "fade", time = 100})
+        -- show overlay with math question
+        composer.showOverlay( "level2_question", { isModal = true, effect = "fade", time = 100})
 
-            -- Increment questions answered
-            questionsAnswered = questionsAnswered + 1
+        -- Increment questions answered
+        questionsAnswered = questionsAnswered + 1
         end
 
-        if (event.target.myName == "door") then
-            --check to see if the user has answered 5 questions
-            if (questionsAnswered == 5) then
-                -- after getting 3 questions right, go to the you win screen
-                composer.gotoScene("you_win")
-            end
-        end 
-    end
+    if (event.target.myName == "door") then
+        --check to see if the user has answered 5 questions
+        if (questionsAnswered == 5) then
+        -- after getting 3 questions right, go to the you win screen
+        YouWinTransition()
+
+        end
+    end       
 end
+
 
 local function AddCollisionListeners()
 
-    -- if character collides with meat, onCollision will be called    
-    meat1.collision = onCollision
-    meat1:addEventListener( "collision" )
-    meat2.collision = onCollision
-    meat2:addEventListener( "collision" )
-    meat3.collision = onCollision
-    meat3:addEventListener( "collision" )
-    meat4.collision = onCollision
-    meat4:addEventListener( "collision" )
+    -- if character collides with question mark, onCollision will be called    
+    questionMark1.collision = onCollision
+    questionMark1:addEventListener( "collision" )
+    questionMark2.collision = onCollision
+    questionMark2:addEventListener( "collision" )
+    questionMark3.collision = onCollision
+    questionMark3:addEventListener( "collision" )
+    questionMark4.collision = onCollision
+    questionMark4:addEventListener( "collision" )
+    questionMark5.collision = onCollision
+    questionMark5:addEventListener( "collision" )
+
 
     door.collision = onCollision
     door:addEventListener( "collision" )
 end
 
 local function RemoveCollisionListeners()
-
-
-    meat1:removeEventListener( "collision" )
-    meat2:removeEventListener( "collision" )
-    meat3:removeEventListener( "collision" )
-    meat4:removeEventListener( "collision" )
-
+    questionMark1:removeEventListener( "collision" )
+    questionMark2:removeEventListener( "collision" )
+    questionMark3:removeEventListener( "collision" )
+    questionMark4:removeEventListener( "collision" )
+    questionMark5:removeEventListener( "collision" )
     door:removeEventListener( "collision")
 
 end
@@ -356,17 +363,17 @@ local function AddPhysicsBodies()
     physics.addBody(wall11, "static", {friction = 0})
     physics.addBody(wall12, "static", {friction = 0})
     physics.addBody(wall13, "static", {friction = 0})
-    physics.addBody(wall14, "static", {friction = 0})
 
     physics.addBody(leftW, "static", {friction = 0})
     physics.addBody(topW, "static", {friction = 0})
     physics.addBody(floor, "static", {friction = 0})
     physics.addBody(rightW, "static", {friction = 0})
 
-    physics.addBody(meat1, "static",  {density=0, friction=0, bounce=0} )
-    physics.addBody(meat2, "static",  {density=0, friction=0, bounce=0} )
-    physics.addBody(meat3, "static",  {density=0, friction=0, bounce=0} )
-    physics.addBody(meat4, "static",  {density=0, friction=0, bounce=0} )
+    physics.addBody(questionMark1, "static",  {density=0, friction=0, bounce=0} )
+    physics.addBody(questionMark2, "static",  {density=0, friction=0, bounce=0} )
+    physics.addBody(questionMark3, "static",  {density=0, friction=0, bounce=0} )
+    physics.addBody(questionMark4, "static",  {density=0, friction=0, bounce=0} )
+    physics.addBody(questionMark5, "static",  {density=0, friction=0, bounce=0} )
     physics.addBody(door, "static", {density=0, friction=0.0 } )
 
 end
@@ -386,7 +393,6 @@ local function RemovePhysicsBodies()
     physics.removeBody(wall11)
     physics.removeBody(wall12)
     physics.removeBody(wall13)
-    physics.removeBody(wall14)
 
     physics.removeBody(leftW)
     physics.removeBody(topW)
@@ -424,19 +430,38 @@ local function Unmute(touch)
     end
 end
 
+local function UpdatingLives()
+
+    if (numLives == 3) then
+        heart1.isVisible = true
+        heart2.isVisible = true
+        heart3.isVisible = true
+    elseif (numLives == 2) then
+        heart3.isVisible = false
+    elseif (numLives == 1) then
+        heart2.isVisible = false
+    elseif (numLives == 0) then
+        heart1.isVisible = false
+        YouLoseTransition()
+    end
+end
+
 -----------------------------------------------------------------------------------------
 -- GLOBAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 
-function ResumeGame()
+function ResumeLevel1()
 
     -- make character visible again
     character.isVisible = true
-    
+
+    -- Updating the lives
+    UpdatingLives()
+
     if (questionsAnswered > 0) then
-        if (theMeat ~= nil) and (theMeat.isBodyActive == true) then
-            physics.removeBody(theMeat)
-            theMeat.isVisible = false
+        if (theQuestion ~= nil) and (theQuestion.isBodyActive == true) then
+            physics.removeBody(theQuestion)
+            theQuestion.isVisible = false
         end
     end
 
@@ -453,13 +478,12 @@ function scene:create( event )
     local sceneGroup = self.view
 
     -- Insert the background image
-    bkg_image = display.newImageRect("Images/Level2Screen1AliceR@2x.png", display.contentWidth, display.contentHeight)
+    bkg_image = display.newImageRect("Images/level2Screen1AliceR@2x.png", display.contentWidth, display.contentHeight)
     bkg_image.x = display.contentWidth / 2 
     bkg_image.y = display.contentHeight / 2
 
     -- Insert background image into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( bkg_image )    
-
+    sceneGroup:insert( bkg_image )   
     -- Walls
     wall1 = display.newRect(0, 0,display.contentWidth, 20)
     wall1.x = display.contentCenterX
@@ -467,27 +491,23 @@ function scene:create( event )
     wall1:setFillColor(0, 0, 0)
     wall1:toFront()
     
-
     wall2 = display.newRect(0, 0,display.contentWidth, 20)
     wall2.x = display.contentCenterX
     wall2.y = display.contentHeight
     wall2:setFillColor(0, 0, 0)
     wall2:toFront()
     
-
     wall3 = display.newRect(0, 0, 20, display.contentHeight)
     wall3.x = display.contentWidth
     wall3.y = display.contentCenterY
     wall3:setFillColor(0, 0, 0)
     wall3:toFront()
     
-
     wall4 = display.newRect(0, 0, 20, display.contentHeight)
     wall4.x = 0
     wall4.y = display.contentCenterY
     wall4:setFillColor(0, 0, 0)
     wall4:toFront()
-    
 
     wall5 = display.newRect(0, 0, 10, display.contentHeight - 150)
     wall5.x = 150
@@ -495,8 +515,7 @@ function scene:create( event )
     wall5:setFillColor(0, 0, 0)
     wall5:toFront()
     
-
-    wall6 = display.newRect(0, 0, 10, display.contentHeight - 150)
+      wall6 = display.newRect(0, 0, 10, display.contentHeight - 150)
     wall6.x = 600
     wall6.y = 650
     wall6:setFillColor(0, 0, 0)
@@ -563,6 +582,88 @@ function scene:create( event )
     -- Changing transparency
     analogStick.alpha = 0.5
 
+    -- Insert the Door
+    door = display.newImage("Images/Level-1Door.png", 200, 200)
+    door.x = 955
+    door.y = 70
+    door.myName = "door"
+    door:scale( 0.6, 0.6 )
+
+    -- Insert the Hearts
+    heart1 = display.newImageRect("Images/heart.png", 80, 80)
+    heart1.x = 60
+    heart1.y = 60
+    heart1.isVisible = true
+
+    heart2 = display.newImageRect("Images/heart.png", 80, 80)
+    heart2.x = 150
+    heart2.y = 60
+    heart2.isVisible = true
+
+    heart3 = display.newImageRect("Images/heart.png", 80, 80)
+    heart3.x = 240
+    heart3.y = 60
+    heart3.isVisible = true
+
+    -- Walls outside of screen
+    leftW = display.newLine( 0, 0, 0, display.contentHeight)
+    leftW.isVisible = true
+
+    rightW = display.newLine( 0, 0, 0, display.contentHeight)
+    rightW.x = display.contentCenterX * 2
+    rightW.isVisible = true
+
+    topW = display.newLine( 0, 0, display.contentWidth, 0)
+    topW.isVisible = true
+
+    floor = display.newImageRect("Images/Level-1Floor.png", 1024, 100)
+    floor.x = display.contentCenterX
+    floor.y = display.contentHeight * 1.06
+
+    --questionMark1
+    questionMark1 = display.newImageRect ("Images/mark.png", 70, 70)
+    questionMark1.x = 220
+    questionMark1.y = 700
+    questionMark1.myName = "questionMark1"
+
+    --questionMark2
+    questionMark2 = display.newImageRect ("Images/mark.png", 70, 70)
+    questionMark2.x = 380
+    questionMark2.y = 450
+    questionMark2.myName = "questionMark2"
+
+    --questionMark3
+    questionMark3 = display.newImageRect ("Images/mark.png", 70, 70)
+    questionMark3.x = 500
+    questionMark3.y = 100
+    questionMark3.myName = "questionMark3"
+
+    --questionMark4
+    questionMark4 = display.newImageRect ("Images/mark.png", 70, 70)
+    questionMark4.x = 800
+    questionMark4.y = 530
+    questionMark4.myName = "questionMark4"
+
+    -- Insert objects into the scene group in order to ONLY be associated with this scene
+    sceneGroup:insert( questionMark4 )
+    --questionMark5
+    questionMark5 = display.newImageRect ("Images/mark.png", 70, 70)
+    questionMark5.x = 950
+    questionMark5.y = 200
+    questionMark5.myName = "questionMark5"
+
+    -- mute button
+    muteButton = display.newImageRect("Images/Mute Button Unpressed.png", 100, 100)
+    muteButton.x = 340
+    muteButton.y = 60
+    muteButton.isVisible = true
+
+    -- unmute button
+    unmuteButton = display.newImageRect("Images/Mute Button Pressed.png", 100, 100)
+    unmuteButton.x = 340
+    unmuteButton.y = 60
+    unmuteButton.isVisible = false
+
     sceneGroup:insert( analogStick )
     sceneGroup:insert( wall1 )
     sceneGroup:insert( wall2 )
@@ -577,95 +678,18 @@ function scene:create( event )
     sceneGroup:insert( wall11 )
     sceneGroup:insert( wall12 )
     sceneGroup:insert( wall13 )
-    sceneGroup:insert( wall14 )
-
-
-    -- Insert the Door
-    door = display.newImage("Images/Level-1Door.png", 200, 200)
-    door.x = 530
-    door.y = 222
-    door:scale(0.5, 0.5)
-    door.myName = "door"
-
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( door )
-
-    --WALLS--
-    leftW = display.newLine( 0, 0, 0, display.contentHeight)
-    leftW.isVisible = true
-
-
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
+    sceneGroup:insert( heart1 )
+    sceneGroup:insert( heart2 )
+    sceneGroup:insert( heart3 )
     sceneGroup:insert( leftW )
-
-    rightW = display.newLine( 0, 0, 0, display.contentHeight)
-    rightW.x = display.contentCenterX * 2
-    rightW.isVisible = true
-
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( rightW )
-
-    topW = display.newLine( 0, 0, display.contentWidth, 0)
-    topW.isVisible = true
-
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( topW )
-
-    floor = display.newImageRect("Images/Level-1Floor.png", 1024, 100)
-    floor.x = display.contentCenterX
-    floor.y = display.contentHeight * 1.06
-    
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( floor )
-
-    --meat1
-    meat1 = display.newImageRect ("Images/meat.png", 70, 70)
-    meat1.x = 400
-    meat1.y = 570
-    meat1.myName = "meat1"
-
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( meat1 )
-
-    --meat2
-    meat2 = display.newImageRect ("Images/meat.png", 70, 70)
-    meat2.x = 650
-    meat2.y = 560
-    meat2.myName = "meat2"
-
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( meat2 )
-
-    --meat3
-    meat3 = display.newImageRect ("Images/meat.png", 70, 70)
-    meat3.x = 700
-    meat3.y = 700
-    meat3.myName = "meat3"
-
-     -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( meat3 )
-
-    --meat3
-    meat4 = display.newImageRect ("Images/meat.png", 70, 70)
-    meat4.x = 700
-    meat4.y = 500
-    meat4.myName = "meat4"
-
-     -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( meat4 )
-
-    -- creating mute button
-    muteButton = display.newImageRect("Images/Mute Button Unpressed.png", 100, 100)
-    muteButton.x = 340
-    muteButton.y = 60
-    muteButton.isVisible = true
-
-    -- creating unmute button
-    unmuteButton = display.newImageRect("Images/Mute Button Pressed.png", 100, 100)
-    unmuteButton.x = 340
-    unmuteButton.y = 60
-    unmuteButton.isVisible = false
-
+    sceneGroup:insert( questionMark1 )
+    sceneGroup:insert( questionMark2 )
+    sceneGroup:insert( questionMark3 )
+    sceneGroup:insert( questionMark5 )
     sceneGroup:insert( muteButton )
     sceneGroup:insert( unmuteButton )
 
@@ -700,21 +724,29 @@ function scene:show( event )
 
         -- Play the background music for this scene
         mainMenuChannel = audio.play(mainMenu)
+
         -- display the mute button at the start, so it doesn't overlap when it's muted
         muteButton.isVisible = true
         unmuteButton.isVisible = false
+
         -- lower the volume
         audio.setVolume(0.5, { channel=1, loops=-1 } )
+
         -- mute button
         muteButton:addEventListener("touch", Mute)
+
         -- unmute button
         unmuteButton:addEventListener("touch", Unmute)
 
+        -- number of lives and questions answered
         numLives = 3
         questionsAnswered = 0
 
-        -- make all meat visible
-        MakeMeatVisible()
+        -- make all question mark visible
+        MakeQuestionMarkVisible()
+
+        -- make all lives visible
+        MakeHeartsVisible()
 
         -- add physics bodies to each object
         AddPhysicsBodies()
@@ -732,6 +764,7 @@ function scene:show( event )
         -----------------------------------------------------------------------------------------
         -- EVENT LISTENERS
         -----------------------------------------------------------------------------------------
+        
         -- Listening for the usage of the joystick
         analogStick:addEventListener( "touch", Movement )
         Runtime:addEventListener("enterFrame", RuntimeEvents)

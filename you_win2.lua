@@ -17,7 +17,7 @@ local widget = require( "widget" )
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "you_win1"
+sceneName = "you_win2"
 
 -----------------------------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ function scene:create( event )
    youWinChannel = audio.play(youWin)
 
     -- Creating level2 Button
-    level2Button = widget.newButton( 
+    level3Button = widget.newButton( 
         {
             -- Set its position on the screen relative to the screen size
             x = 925,
@@ -87,8 +87,8 @@ function scene:create( event )
             height = 100,
             
             -- Insert the images here
-            defaultFile = "Images/level2UnpressedLinhH@2x.png",
-            overFile = "Images/level2PressedLinhH@2x.png",
+            defaultFile = "Images/level3UnpressedLinhH@2x.png",
+            overFile = "Images/level3PressedLinhH@2x.png",
 
             -- When the button is released, call the Credits transition function
             onRelease = Level2ScreenTransition

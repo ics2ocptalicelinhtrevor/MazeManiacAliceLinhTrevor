@@ -1,7 +1,7 @@
 -----------------------------------------------------------------------------------------
 --
 -- game_level1.lua
--- Created by: Daniel
+-- Created by: Alice
 -- Date: Nov. 22nd, 2014
 -- Description: This is the level 1 screen of the game.
 -----------------------------------------------------------------------------------------
@@ -18,7 +18,7 @@ local widget = require( "widget" )
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "level2_screen"
+sceneName = "level2_question"
 
 -- Creating Scene Object
 local scene = composer.newScene( sceneName )
@@ -100,18 +100,13 @@ local function DisplayQuestion()
     alternateAnswerBox2AlreadyTouched = false
     alternateAnswerBox3AlreadyTouched = false
 
-end
------------------------------------------------------------------------------------------
--- RESET ALL X POSITIONS OF ANSWER BOXES (because the x-position is changed when it is
--- placed into the black box)
------------------------------------------------------------------------------------------
+-- RESET ALL X POSITIONS OF ANSWER BOXES 
     answerbox.x = display.contentWidth * 0.9
     alternateAnswerBox1.x = display.contentWidth * 0.9
     alternateAnswerBox2.x = display.contentWidth * 0.9
     alternateAnswerBox3.x = display.contentWidth * 0.9
+
 end
-
-
 
 local function AskQuestion()
     -- create random questions
