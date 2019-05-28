@@ -30,7 +30,6 @@ local scene = composer.newScene( sceneName )
 -- The background image and soccer ball for this scene
 local bkg_image
 
---the text that displays the question
 local questionObject
 
 -- display the lives
@@ -255,10 +254,10 @@ local function PositionAnswers()
 
     elseif (answerPosition == 4) then
 
-        correctAnswer.x = X1
+        correctAnswer.x = X2
         correctAnswer.y = Y2
         
-        alternateAnswer1.x = X2
+        alternateAnswer1.x = X1
         alternateAnswer1.y = Y2
         
         alternateAnswer2.x = X2
@@ -268,72 +267,6 @@ local function PositionAnswers()
         alternateAnswer3.y = Y1 
     end
 end
-
-    -------------------------------------------------------------------------------------------
-    --ROMDOMLY SELECT ANSWER BOX POSITIONS
-    -----------------------------------------------------------------------------------------
-    randomPosition = math.random(1,3)
-
-    -- random position 1
-    if (randomPosition == 1) then
-        -- set the new y-positions of each of the answers
-        answerbox.y = display.contentHeight * 0.4
-
-        --alternateAnswerBox3
-        alternateAnswerBox3.y = display.contentHeight * 0.95
-
-        --alternateAnswerBox2
-        alternateAnswerBox2.y = display.contentHeight * 0.70
-
-        --alternateAnswerBox1
-        alternateAnswerBox1.y = display.contentHeight * 0.55
-
-        ---------------------------------------------------------
-        --remembering their positions to return the answer in case it's wrong
-        alternateAnswerBox1PreviousY = alternateAnswerBox1.y
-        alternateAnswerBox2PreviousY = alternateAnswerBox2.y
-        alternateAnswerBox3PreviousY = alternateAnswerBox3.y
-        answerboxPreviousY = answerbox.y 
-
-    -- random position 2
-    elseif (randomPosition == 2) then
-
-        answerbox.y = display.contentHeight * 0.55
-
-        --alternateAnswerBox3
-        alternateAnswerBox3.y = display.contentHeight * 0.95
-        
-        --alternateAnswerBox2
-        alternateAnswerBox2.y = display.contentHeight * 0.4
-
-        --alternateAnswerBox1
-        alternateAnswerBox1.y = display.contentHeight * 0.7
-
-        --remembering their positions to return the answer in case it's wrong
-        alternateAnswerBox1PreviousY = alternateAnswerBox1.y
-        alternateAnswerBox2PreviousY = alternateAnswerBox2.y
-        alternateAnswerBox3PreviousY = alternateAnswerBox3.y
-        answerboxPreviousY = answerbox.y 
-
-    -- random position 3
-     elseif (randomPosition == 3) then
-        answerbox.y = display.contentHeight * 0.70
-
-        --alternateAnswerBox3
-        alternateAnswerBox3.y = display.contentHeight * 0.7
-
-        --alternateAnswerBox2
-        alternateAnswerBox2.y = display.contentHeight * 0.55
-
-        --alternateAnswerBox1
-        alternateAnswerBox1.y = display.contentHeight * 0.4
-
-        --remembering their positions to return the answer in case it's wrong
-        alternateAnswerBox1PreviousY = alternateAnswerBox1.y
-        alternateAnswerBox2PreviousY = alternateAnswerBox2.y
-        answerboxPreviousY = answerbox.y 
-    end
-
 
 -- Transitioning Function to YouWin screen
 local function YouWinTransitionLevel2( )
@@ -576,6 +509,7 @@ function scene:create( event )
     questionObject.x = display.contentWidth * 0.3
     questionObject.y = display.contentHeight * 0.9
 
+
     -- boolean variables stating whether or not the answer was touched
     answerboxAlreadyTouched = false
     alternateAnswerBox1AlreadyTouched = false
@@ -600,16 +534,24 @@ function scene:create( event )
     userAnswerBoxPlaceholder.x = display.contentWidth * 0.6
     userAnswerBoxPlaceholder.y = display.contentHeight * 0.9
 
+    correctAnswer = display.newText( "", 0, 0, nil, 100)
+    alternateAnswer1 = display.newText( "", 0, 0, nil, 100)
+    alternateAnswer2 = display.newText( "", 0, 0, nil, 100)
+    alternateAnswer3 = display.newText( "", 0, 0, nil, 100)
+
     ----------------------------------------------------------------------------------
     --adding objects to the scene group
     ----------------------------------------------------------------------------------
 
     sceneGroup:insert( bkg_image ) 
-    sceneGroup:insert( questionText ) 
+    sceneGroup:insert( life1 )
+    sceneGroup:insert( life2 )
+    sceneGroup:insert( life3 )
     sceneGroup:insert( userAnswerBoxPlaceholder )
-    sceneGroup:insert( answerbox )
-    sceneGroup:insert( alternateAnswerBox1 )
-    sceneGroup:insert( alternateAnswerBox2 )
+    sceneGroup:insert( correctAnswer )
+    sceneGroup:insert( alternateAnswer1 )
+    sceneGroup:insert( alternateAnswer2 )
+    sceneGroup:insert( alternateAnswer3 )
 
 end --function scene:create( event )
 
