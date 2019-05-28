@@ -516,11 +516,7 @@ function scene:create( event )
     alternateAnswerBox2AlreadyTouched = false
     alternateAnswerBox3AlreadyTouched = false
 
-    --create answerbox alternate answers and the boxes to show them
-    answerbox = display.newText("", display.contentWidth * 0.9, 0, nil, 100)
-    alternateAnswerBox1 = display.newText("", display.contentWidth * 0.9, 0, nil, 100)
-    alternateAnswerBox2 = display.newText("", display.contentWidth * 0.9, 0, nil, 100)
-    alternateAnswerBox3 = display.newText("", display.contentWidth * 0.9, 0, nil, 100)
+
 
     -- set the x positions of each of the answer boxes
     answerboxPreviousX = display.contentWidth * 0.9
@@ -534,10 +530,10 @@ function scene:create( event )
     userAnswerBoxPlaceholder.x = display.contentWidth * 0.6
     userAnswerBoxPlaceholder.y = display.contentHeight * 0.9
 
-    correctAnswer = display.newText( "", 0, 0, nil, 100)
-    alternateAnswer1 = display.newText( "", 0, 0, nil, 100)
-    alternateAnswer2 = display.newText( "", 0, 0, nil, 100)
-    alternateAnswer3 = display.newText( "", 0, 0, nil, 100)
+    correctAnswer = display.newText( "", 10, 20, nil, 100)
+    alternateAnswer1 = display.newText( "", 20, 20, nil, 100)
+    alternateAnswer2 = display.newText( "", 30, 20, nil, 100)
+    alternateAnswer3 = display.newText( "", 40, 20, nil, 100)
 
     ----------------------------------------------------------------------------------
     --adding objects to the scene group
