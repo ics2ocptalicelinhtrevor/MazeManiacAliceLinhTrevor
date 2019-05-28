@@ -42,6 +42,7 @@ local backButton
 
 local muteButton
 local unmuteButton
+
 ------------------------------------------------------------------------------------------
 -- SOUNDS
 ------------------------------------------------------------------------------------------
@@ -49,10 +50,6 @@ local unmuteButton
 -- background music 
 local mainMenu = audio.loadSound("Sounds/bkgMusic.mp3")
 local mainMenuChannel
-
-
-local click = audio.loadSound("Sounds/clickSound.mp3")
-local clickChannel
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL VARIABLES

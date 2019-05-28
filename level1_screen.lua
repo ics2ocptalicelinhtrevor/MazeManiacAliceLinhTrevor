@@ -196,7 +196,9 @@ local function RuntimeEvents( )
             end
 
         end
+
 -----------------------------------------------------------------------------------------
+
 end -- local function RuntimeEvents( )
 
 -- Creating Joystick function that determines whether or not joystick is pressed
@@ -213,6 +215,8 @@ local function Movement( touch )
 
 end --local function Movement( touch )
 
+-----------------------------------------------------------------------------------------
+
 -- Move character horizontally
 local function movePlayer (event)
     character.x = character.x + motionx
@@ -227,6 +231,7 @@ local function stop (event)
 
 end
 
+-----------------------------------------------------------------------------------------
 
 local function AddRuntimeListeners()
     Runtime:addEventListener("enterFrame", movePlayer)
@@ -237,6 +242,8 @@ local function RemoveRuntimeListeners()
     Runtime:removeEventListener("enterFrame", movePlayer)
     Runtime:removeEventListener("touch", stop )
 end
+
+-----------------------------------------------------------------------------------------
 
 local function ReplaceCharacter()
     character = display.newImageRect("Images/lion.png", 150, 150)
@@ -258,6 +265,8 @@ local function ReplaceCharacter()
     AddRuntimeListeners()
 end
 
+-----------------------------------------------------------------------------------------
+
 local function MakeQuestionMarkVisible()
     questionMark1.isVisible = true
     questionMark2.isVisible = true
@@ -266,11 +275,15 @@ local function MakeQuestionMarkVisible()
     questionMark5.isVisible = true
 end
 
+-----------------------------------------------------------------------------------------
+
 local function MakeHeartsVisible()
     heart1.isVisible = true
     heart2.isVisible = true
     heart3.isVisible = true
 end
+
+-----------------------------------------------------------------------------------------
 
 local function YouLoseTransition()
     composer.gotoScene( "you_lose1" )
@@ -279,6 +292,8 @@ end
 local function YouWinTransition()
     composer.gotoScene( "you_win1" )
 end
+
+-----------------------------------------------------------------------------------------
 
 local function onCollision( self, event )
     -- for testing purposes
@@ -321,6 +336,7 @@ local function onCollision( self, event )
     end       
 end
 
+-----------------------------------------------------------------------------------------
 
 local function AddCollisionListeners()
 
@@ -350,6 +366,8 @@ local function RemoveCollisionListeners()
     door:removeEventListener( "collision")
 
 end
+
+-----------------------------------------------------------------------------------------
 
 local function AddPhysicsBodies()
     --add to the physics engine
@@ -433,6 +451,8 @@ local function Unmute(touch)
         unmuteButton.isVisible = false
     end
 end
+
+-----------------------------------------------------------------------------------------
 
 local function UpdatingLives()
 
