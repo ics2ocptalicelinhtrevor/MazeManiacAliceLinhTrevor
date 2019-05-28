@@ -637,33 +637,33 @@ function scene:create( event )
     floor.y = display.contentHeight * 1.06
 
     --questionMark1
-    questionMark1 = display.newImageRect ("Images/mark.png", 70, 70)
+    questionMark1 = display.newImageRect ("Images/mark.png", 80, 80)
     questionMark1.x = 220
     questionMark1.y = 700
     questionMark1.myName = "questionMark1"
 
     --questionMark2
-    questionMark2 = display.newImageRect ("Images/mark.png", 70, 70)
+    questionMark2 = display.newImageRect ("Images/mark.png", 80, 80)
     questionMark2.x = 380
     questionMark2.y = 450
     questionMark2.myName = "questionMark2"
 
     --questionMark3
-    questionMark3 = display.newImageRect ("Images/mark.png", 70, 70)
+    questionMark3 = display.newImageRect ("Images/mark.png", 80, 80)
     questionMark3.x = 500
-    questionMark3.y = 100
+    questionMark3.y = 80
     questionMark3.myName = "questionMark3"
 
     --questionMark4
-    questionMark4 = display.newImageRect ("Images/mark.png", 70, 70)
-    questionMark4.x = 800
+    questionMark4 = display.newImageRect ("Images/mark.png", 80, 80)
+    questionMark4.x = 820
     questionMark4.y = 530
     questionMark4.myName = "questionMark4"
 
     -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( questionMark4 )
     --questionMark5
-    questionMark5 = display.newImageRect ("Images/mark.png", 70, 70)
+    questionMark5 = display.newImageRect ("Images/mark.png", 80, 80)
     questionMark5.x = 950
     questionMark5.y = 200
     questionMark5.myName = "questionMark5"
@@ -754,9 +754,9 @@ function scene:show( event )
         -- unmute button
         unmuteButton:addEventListener("touch", Unmute)
 
-        -- number of lives and questions answered
-        numLives = 3
+        -- questions answered
         questionsAnswered = 0
+        numLives = 3
 
         -- make all question mark visible
         MakeQuestionMarkVisible()

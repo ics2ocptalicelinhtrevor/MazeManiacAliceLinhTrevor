@@ -59,7 +59,7 @@ local userAnswer
 local textTouched = false
 
 local totalSeconds = 31
-local secondsLeft = 30
+local secondsLeft = 31
 local clockText
 local countDownTimer
 -----------------------------------------------------------------------------------------
@@ -126,11 +126,6 @@ local function TouchListenerWrongAnswer3(touch)
 
 end
 
------------------------------------------------------------------------------------------
-
-local function hideTimer()
-    clockText.isVisible = false
-end
 
 -----------------------------------------------------------------------------------------
 
@@ -236,7 +231,7 @@ local function UpdateTime()
     secondsLeft = secondsLeft - 1
 
     -- display the number of seconds left in the clock object
-    clockText.text = secondsLeft .. ""
+    clockText.text = "Seconds Left:" .. secondsLeft .. ""
 
     if (secondsLeft == 0) then
         -- reset the number of seconds left
@@ -245,6 +240,7 @@ local function UpdateTime()
     end
 end
 
+-----------------------------------------------------------------------------------------
 -- function that calls the timer
 local function StartTimer()
     -- create a countdown timer that loops infinitely
@@ -304,9 +300,8 @@ function scene:create( event )
     wrongText3 = display.newText("", X2, Y1, Arial, 75)
     wrongText3.anchorX = 0
 
-
-        -- display the timer
-    clockText = display.newText("", 500, 500, Arial, 100)
+    -- display the timer
+    clockText = display.newText("", 500, 230, Arial, 50)
     clockText:setFillColor(1,0,0)
 
     -----------------------------------------------------------------------------------------
@@ -367,12 +362,13 @@ function scene:hide( event )
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
         --parent:resumeGame()
-        hideTimer()
+    
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
         RemoveTextListeners()
+        timer.cancel (countDownTimer)
 
     end
 
