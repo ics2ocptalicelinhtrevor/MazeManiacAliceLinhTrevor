@@ -31,7 +31,7 @@ local scene = composer.newScene( sceneName )
 -- local variables for the scene
 local bkg
 local backButton
-local level2Button
+local level3Button
 
 -----------------------------------------------------------------------------------------
 -- SOUNDS 
@@ -45,8 +45,8 @@ local youWinChannel
 -----------------------------------------------------------------------------------------
 
 -- Creating Transition Function to Level2 Screen
-local function Level2ScreenTransition( )       
-    composer.gotoScene( "level2_screen", {effect = "slideRight", time = 500})
+local function Level3ScreenTransition( )       
+    composer.gotoScene( "level3_screen", {effect = "slideRight", time = 500})
 end 
 
 -----------------------------------------------------------------------------------------
@@ -91,7 +91,7 @@ function scene:create( event )
             overFile = "Images/level3PressedLinhH@2x.png",
 
             -- When the button is released, call the Credits transition function
-            onRelease = Level2ScreenTransition
+            onRelease = Level3ScreenTransition
         } ) 
 
     -- Creating Back Button
@@ -120,7 +120,7 @@ function scene:create( event )
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg )
     sceneGroup:insert( backButton )
-    sceneGroup:insert( level2Button )
+    sceneGroup:insert( level3Button )
   
 end    
 
