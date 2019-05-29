@@ -1,13 +1,11 @@
 -----------------------------------------------------------------------------------------
--- instructions_screen.lua
--- Created by: Linh Ho
+--
+-- credits_screen.lua
+-- Created by: Your Name
 -- Special thanks to Wal Wal for helping in the design of this framework.
--- Date: February 19th, 2019
--- Description: This is the instructions page, displaying a back button to the main menu.
+-- Date: Month Day, Year
+-- Description: This is the credits page, displaying a back button to the main menu.
 -----------------------------------------------------------------------------------------
-
--- hide the status bar
-display.setStatusBar(display.HiddenStatusBar)
 
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
@@ -20,7 +18,7 @@ local widget = require( "widget" )
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "instructions_screen"
+sceneName = "instructions1"
 
 -- Creating Scene Object
 scene = composer.newScene( sceneName ) -- This function doesn't accept a string, only a variable containing a string
@@ -28,51 +26,20 @@ scene = composer.newScene( sceneName ) -- This function doesn't accept a string,
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
-
-local level1Button
-local level2Button
-local level3Button
-
 local bkg_image
 local backButton
 
-------------------------------------------------------------------------------------------
--- SOUNDS
-------------------------------------------------------------------------------------------
-
 -- background music 
-local instructionScreen = audio.loadSound("Sounds/instructionScreen.mp3")
-local instructionScreenChannel
+local instructionsSound = audio.loadSound("Sounds/creditScreen.mp3")
+local instructionsSoundChannel
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 
--- Creating Transition to Level1 Instructions Screen
-local function Level1ScreenTransition( )
-    composer.gotoScene( "instructions1", {effect = "zoomInOutFade", time = 500})
-end    
-
------------------------------------------------------------------------------------------
-
--- Creating Transition Function to Level2 Instructions Screen
-local function Level2ScreenTransition( )       
-    composer.gotoScene( "instructions2", {effect = "slideRight", time = 500})
-end 
-
------------------------------------------------------------------------------------------
-
--- Creating Transition to Level3 Instructions Screen
- 
- local function Level3ScreenTransition( )
-    composer.gotoScene( "instructions3", {effect = "slideLeft", time = 500})
-end  
-
-------------------------------------------------------------------------------------------
-
--- Creating Transitioning Function back to main menu
+-- Creating Transitioning Function back to instuctions select
 local function BackTransition( )
-    composer.gotoScene( "main_menu", {effect = "slideRight", time = 500})
+    composer.gotoScene( "instructions_screen", {effect = "slideLeft", time = 500})
 end
 
 -----------------------------------------------------------------------------------------
@@ -85,8 +52,22 @@ function scene:create( event )
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
 
+    -----------------------------------------------------------------------------------------
+    -- BACKGROUND AND DISPLAY OBJECTS
+    -----------------------------------------------------------------------------------------
+
     -- Insert the background image and set it to the center of the screen
-    display.setDefault("background", 46/255, 139/255, 87/255)
+    bkg_image = display.newImageRect("Images/Instructions Screen.png", display.contentWidth, display.contentHeight)
+    bkg_image.x = display.contentCenterX
+    bkg_image.y = display.contentCenterY
+    bkg_image.width = display.contentWidth
+    bkg_image.height = display.contentHeight
+
+    -- Associating display objects with this scene 
+    sceneGroup:insert(bkg_image)
+
+    -- Send the background image to the back layer so all other objects can be on top
+    bkg_image:toBack()
 
     -----------------------------------------------------------------------------------------
     -- BUTTON WIDGETS
@@ -104,8 +85,8 @@ function scene:create( event )
         height = 100,
 
         -- Setting Visual Properties
-        defaultFile = "Images/BackButtonUnpressedLinhH.png",
-        overFile = "Images/BackButtonPressedLinhH.png",
+        defaultFile = "Images/Back Button Unpressed.png",
+        overFile = "Images/Back Button Pressed.png",
 
         -- Setting Functional Properties
         onRelease = BackTransition
@@ -114,69 +95,10 @@ function scene:create( event )
 
     -----------------------------------------------------------------------------------------
 
-    -- Creating level1 Button
-    level1Button = widget.newButton( 
-        {   
-            -- Set its position on the screen relative to the screen size
-            x = 200,
-
-            y = 400,
-
-            width = 200,
-            height = 100,
-
-            -- Insert the images here
-            defaultFile = "Images/level1UnpressedLinhH@2x.png",
-            overFile = "Images/level1PressedLinhH@2x.png",
-
-            -- When the button is released, call the Level1 screen transition function
-            onRelease = Level1ScreenTransition
-                      
-        } )
-
-    -- Creating level2 Button
-    level2Button = widget.newButton( 
-        {
-            -- Set its position on the screen relative to the screen size
-            x = 500,
-            y = 400,
-
-            width = 200,
-            height = 100,
-            
-            -- Insert the images here
-            defaultFile = "Images/level2UnpressedLinhH@2x.png",
-            overFile = "Images/level2PressedLinhH@2x.png",
-
-            -- When the button is released, call the Credits transition function
-            onRelease = Level2ScreenTransition
-        } ) 
-
-    -- Creating level3 button
-    level3Button = widget.newButton( 
-        {
-            -- Set its position on the screen relative to the screen size
-            x = 800,
-            y = 400,
-
-            width = 200,
-            height = 100,
-
-            -- Insert images here
-            defaultFile = "Images/level3UnpressedLinhH@2x.png",
-            overFile = "Images/level3PressedLinhH@2x.png",
-
-            -- When the button is released, call the Instructions transition function
-            onRelease = Level3ScreenTransition
-        } ) 
-
     -- Associating Buttons with this scene
-    sceneGroup:insert( level1Button )
-    sceneGroup:insert( level2Button )
-    sceneGroup:insert( level3Button )
     sceneGroup:insert( backButton )
     
-end -- function scene:create( event )
+end --function scene:create( event )
 
 -----------------------------------------------------------------------------------------
 
@@ -201,13 +123,14 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
-        -- Play background music
-        instructionScreenChannel = audio.play(instructionScreen)
-        -- set volume, repeat in channel, and infinite loop
+        -- Play the background music for this scene
+        instructionsSoundChannel = audio.play(instructionsSound)
+        -- lower the volume
         audio.setVolume(0.5, { channel=1, loops=-1 } )
     end
+end
 
-end -- function scene:show( event )
+ -- function scene:show( event )
 
 -----------------------------------------------------------------------------------------
 
@@ -227,7 +150,7 @@ function scene:hide( event )
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
-        audio.stop(instructionScreenChannel)
+        audio.stop(instructionsSoundChannel)
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then

@@ -515,7 +515,7 @@ function scene:create( event )
     wall5:setFillColor(0, 0, 0)
     wall5:toFront()
     
-      wall6 = display.newRect(0, 0, 10, display.contentHeight - 150)
+    wall6 = display.newRect(0, 0, 10, display.contentHeight - 150)
     wall6.x = 600
     wall6.y = 650
     wall6:setFillColor(0, 0, 0)
@@ -568,7 +568,7 @@ function scene:create( event )
 
     wall14 = display.newRect(0, 0, 10, display.contentHeight - 890)
     wall14.x = 904
-    wall14.y = 584
+    wall14.y = 710
     wall14:setFillColor(0, 0, 0)
     wall14:toFront()    
 
@@ -622,7 +622,7 @@ function scene:create( event )
 
     --questionMark1
     questionMark1 = display.newImageRect ("Images/mark.png", 70, 70)
-    questionMark1.x = 220
+    questionMark1.x = 250
     questionMark1.y = 700
     questionMark1.myName = "questionMark1"
 
