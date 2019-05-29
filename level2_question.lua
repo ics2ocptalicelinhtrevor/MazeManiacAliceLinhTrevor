@@ -43,6 +43,18 @@ local alternateAnswer1
 local alternateAnswer2
 local alternateAnswer3  
 
+-- shapes 
+local circle
+local triangle
+local square
+local rectangle
+local star
+local oval
+local diamond
+local octogon
+local hexagon
+local pentagon
+
 -- display answers
 local X1 = display.contentWidth*2/7
 local X2 = display.contentWidth*4/7
@@ -504,6 +516,47 @@ function scene:create( event )
     life3.x = display.contentWidth * 7 / 8
     life3.y = display.contentHeight * 1 / 7
 
+    -- Insert the shapes for the questions
+    circle = display.newImageRect("Images/circleAliceR@2x.png", 100, 100)
+    circle.x = display.contentWidth * 7 / 8
+    circle.y = display.contentHeight * 0.9
+
+    triangle = display.newImageRect("Images/triangleAliceR@2x.png", 100, 100)
+    triangle.x = display.contentWidth * 7 / 8
+    triangle.y = display.contentHeight * 0.9
+
+    diamond = display.newImageRect("Images/diamondAliceR@2x.png", 100, 100)
+    diamond.x = display.contentWidth * 7 / 8
+    diamond.y = display.contentHeight * 0.9
+
+    hexagon = display.newImageRect("Images/hexagonAliceR@2x.png", 100, 100)
+    hexagon.x = display.contentWidth * 7 / 8
+    hexagon.y = display.contentHeight * 0.9
+
+    rectangle = display.newImageRect("Images/rectangleAliceR@2x.png", 100, 200)
+    rectangle.x = display.contentWidth * 7 / 8
+    rectangle.y = display.contentHeight * 0.9
+
+    star = display.newImageRect("Images/starAliceR@2x.png", 100, 100)
+    star.x = display.contentWidth * 7 / 8
+    star.y = display.contentHeight * 0.9
+
+    oval = display.newImageRect("Images/ovalAliceR@2x.png", 100, 100)
+    oval.x = display.contentWidth * 7 / 8
+    oval.y = display.contentHeight * 0.9
+
+    pentagon = display.newImageRect("Images/pentagonAliceR@2x.png", 100, 100)
+    pentagon.x = display.contentWidth * 7 / 8
+    pentagon.y = display.contentHeight * 0.9
+
+    octagon = display.newImageRect("Images/octagonAliceR@2x.png", 100, 100)
+    octagon.x = display.contentWidth * 7 / 8
+    octagon.y = display.contentHeight * 0.9
+
+    square = display.newImageRect("Images/squareAliceR@2x.png", 100, 100)
+    square.x = display.contentWidth * 0.6
+    square.y = display.contentHeight * 0.9
+
     --the text that displays the question
     questionObject = display.newText( "" , 0, 0, nil, 100)
     questionObject.x = display.contentWidth * 0.3
@@ -516,7 +569,11 @@ function scene:create( event )
     alternateAnswerBox2AlreadyTouched = false
     alternateAnswerBox3AlreadyTouched = false
 
-
+    --create answerbox alternate answers and the boxes to show them
+    answerbox = display.newText("", display.contentWidth * 0.9, 0, nil, 100)
+    alternateAnswerBox1 = display.newText("", display.contentWidth * 0.9, 0, nil, 100)
+    alternateAnswerBox2 = display.newText("", display.contentWidth * 0.9, 0, nil, 100)
+    alternateAnswerBox3 = display.newText("", display.contentWidth * 0.9, 0, nil, 100)
 
     -- set the x positions of each of the answer boxes
     answerboxPreviousX = display.contentWidth * 0.9
