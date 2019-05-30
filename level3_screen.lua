@@ -61,8 +61,6 @@ local wall12
 local wall13
 local wall14
 
-
-local torchesAndSign
 local door
 local character
 
@@ -614,15 +612,6 @@ function scene:create( event )
 
     -- Changing transparency
     analogStick.alpha = 0.5
-
-
-    -- Insert the torchesAndSign Objects
-    torchesAndSign = display.newImageRect("Images/Level-1Random.png", display.contentWidth, display.contentHeight)
-    torchesAndSign.x = display.contentCenterX
-    torchesAndSign.y = display.contentCenterY + 10
-
-    -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( torchesAndSign )
 
     -- Insert the Door
     door = display.newImage("Images/Level-1Door.png", 100, 100)
