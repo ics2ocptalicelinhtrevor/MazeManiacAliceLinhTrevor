@@ -43,6 +43,10 @@ local youWinChannel
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 
+
+
+-----------------------------------------------------------------------------------------
+
 -- Creating Transitioning Function back to main menu
 local function BackTransition( )
     composer.gotoScene( "main_menu", {effect = "zoomOutInFade", time = 500})
@@ -67,6 +71,9 @@ function scene:create( event )
 
    -- Playing the you Win sound
    youWinChannel = audio.play(youWin)
+
+    -- Creating level2 Button
+
 
     -- Creating Back Button
     backButton = widget.newButton( 
