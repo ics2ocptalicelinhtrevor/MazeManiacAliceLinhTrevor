@@ -27,7 +27,7 @@ local joystick = require( "joystick" )
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "level1_screen"
+sceneName = "level3_screen"
 
 -----------------------------------------------------------------------------------------
 
@@ -357,7 +357,7 @@ local function onCollision( self, event )
             --check to see if the user has answered 5 questions
             if (questionsAnswered == 3) then
                 -- after getting 3 questions right, go to the you win screen
-                composer.gotoScene("you_win")
+                composer.gotoScene("you_win3")
             end
         end        
 
