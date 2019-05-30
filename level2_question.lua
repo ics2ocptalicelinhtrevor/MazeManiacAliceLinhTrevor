@@ -30,7 +30,7 @@ local scene = composer.newScene( sceneName )
 -- The background image and soccer ball for this scene
 local bkg_image
 
-local questionPosition
+local questionText
 
 -- display the lives
 local life1
@@ -96,6 +96,11 @@ local correctSound
 local booSound
 
 -----------------------------------------------------------------------------------------
+-- SOUNDS
+-----------------------------------------------------------------------------------------
+
+
+-----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 
@@ -121,9 +126,9 @@ end
 
 local function AskQuestion()
     -- create random questions
-    questionPosition = math.random(1,10)
+    questionText = math.random(1,10)
 
-    if (questionPosition == 1) then
+    if (questionText == 1) then
 
         question.text = "Name the shape."
 
@@ -137,7 +142,9 @@ local function AskQuestion()
         alternateAnswer2.text = alternateAnswer2
         alternateAnswer3.text = alternateAnswer3
 
-    elseif (questionPosition == 2) then
+        circle.isVisible = true
+
+    elseif (questionText == 2) then
 
         question.text = "Name the shape."
 
@@ -151,7 +158,9 @@ local function AskQuestion()
         alternateAnswer2.text = alternateAnswer2
         alternateAnswer3.text = alternateAnswer3
 
-    elseif (questionPosition == 3) then
+        triangle.isVisible = true
+
+    elseif (questionText == 3) then
 
         question.text = "Name the shape."
 
@@ -164,8 +173,10 @@ local function AskQuestion()
         alternateAnswer1.text = alternateAnswer1
         alternateAnswer2.text = alternateAnswer2
         alternateAnswer3.text = alternateAnswer3
+
+        rectangle.isVisible = true
        
-    elseif (questionPosition == 4) then
+    elseif (questionText == 4) then
 
         question.text = "Name the shape."
 
@@ -179,7 +190,9 @@ local function AskQuestion()
         alternateAnswer2.text = alternateAnswer2
         alternateAnswer3.text = alternateAnswer3
 
-    elseif (questionPosition == 5) then
+        square.isVisible = true
+
+    elseif (questionText == 5) then
 
         question.text = "Name the shape."
 
@@ -193,7 +206,9 @@ local function AskQuestion()
         alternateAnswer2.text = alternateAnswer2
         alternateAnswer3.text = alternateAnswer3
 
-    elseif (questionPosition == 6) then
+        oval.isVisible = true
+
+    elseif (questionText == 6) then
 
         question.text = "Name the shape."
 
@@ -207,7 +222,9 @@ local function AskQuestion()
         alternateAnswer2.text = alternateAnswer2
         alternateAnswer3.text = alternateAnswer3
 
-    elseif (questionPosition == 7) then
+        octogon.isVisible = true
+
+    elseif (questionText == 7) then
 
         question.text = "Name the shape."
 
@@ -221,7 +238,9 @@ local function AskQuestion()
         alternateAnswer2.text = alternateAnswer2
         alternateAnswer3.text = alternateAnswer3
 
-    elseif (questionPosition == 8) then
+        pentagon.isVisible = true
+
+    elseif (questionText == 8) then
 
         question.text = "Name the shape."
 
@@ -235,7 +254,9 @@ local function AskQuestion()
         alternateAnswer2.text = alternateAnswer2
         alternateAnswer3.text = alternateAnswer3
 
-    elseif (questionPosition == 9) then
+        hexagon.isVisible = true
+
+    elseif (questionText == 9) then
 
         question.text = "Name the shape."
 
@@ -249,7 +270,9 @@ local function AskQuestion()
         alternateAnswer2.text = alternateAnswer2
         alternateAnswer3.text = alternateAnswer3
 
-    elseif (questionPosition == 10) then
+        circle.isVisible = true
+
+    elseif (questionText == 10) then
 
         question.text = "Name the shape."
 
@@ -575,42 +598,64 @@ function scene:create( event )
     triangle.x = display.contentWidth * 0.6
     triangle.y = display.contentHeight * 0.9
 
+    triangle.isVisible = false
+
     diamond = display.newImageRect("Images/diamondAliceR@2x.png", 100, 100)
     diamond.x = display.contentWidth * 0.6
     diamond.y = display.contentHeight * 0.9
+
+    diamond.isVisible = false
 
     hexagon = display.newImageRect("Images/hexagonAliceR@2x.png", 100, 100)
     hexagon.x = display.contentWidth * 0.6
     hexagon.y = display.contentHeight * 0.9
 
-    rectangle = display.newImageRect("Images/rectangleAliceR@2x.png", 100, 200)
+    hexagon.isVisible = false
+
+    rectangle = display.newImageRect("Images/rectangleAliceR@2x.png", 200, 100)
     rectangle.x = display.contentWidth * 0.6
     rectangle.y = display.contentHeight * 0.9
+
+    rectangle.isVisible = false
 
     star = display.newImageRect("Images/starAliceR@2x.png", 100, 100)
     star.x = display.contentWidth * 0.6
     star.y = display.contentHeight * 0.9
 
+    star.isVisible = false
+
     oval = display.newImageRect("Images/ovalAliceR@2x.png", 100, 100)
     oval.x = display.contentWidth * 0.6
     oval.y = display.contentHeight * 0.9
+
+    oval.isVisible = false
 
     pentagon = display.newImageRect("Images/pentagonAliceR@2x.png", 100, 100)
     pentagon.x = display.contentWidth * 0.6
     pentagon.y = display.contentHeight * 0.9
 
+    pentagon.isVisible = false
+
     octagon = display.newImageRect("Images/octagonAliceR@2x.png", 100, 100)
     octagon.x = display.contentWidth * 0.6
     octagon.y = display.contentHeight * 0.9
+
+    octagon.isVisible = false
 
     square = display.newImageRect("Images/squareAliceR@2x.png", 100, 100)
     square.x = display.contentWidth * 0.6
     square.y = display.contentHeight * 0.9
 
+    square.isVisible = false
+
     --the text that displays the question
-    questionPosition = display.newText( "" , 0, 0, nil, 100)
-    questionPosition.x = display.contentWidth * 0.3
-    questionPosition.y = display.contentHeight * 0.9
+    questionText = display.newText( "Drag the name onto the shape." , 0, 0, nil, 50)
+    questionText.anchorX = 0
+    questionText.anchorY = 0
+    questionText.x = display.contentWidth *0.2
+    questionText.y = display.contentHeight *0.3
+
+    questionText:setTextColor(0/255, 0/255, 0/255)
 
 
     -- boolean variables stating whether or not the answer was touched
@@ -637,10 +682,25 @@ function scene:create( event )
     userAnswerBoxPlaceholder.x = display.contentWidth * 0.6
     userAnswerBoxPlaceholder.y = display.contentHeight * 0.9
 
-    correctAnswer = display.newText( "", 10, 20, nil, 100)
-    alternateAnswer1 = display.newText( "", 20, 20, nil, 100)
-    alternateAnswer2 = display.newText( "", 30, 20, nil, 100)
-    alternateAnswer3 = display.newText( "", 40, 20, nil, 100)
+    correctAnswer = display.newText( "Circle", 5, 10, nil, 50)
+    correctAnswer.anchorX = 0
+    correctAnswer.anchorY = 0
+    alternateAnswer1 = display.newText( "Triangle", 5, 20, nil, 50)
+    alternateAnswer1.anchorX = 0
+    alternateAnswer1.anchorY = 0
+    alternateAnswer2 = display.newText( "Rectangle", 5, 30, nil, 50)
+    alternateAnswer2.anchorX = 0
+    alternateAnswer2.anchorY = 0
+    alternateAnswer3 = display.newText( "Square", 5, 40, nil, 50)
+    alternateAnswer3.anchorX = 0
+    alternateAnswer3.anchorY = 0
+
+    correctAnswer:setTextColor(0/255, 0/255, 0/255)
+    alternateAnswer1:setTextColor(0/255, 0/255, 0/255)
+    alternateAnswer2:setTextColor(0/255, 0/255, 0/255)
+    alternateAnswer3:setTextColor(0/255, 0/255, 0/255)
+
+
 
     ----------------------------------------------------------------------------------
     --adding objects to the scene group
@@ -655,7 +715,10 @@ function scene:create( event )
     sceneGroup:insert( alternateAnswer1 )
     sceneGroup:insert( alternateAnswer2 )
     sceneGroup:insert( alternateAnswer3 )
-    sceneGroup:insert( questionPosition )
+    sceneGroup:insert( questionText )
+    sceneGroup:insert( alternateAnswerBox1 )
+    sceneGroup:insert( alternateAnswer2 )
+
 
 
 end --function scene:create( event )
