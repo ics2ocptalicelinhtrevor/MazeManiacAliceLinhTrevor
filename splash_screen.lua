@@ -1,45 +1,39 @@
 -----------------------------------------------------------------------------------------
 --
 -- splash_screen.lua
--- Created by: Linh Ho
--- Date: April 16th. 2019
+-- Created by: Your Name
+-- Date: Month Day, Year
 -- Description: This is the splash screen of the game. It displays the 
--- company logo of Gax Games.
+-- company logo that...
 -----------------------------------------------------------------------------------------
-
--- hide the status bar
-display.setStatusBar(display.HiddenStatusBar)
 
 -- Use Composer Library
 local composer = require( "composer" )
 
 -- Name the Scene
 sceneName = "splash_screen"
+
 -----------------------------------------------------------------------------------------
+
 -- Create Scene Object
 local scene = composer.newScene( sceneName )
------------------------------------------------------------------------------------------
--- GLOBAL VARIABLES
------------------------------------------------------------------------------------------
--- Global variables
-scrollSpeed = 4
-runSpeed = 4
+
+
+
 ----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
  
-    local topLeft = display.newImageRect("Images/topleft.png", 200, 200)
-    local topRight = display.newImageRect("Images/topright.png", 200, 200)
-    local botLeft = display.newImageRect("Images/botleft.png", 200, 200)
-    local botRight = display.newImageRect("Images/botright.png", 200, 200)
+-- The local variables for this scene
+local paw
+local scrollSpeed = 3
 
----------------------------------------------------------------------------------------
--- SOUNDS
----------------------------------------------------------------------------------------
-local whooshSound = audio.loadSound("Sounds/whoosh.mp3")
-local whooshChannel
-local bkg = audio.loadSound("Sounds/background.mp3")
-local bkgChannel
+----------------------------------------------------------------------------------------
+-- Sounds
+-----------------------------------------------------------------------------------------
+
+
+
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------
@@ -49,11 +43,30 @@ local function gotoMainMenu()
     composer.gotoScene( "main_menu" )
 end
 
-local function HideLogo()
-    topLeft.isVisible = false
-    topRight.isVisible = false
-    botLeft.isVisible = false
-    botRight.isVisible = false
+
+-----------------------------------------------------------------------------------------
+-- GLOBAL FUNCTIONS
+-----------------------------------------------------------------------------------------
+-----------------------------------------------------------------
+function stopPaw()
+    Runtime:removeEventListener("enterFrame", movePaw)
+    paw.x = display.contentCenterX
+    paw.y = display.contentCenterY
+end
+-------------------------------------------------------------
+function movePaw(event)
+    paw.x = paw.x + scrollSpeed
+    paw.y = paw.y - scrollSpeed
+    -- fade in
+    paw.alpha = paw.alpha + 0.02
+    -- rotates
+    paw:rotate(20.86)
+    -- Makes it bigger
+    paw.xScale = paw.xScale + 0.05
+    paw.yScale = paw.yScale + 0.05
+    if (paw.x >= display.contentCenterX) then
+        stopPaw()
+    end
 end
 
 -----------------------------------------------------------------------------------------
@@ -67,13 +80,18 @@ function scene:create( event )
     local sceneGroup = self.view
 
     -- set the background to be black
-    display.setDefault("background", 202/255, 204/255, 206/255)
+    display.setDefault("background", 0, 0, 0)
+
+    -- Insert the beetleship image
+    paw = display.newImageRect("Images/CompanyLogo.png", 70, 70)
+
+
+    -- set the initial x and y position of the beetleship
+    paw.x = 100
+    paw.y = display.contentHeight/1
 
     -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( topLeft )
-    sceneGroup:insert( topRight )
-    sceneGroup:insert( botLeft )
-    sceneGroup:insert( botRight )
+    sceneGroup:insert( paw )
 
 end -- function scene:create( event )
 
@@ -98,43 +116,9 @@ function scene:show( event )
 
     elseif ( phase == "did" ) then
         -- start the splash screen music
-        bkgChannel = audio.play(bkg)
-        -- lower the volume of the background music
-        audio.setVolume(0.5)
-        -- whoosh sound
-        whooshChannel = audio.play(whooshSound)
-
-    -- set the initial x and y position of topLeft
-    topLeft.x = 400
-    topLeft.y = -1000
-
-    -- Transitions the topLeft image to the center
-    transition.to(topLeft, {x=400, y=300, time=500})
-
-    -- set the initial x and y position of topRight
-    topRight.x = 1000
-    topRight.y = -1000
-
-    -- Transitions the topRight image to the center
-    transition.to(topRight, {x=600, y=300, time=500})
-
-    -- set the initial x and y position of botLeft
-    botLeft.x = 400
-    botLeft.y = 1000
-
-    -- Transitions the botLeft image to the center
-    transition.to(botLeft, {x=400, y=500, time=500})
-
-    -- set the initial x and y position of botRight
-    botRight.x = 1000
-    botRight.y = 1000
-
-    -- Transitions the botRight image to the center
-    transition.to(botRight, {x=600, y=500, time=500})
-
+        Runtime:addEventListener("enterFrame", movePaw)
         -- Go to the main menu screen after the given time.
-        timer.performWithDelay (3000, gotoMainMenu)  
-        timer.performWithDelay (3000, HideLogo)        
+        timer.performWithDelay ( 3000, gotoMainMenu)          
         
     end
 
@@ -151,17 +135,17 @@ function scene:hide( event )
 
     -----------------------------------------------------------------------------------------
 
-    if ( phase == "will" ) then    
     -- Called when the scene is on screen (but is about to go off screen).
     -- Insert code here to "pause" the scene.
     -- Example: stop timers, stop animation, stop audio, etc.
-    -- stop the sound channels for this screen
-        audio.stop(bkgChannel)
-        audio.stop(whooshChannel)
+    if ( phase == "will" ) then  
+
     -----------------------------------------------------------------------------------------
 
     -- Called immediately after scene goes off screen.
     elseif ( phase == "did" ) then
+        
+        Runtime:removeEventListener("enterFrame", movePaw)
     end
 
 end --function scene:hide( event )
@@ -191,6 +175,7 @@ scene:addEventListener( "create", scene )
 scene:addEventListener( "show", scene )
 scene:addEventListener( "hide", scene )
 scene:addEventListener( "destroy", scene )
+
 
 -----------------------------------------------------------------------------------------
 

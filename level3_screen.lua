@@ -274,11 +274,11 @@ local function MakeHeartsVisible()
 end
 
 local function YouLoseTransition()
-    composer.gotoScene( "you_lose" )
+    composer.gotoScene( "you_lose3" )
 end
 
 local function YouWinTransition()
-    composer.gotoScene( "you_win" )
+    composer.gotoScene( "you_win3" )
 end
 
 local function onCollision( self, event )
