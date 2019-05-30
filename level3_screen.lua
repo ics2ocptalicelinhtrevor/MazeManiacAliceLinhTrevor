@@ -59,7 +59,6 @@ local wall10
 local wall11
 local wall12
 local wall13
-local wall14
 
 local door
 local character
@@ -407,7 +406,6 @@ local function AddPhysicsBodies()
     physics.addBody(wall11, "static", {friction = 0})
     physics.addBody(wall12, "static", {friction = 0})
     physics.addBody(wall13, "static", {friction = 0})
-    physics.addBody(wall14, "static", {friction = 0})
 
     physics.addBody(leftW, "static", {friction = 0})
     physics.addBody(topW, "static", {friction = 0})
@@ -436,7 +434,6 @@ local function RemovePhysicsBodies()
     physics.removeBody(wall11)
     physics.removeBody(wall12)
     physics.removeBody(wall13)
-    physics.removeBody(wall14)
 
     physics.removeBody(leftW)
     physics.removeBody(topW)
@@ -596,12 +593,7 @@ function scene:create( event )
     wall13.y = 348
     wall13:setFillColor(0, 0, 0)
     wall13:toFront()
-
-    wall14 = display.newRect(0, 0, 10, display.contentHeight - 890)
-    wall14.x = 904
-    wall14.y = 584
-    wall14:setFillColor(0, 0, 0)
-    wall14:toFront()    
+    
 
     -- Creating Joystick
     analogStick = joystick.new( 50, 75 ) 
@@ -729,7 +721,6 @@ function scene:create( event )
     sceneGroup:insert( wall11 )
     sceneGroup:insert( wall12 )
     sceneGroup:insert( wall13 )
-    sceneGroup:insert( wall14 )
     sceneGroup:insert( muteButton )
     sceneGroup:insert( unmuteButton )
 
