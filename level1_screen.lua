@@ -10,10 +10,6 @@
 -- To win, you must answer 5 math questions. 
 -----------------------------------------------------------------------------------------
 
--- errors 
--- would close after a few seconds
--- would lose a life
-
 -- hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
 
