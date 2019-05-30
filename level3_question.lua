@@ -131,12 +131,12 @@ end
 
 local function DisplayQuestion()
     --chooses the question asked
-    randomQuestion = math.random(1,12)
+    randomQuestion = math.random(1,1)
 
     if (randomQuestion == 1) then
 
         --creating the question depending on the selcetion number
-        questionText.text = "What is the name of the process that oxygen made?"
+        questionText.text = "What is the name of the process\nwhere oxygen is made?"
 
      --creating answer text from list it corispondes with the animals list
         answerText.text = "Photosynthesis"
