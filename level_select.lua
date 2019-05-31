@@ -122,6 +122,7 @@ end
 ------------------------------------------------------------------------------------------
 -- OBJECTS
 ------------------------------------------------------------------------------------------
+
 -- creating mute button
 muteButton = display.newImageRect("Images/Mute Button Unpressed.png", 100, 100)
 muteButton.x = 950
@@ -133,6 +134,7 @@ unmuteButton = display.newImageRect("Images/Mute Button Pressed.png", 100, 100)
 unmuteButton.x = 950
 unmuteButton.y = 50
 unmuteButton.isVisible = false
+
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -142,10 +144,6 @@ function scene:create( event )
 
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
-
-    -----------------------------------------------------------------------------------------
-    -- BACKGROUND IMAGE & STATIC OBJECTS
-    -----------------------------------------------------------------------------------------
 
     -- Insert the background image and set it to the center of the screen
     display.setDefault("background", 46/255, 139/255, 87/255)

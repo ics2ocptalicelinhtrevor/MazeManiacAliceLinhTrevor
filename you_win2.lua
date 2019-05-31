@@ -9,9 +9,11 @@
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
 
+-- hide the status bar
+display.setStatusBar(display.HiddenStatusBar)
+
 -- Calling Composer Library
 local composer = require( "composer" )
-
 local widget = require( "widget" )
 
 -----------------------------------------------------------------------------------------
