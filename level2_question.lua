@@ -30,7 +30,8 @@ local scene = composer.newScene( sceneName )
 -- The background image and soccer ball for this scene
 local bkg_image
 
-local questionText
+local question
+local questionNumber
 
 -- display the lives
 local life1
@@ -126,165 +127,118 @@ end
 
 local function AskQuestion()
     -- create random questions
-    questionText = math.random(1,10)
+    questionNumber = math.random(1,10)
 
-    if (questionText == 1) then
+    if  (questionNumber == 1) then
 
-        question.text = "Name the shape."
+        question.text = "Drag the name onto the shape."
 
         correctAnswer.text = "circle"
         alternateAnswer1.text = "triangle"
         alternateAnswer2.text = "square"
         alternateAnswer3.text = "rectangle"
 
-        question.text = correctAnswer
-        alternateAnswer1.text = alternateAnswer1
-        alternateAnswer2.text = alternateAnswer2
-        alternateAnswer3.text = alternateAnswer3
-
         circle.isVisible = true
 
-    elseif (questionText == 2) then
+    elseif  (questionNumber == 2) then
 
-        question.text = "Name the shape."
+        question.text = "Drag the name onto the shape."
 
         correctAnswer.text = "triangle"
         alternateAnswer1.text = "circle"
         alternateAnswer2.text = "star"
         alternateAnswer3.text = "rectangle"
 
-        question.text = correctAnswer
-        alternateAnswer1.text = alternateAnswer1
-        alternateAnswer2.text = alternateAnswer2
-        alternateAnswer3.text = alternateAnswer3
-
         triangle.isVisible = true
 
-    elseif (questionText == 3) then
+    elseif  (questionNumber == 3) then
 
-        question.text = "Name the shape."
+        question.text = "Drag the name onto the shape."
 
         correctAnswer.text = "rectangle"
         alternateAnswer1.text = "circle"
         alternateAnswer2.text = "star"
         alternateAnswer3.text = "oval"
 
-        question.text = correctAnswer
-        alternateAnswer1.text = alternateAnswer1
-        alternateAnswer2.text = alternateAnswer2
-        alternateAnswer3.text = alternateAnswer3
-
         rectangle.isVisible = true
        
-    elseif (questionText == 4) then
+    elseif  (questionNumber == 4) then
 
-        question.text = "Name the shape."
+        question.text = "Drag the name onto the shape."
 
         correctAnswer.text = "square"
         alternateAnswer1.text = "diamond"
         alternateAnswer2.text = "star"
         alternateAnswer3.text = "rectangle"
 
-        question.text = correctAnswer
-        alternateAnswer1.text = alternateAnswer1
-        alternateAnswer2.text = alternateAnswer2
-        alternateAnswer3.text = alternateAnswer3
-
         square.isVisible = true
 
-    elseif (questionText == 5) then
+    elseif  (questionNumber == 5) then
 
-        question.text = "Name the shape."
+        question.text = "Drag the name onto the shape."
 
         correctAnswer.text = "oval"
         alternateAnswer1.text = "triangle"
         alternateAnswer2.text = "circle"
         alternateAnswer3.text = "rectangle"
 
-        question.text = correctAnswer
-        alternateAnswer1.text = alternateAnswer1
-        alternateAnswer2.text = alternateAnswer2
-        alternateAnswer3.text = alternateAnswer3
-
         oval.isVisible = true
 
-    elseif (questionText == 6) then
+    elseif  (questionNumber == 6) then
 
-        question.text = "Name the shape."
+        question.text = "Drag the name onto the shape."
 
         correctAnswer.text = "octagon"
         alternateAnswer1.text = "hexagon"
         alternateAnswer2.text = "circle"
         alternateAnswer3.text = "square"
 
-        question.text = correctAnswer
-        alternateAnswer1.text = alternateAnswer1
-        alternateAnswer2.text = alternateAnswer2
-        alternateAnswer3.text = alternateAnswer3
+        octagon.isVisible = true
 
-        octogon.isVisible = true
+    elseif  (questionNumber == 7) then
 
-    elseif (questionText == 7) then
-
-        question.text = "Name the shape."
+        question.text = "Drag the name onto the shape."
 
         correctAnswer.text = "penatagon"
         alternateAnswer1.text = "octagon"
         alternateAnswer2.text = "star"
         alternateAnswer3.text = "square"
 
-        question.text = correctAnswer
-        alternateAnswer1.text = alternateAnswer1
-        alternateAnswer2.text = alternateAnswer2
-        alternateAnswer3.text = alternateAnswer3
-
         pentagon.isVisible = true
 
-    elseif (questionText == 8) then
+    elseif  (questionNumber == 8) then
 
-        question.text = "Name the shape."
+        question.text = "Drag the name onto the shape."
 
         correctAnswer.text = "hexagon"
         alternateAnswer1.text = "pentagon"
         alternateAnswer2.text = "square"
         alternateAnswer3.text = "circle"
 
-        question.text = correctAnswer
-        alternateAnswer1.text = alternateAnswer1
-        alternateAnswer2.text = alternateAnswer2
-        alternateAnswer3.text = alternateAnswer3
-
         hexagon.isVisible = true
 
-    elseif (questionText == 9) then
+    elseif  (questionNumber == 9) then
 
-        question.text = "Name the shape."
+        question.text = "Drag the name onto the shape."
 
         correctAnswer.text = "star"
         alternateAnswer1.text = "rectangle"
         alternateAnswer2.text = "circle"
         alternateAnswer3.text = "diamond"
 
-        question.text = correctAnswer
-        alternateAnswer1.text = alternateAnswer1
-        alternateAnswer2.text = alternateAnswer2
-        alternateAnswer3.text = alternateAnswer3
+        star.isVisible = true
 
-        circle.isVisible = true
+    elseif  (questionNumber == 10) then
 
-    elseif (questionText == 10) then
-
-        question.text = "Name the shape."
+        question.text = "Drag the name onto the shape."
 
         correctAnswer.text = "diamond"
         alternateAnswer1.text = "hexagon"
         alternateAnswer2.text = "star"
         alternateAnswer3.text = "square"
 
-        question.text = correctAnswer
-        alternateAnswer1.text = alternateAnswer1
-        alternateAnswer2.text = alternateAnswer2
-        alternateAnswer3.text = alternateAnswer3
+        diamond.isVisible = true
+
     end
 end
 
@@ -360,7 +314,7 @@ end
 
 -- Function to Restart Level 1
 local function RestartLevel2()
-    DisplayQuestion()
+    AskQuestion()
     PositionAnswers()    
 end
 
@@ -594,6 +548,8 @@ function scene:create( event )
     circle.x = display.contentWidth * 0.6
     circle.y = display.contentHeight * 0.9
 
+    circle.isVisible = false
+
     triangle = display.newImageRect("Images/triangleAliceR@2x.png", 100, 100)
     triangle.x = display.contentWidth * 0.6
     triangle.y = display.contentHeight * 0.9
@@ -624,7 +580,7 @@ function scene:create( event )
 
     star.isVisible = false
 
-    oval = display.newImageRect("Images/ovalAliceR@2x.png", 100, 100)
+    oval = display.newImageRect("Images/ovalAliceR@2x.png", 200, 100)
     oval.x = display.contentWidth * 0.6
     oval.y = display.contentHeight * 0.9
 
@@ -649,13 +605,13 @@ function scene:create( event )
     square.isVisible = false
 
     --the text that displays the question
-    questionText = display.newText( "Drag the name onto the shape." , 0, 0, nil, 50)
-    questionText.anchorX = 0
-    questionText.anchorY = 0
-    questionText.x = display.contentWidth *0.2
-    questionText.y = display.contentHeight *0.3
+    question = display.newText( "Drag the name onto the shape." , 0, 0, nil, 50)
+    question.anchorX = 0
+    question.anchorY = 0
+    question.x = display.contentWidth *0.2
+    question.y = display.contentHeight *0.3
 
-    questionText:setTextColor(0/255, 0/255, 0/255)
+    question:setTextColor(0/255, 0/255, 0/255)
 
 
     -- boolean variables stating whether or not the answer was touched
@@ -682,16 +638,18 @@ function scene:create( event )
     userAnswerBoxPlaceholder.x = display.contentWidth * 0.6
     userAnswerBoxPlaceholder.y = display.contentHeight * 0.9
 
-    correctAnswer = display.newText( "Circle", 5, 10, nil, 50)
+    userAnswerBoxPlaceholder.isVisible = false
+
+    correctAnswer = display.newText( "Circle", 10, 10, nil, 50)
     correctAnswer.anchorX = 0
     correctAnswer.anchorY = 0
-    alternateAnswer1 = display.newText( "Triangle", 5, 20, nil, 50)
+    alternateAnswer1 = display.newText( "Triangle", 10, 10, nil, 50)
     alternateAnswer1.anchorX = 0
     alternateAnswer1.anchorY = 0
-    alternateAnswer2 = display.newText( "Rectangle", 5, 30, nil, 50)
+    alternateAnswer2 = display.newText( "Rectangle", 10, 10, nil, 50)
     alternateAnswer2.anchorX = 0
     alternateAnswer2.anchorY = 0
-    alternateAnswer3 = display.newText( "Square", 5, 40, nil, 50)
+    alternateAnswer3 = display.newText( "Square", 10, 10, nil, 50)
     alternateAnswer3.anchorX = 0
     alternateAnswer3.anchorY = 0
 
@@ -715,7 +673,7 @@ function scene:create( event )
     sceneGroup:insert( alternateAnswer1 )
     sceneGroup:insert( alternateAnswer2 )
     sceneGroup:insert( alternateAnswer3 )
-    sceneGroup:insert( questionText )
+    sceneGroup:insert( question )
     sceneGroup:insert( alternateAnswerBox1 )
     sceneGroup:insert( alternateAnswer2 )
 
