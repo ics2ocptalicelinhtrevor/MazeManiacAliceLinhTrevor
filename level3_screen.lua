@@ -513,84 +513,87 @@ function scene:create( event )
     wall1.y = 0
     wall1:setFillColor(0, 0, 0)
     wall1:toFront()
-    
+    wall1.isVisible = false
 
     wall2 = display.newRect(0, 0,display.contentWidth, 20)
     wall2.x = display.contentCenterX
     wall2.y = display.contentHeight
     wall2:setFillColor(0, 0, 0)
     wall2:toFront()
-    
+    wall2.isVisible = false
+
 
     wall3 = display.newRect(0, 0, 20, display.contentHeight)
     wall3.x = display.contentWidth
     wall3.y = display.contentCenterY
     wall3:setFillColor(0, 0, 0)
     wall3:toFront()
-    
+    wall3.isVisible = false
+
 
     wall4 = display.newRect(0, 0, 20, display.contentHeight)
     wall4.x = 0
     wall4.y = display.contentCenterY
     wall4:setFillColor(0, 0, 0)
     wall4:toFront()
-    
+    wall4.isVisible = false
+
 
     wall5 = display.newRect(0, 0, 10, display.contentHeight - 150)
-    wall5.x = 150
-    wall5.y = display.contentCenterY - 75
+    wall5.x = 120
+    wall5.y = 100
     wall5:setFillColor(0, 0, 0)
     wall5:toFront()
     
 
     wall6 = display.newRect(0, 0, 10, display.contentHeight - 150)
-    wall6.x = 600
-    wall6.y = 650
+    wall6.x = 10
+    wall6.y = 530
     wall6:setFillColor(0, 0, 0)
     wall6:toFront()
     wall6.rotation = 90
-    
+
 
     wall7 = display.newRect(0, 0, 10, display.contentHeight - 150)
-    wall7.x = 300
+    wall7.x = 230
     wall7.y = 100
     wall7:setFillColor(0, 0, 0)
     wall7:toFront()
     
 
     wall8 = display.newRect(0, 0, 10, display.contentHeight - 281)
-    wall8.x = 450
-    wall8.y = 405
+    wall8.x = 393
+    wall8.y = 100
     wall8:setFillColor(0, 0, 0)
     wall8:toFront()
     
     wall9 = display.newRect(0, 0, 150, 10)
-    wall9.x = 520
-    wall9.y = 167
+    wall9.x = 420
+    wall9.y = 100
     wall9:setFillColor(0, 0, 0)
     wall9:toFront()
 
     wall10 = display.newRect(0, 0, 10, display.contentHeight - 500)
-    wall10.x = 890
-    wall10.y = 280
+    wall10.x = 590
+    wall10.y = 100
     wall10:setFillColor(0, 0, 0)
     wall10:toFront()
 
     wall11 = display.newRect(0, 0, 10, display.contentHeight - 400)
-    wall11.x = 600
-    wall11.y = 346
+    wall11.x = 790
+    wall11.y = 100
     wall11:setFillColor(0, 0, 0)
     wall11:toFront()
 
     wall12 = display.newRect(0, 0, 150, 10)
-    wall12.x = 670
-    wall12.y = 530
+    wall12.x = 870
+    wall12.y = 100
     wall12:setFillColor(0, 0, 0)
     wall12:toFront()
 
     wall13 = display.newRect(0, 0, 10, display.contentHeight - 395)
-    wall13.x = 750
-    wall13.y = 348
+    wall13.x = 1050
+    wall13.y = 100
     wall13:setFillColor(0, 0, 0)
     wall13:toFront()
     
