@@ -325,8 +325,9 @@ local function onCollision( self, event )
     if (event.target.myName == "door") then
         --check to see if the user has answered 5 questions
         if (questionsAnswered == 5) then
-        -- after getting 3 questions right, go to the you win screen
-        YouWinTransition()
+            -- after getting 5 questions right, go to the you win screen
+            print("***Calling You Win1 Screen")
+            YouWinTransition()
 
         end
     end       
