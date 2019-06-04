@@ -56,6 +56,11 @@ local incorrectAnswer1
 local incorrectAnswer2
 local incorrectAnswer3
 
+local totalSeconds = 31
+local secondsLeft = 31
+local clockText
+local countDownTimer
+
 -----------------------------------------------------------------------------------------
 --LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -131,7 +136,7 @@ end
 
 local function DisplayQuestion()
     --chooses the question asked
-    randomQuestion = math.random(1,1)
+    randomQuestion = math.random(1,12)
 
     if (randomQuestion == 1) then
 
@@ -280,6 +285,26 @@ local function DisplayQuestion()
     end
 end
 
+local function UpdateTime()
+
+    -- decrement the number of seconds
+    secondsLeft = secondsLeft - 1
+
+    -- display the number of seconds left in the clock object
+    clockText.text = "Seconds Left:" .. secondsLeft .. ""
+
+    if (secondsLeft == 0) then
+        -- reset the number of seconds left
+        numLives = numLives - 1
+        BackToLevel1()
+    end
+end
+
+local function StartTimer()
+    -- create a countdown timer that loops infinitely
+    countDownTimer = timer.performWithDelay(1000, UpdateTime, 0)
+end
+
 local function PositionAnswers()
 
     --creating random start position in a cretain area
@@ -366,6 +391,9 @@ function scene:create( event )
     wrongText3 = display.newText("", X2, Y1, Arial, 35)
     wrongText3.anchorX = 0
 
+    clockText = display.newText("", 500, 230, Arial, 50)
+    clockText:setFillColor(1,0,0)
+
     -----------------------------------------------------------------------------------------
 
     -- insert all objects for this scene into the scene group
@@ -376,6 +404,7 @@ function scene:create( event )
     sceneGroup:insert(wrongText1)
     sceneGroup:insert(wrongText2)
     sceneGroup:insert(wrongText3)
+    sceneGroup:insert(clockText)
 
 
 end --function scene:create( event )
@@ -403,6 +432,8 @@ function scene:show( event )
         DisplayQuestion()
         PositionAnswers()
         AddTextListeners()
+        StartTimer()
+
     end
 
 end --function scene:show( event )
@@ -427,6 +458,7 @@ function scene:hide( event )
 
     elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
+        timer.cancel (countDownTimer)
         RemoveTextListeners()
     end
 
