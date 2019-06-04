@@ -241,7 +241,7 @@ end
 
 -----------------------------------------------------------------------------------------
 
-local function ReplaceCharacter()
+local function ReplaceCharacterAndJoystick()
     character = display.newImageRect("Images/lion.png", 150, 150)
     character.x = 50
     character.y = 200
@@ -256,6 +256,16 @@ local function ReplaceCharacter()
     physics.addBody( character, "dynamic" )
     -- prevent character from being able to tip over
     character.isFixedRotation = true
+
+    -- Creating Joystick
+    analogStick = joystick.new( 50, 75 ) 
+
+    -- Setting Position
+    analogStick.x = 900
+    analogStick.y = display.contentHeight - 125
+
+    -- Changing transparency
+    analogStick.alpha = 0.5
 
     -- add back runtime listeners
     AddRuntimeListeners()
@@ -318,6 +328,8 @@ local function onCollision( self, event )
 
         -- make the character invisible
         character.isVisible = false
+
+        analogStick.isVisible = false
 
         -- show overlay with math question
         composer.showOverlay( "level1_question", { isModal = true, effect = "fade", time = 200})
@@ -482,6 +494,7 @@ function ResumeLevel1()
 
     -- make character visible again
     character.isVisible = true
+    analogStick.isVisible = true
 
     -- Updating the lives
     UpdatingLives()
@@ -592,16 +605,6 @@ function scene:create( event )
     wall13:setFillColor(0, 0, 0)
     wall13:toFront() 
 
-    -- Creating Joystick
-    analogStick = joystick.new( 50, 75 ) 
-
-    -- Setting Position
-    analogStick.x = 900
-    analogStick.y = display.contentHeight - 125
-
-    -- Changing transparency
-    analogStick.alpha = 0.5
-
     -- Insert the Door
     door = display.newImage("Images/Level-1Door.png", 200, 200)
     door.x = 955
@@ -684,8 +687,6 @@ function scene:create( event )
     unmuteButton.y = 60
     unmuteButton.isVisible = false
 
-    sceneGroup:insert( analogStick )
-
     sceneGroup:insert( wall1 )
     sceneGroup:insert( wall2 )
     sceneGroup:insert( wall3 )
@@ -747,6 +748,7 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
+        print ("***In level1_screen")
 
         -- Play the background music for this scene
         mainMenuChannel = audio.play(mainMenu)
@@ -781,7 +783,7 @@ function scene:show( event )
         AddCollisionListeners()
 
         -- create the character, add physics bodies and runtime listeners
-        ReplaceCharacter()
+        ReplaceCharacterAndJoystick()
 
         -- activate the joystick
         analogStick:activate()
@@ -838,6 +840,7 @@ function scene:hide( event )
         physics.stop()
         RemoveRuntimeListeners()
         display.remove(character)
+        display.remove(analogStick)
     end
 
 end --function scene:hide( event )

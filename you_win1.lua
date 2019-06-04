@@ -47,7 +47,7 @@ local youWinChannel
 
 -- Creating Transition Function to Level2 Screen
 local function Level2ScreenTransition()   
-    print ("***Clicked Level2")    
+    print ("***Clicked Level2")  
     composer.gotoScene( "level2_screen", {effect = "slideRight", time = 500})
 end 
 
@@ -116,9 +116,6 @@ function scene:create( event )
 
     } )
 
-    -- send backButton to the front
-    backButton:toFront()
-
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg )
     sceneGroup:insert( backButton )
@@ -151,6 +148,7 @@ function scene:show( event )
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
         -- Playing the you Win sound
+        print ("***Inside you_win1")
         youWinChannel = audio.play(youWin)
     end
 
