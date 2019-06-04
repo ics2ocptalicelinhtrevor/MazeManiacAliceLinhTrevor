@@ -303,12 +303,18 @@ local function PositionAnswers()
         
         alternateAnswer1.x = X2
         alternateAnswer1.y = Y1
+        alternateAnswer1PreviousX = X2
+        alternateAnswer1PreviousY = Y1
         
         alternateAnswer2.x = X1
         alternateAnswer2.y = Y2
+        alternateAnswer2PreviousX = X1
+        alternateAnswer2PreviousY = Y2
 
         alternateAnswer3.x = X2
         alternateAnswer3.y = Y2
+        alternateAnswer3PreviousX = X2
+        alternateAnswer3PreviousY = Y2
 
         
     elseif (answerPosition == 2) then
@@ -320,12 +326,18 @@ local function PositionAnswers()
         
         alternateAnswer1.x = X1
         alternateAnswer1.y = Y1
+        alternateAnswer1PreviousX = X1
+        alternateAnswer1PreviousY = Y1
         
         alternateAnswer2.x = X1
         alternateAnswer2.y = Y2
+        alternateAnswer2PreviousX = X1
+        alternateAnswer2PreviousY = Y2
 
         alternateAnswer3.x = X2
         alternateAnswer3.y = Y2
+        alternateAnswer3PreviousX = X2
+        alternateAnswer3PreviousY = Y2
 
     elseif (answerPosition == 3) then
 
@@ -336,12 +348,18 @@ local function PositionAnswers()
         
         alternateAnswer1.x = X2
         alternateAnswer1.y = Y1
+        alternateAnswer1PreviousX = X2
+        alternateAnswer1PreviousY = Y1
         
         alternateAnswer2.x = X2
         alternateAnswer2.y = Y2
+        alternateAnswer2PreviousX = X2
+        alternateAnswer2PreviousY = Y2
 
         alternateAnswer3.x = X1
         alternateAnswer3.y = Y1 
+        alternateAnswer3PreviousX = X1
+        alternateAnswer3PreviousY = Y1
 
     elseif (answerPosition == 4) then
 
@@ -352,12 +370,18 @@ local function PositionAnswers()
         
         alternateAnswer1.x = X1
         alternateAnswer1.y = Y2
+        alternateAnswer1PreviousX = X1
+        alternateAnswer1PreviousY = Y2
         
         alternateAnswer2.x = X2
         alternateAnswer2.y = Y1
+        alternateAnswer2PreviousX = X2
+        alternateAnswer2PreviousY = Y1
 
         alternateAnswer3.x = X1
-        alternateAnswer3.y = Y1 
+        alternateAnswer3.y = Y1
+        alternateAnswer3PreviousX = X1
+        alternateAnswer3PreviousY = Y1 
     end
 end
 
@@ -387,12 +411,8 @@ local function TouchListenerAnswerbox(touch)
         if (touch.phase == "began") then
 
             --let other boxes know it has been clicked
-<<<<<<< HEAD
             correctAnswerAlreadyTouched = true
             print ("**clicked on correct answer")
-=======
-            answerboxAlreadyTouched = true
->>>>>>> parent of 9b45e25... update
 
         --drag the answer to follow the mouse
         elseif (touch.phase == "moved") then
@@ -405,7 +425,6 @@ local function TouchListenerAnswerbox(touch)
 
             answerboxAlreadyTouched = false
 
-<<<<<<< HEAD
               -- if the correct answer is dragged into the answer placeholder, place it in the center of it
             if (((userAnswerPlaceholder.x - userAnswerPlaceholder.width/2) < correctAnswer.x ) and
                 ((userAnswerPlaceholder.x + userAnswerPlaceholder.width/2) > correctAnswer.x ) and 
@@ -417,18 +436,6 @@ local function TouchListenerAnswerbox(touch)
                 correctAnswer.x = userAnswerPlaceholder.x
                 correctAnswer.y = userAnswerPlaceholder.y
 
-=======
-              -- if the number is dragged into the userAnswerBox, place it in the center of it
-            if (((userAnswerBoxPlaceholder.x - userAnswerBoxPlaceholder.width/2) < answerbox.x ) and
-                ((userAnswerBoxPlaceholder.x + userAnswerBoxPlaceholder.width/2) > answerbox.x ) and 
-                ((userAnswerBoxPlaceholder.y - userAnswerBoxPlaceholder.height/2) < answerbox.y ) and 
-                ((userAnswerBoxPlaceholder.y + userAnswerBoxPlaceholder.height/2) > answerbox.y ) ) then
-
-                -- setting the position of the number to be in the center of the box
-                answerbox.x = userAnswerBoxPlaceholder.x
-                answerbox.y = userAnswerBoxPlaceholder.y
-                userAnswer = correctAnswer
->>>>>>> parent of 9b45e25... update
 
                 -- call the function to check if the user's input is correct or not
                 CheckUserAnswerInput()
@@ -442,12 +449,8 @@ local function TouchListenerAnswerbox(touch)
     end                
 end 
 
-<<<<<<< HEAD
 
 local function TouchListenerAlternateAnswer1(touch)
-=======
-local function TouchListenerAnswerBox1(touch)
->>>>>>> parent of 9b45e25... update
     --only work if none of the other boxes have been touched
     if (answerboxAlreadyTouched == false) and 
         (alternateAnswerBox2AlreadyTouched == false) then
@@ -470,8 +473,8 @@ local function TouchListenerAnswerBox1(touch)
                 ((userAnswerBoxPlaceholder.y - userAnswerBoxPlaceholder.height/2) < alternateAnswerBox1.y ) and 
                 ((userAnswerBoxPlaceholder.y + userAnswerBoxPlaceholder.height/2) > alternateAnswerBox1.y ) ) then
 
-                alternateAnswerBox1.x = userAnswerBoxPlaceholder.x
-                alternateAnswerBox1.y = userAnswerBoxPlaceholder.y
+                alternateAnswer1.x = userAnswerPlaceholder.x
+                alternateAnswer1.y = userAnswerPlaceholder.y
 
                 userAnswer = alternateAnswer1
 
@@ -494,12 +497,8 @@ local function TouchListenerAnswerBox2(touch)
 
         if (touch.phase == "began") then
             --let other boxes know it has been clicked
-<<<<<<< HEAD
             alternateAnswer2AlreadyTouched = true
 
-=======
-            alternateAnswerBox2AlreadyTouched = true
->>>>>>> parent of 9b45e25... update
             
         elseif (touch.phase == "moved") then
             --dragging function
@@ -515,9 +514,8 @@ local function TouchListenerAnswerBox2(touch)
                 ((userAnswerBoxPlaceholder.y - userAnswerBoxPlaceholder.height/2) < alternateAnswerBox2.y ) and 
                 ((userAnswerBoxPlaceholder.y + userAnswerBoxPlaceholder.height/2) > alternateAnswerBox2.y ) ) then
 
-                alternateAnswerBox2.x = userAnswerBoxPlaceholder.x
-                alternateAnswerBox2.y = userAnswerBoxPlaceholder.y
-                userAnswer = alternateAnswer2
+               alternateAnswer2.x = userAnswerPlaceholder.x
+               alternateAnswer2.y = userAnswerPlaceholder.y
 
                 -- call the function to check if the user's input is correct or not
                 CheckUserAnswerInput()
@@ -554,9 +552,8 @@ local function TouchListenerAnswerBox3(touch)
                 ((userAnswerBoxPlaceholder.y - userAnswerBoxPlaceholder.height/2) < alternateAnswerBox3.y ) and 
                 ((userAnswerBoxPlaceholder.y + userAnswerBoxPlaceholder.height/2) > alternateAnswerBox3.y ) ) then
 
-                alternateAnswerBox3.x = userAnswerBoxPlaceholder.x
-                alternateAnswerBox3.y = userAnswerBoxPlaceholder.y
-                userAnswer = alternateAnswer3
+                alternateAnswer3.x = userAnswerPlaceholder.x
+                alternateAnswer3.y = userAnswerPlaceholder.y
 
                 -- call the function to check if the user's input is correct or not
                 CheckUserAnswerInput()
@@ -607,11 +604,7 @@ function scene:create( event )
     ----------------------------------------------------------------------------------
 
     -- Insert the background image
-<<<<<<< HEAD
     bkg_image = display.newImageRect("Images/Level2ScreenAliceR@2x.png", 2048, 1536)
-=======
-    bkg_image = display.newImageRect("Images/level2screen1AliceR@2x.png", 2048, 1536)
->>>>>>> parent of 9b45e25... update
     bkg_image.anchorX = 0
     bkg_image.anchorY = 0
     bkg_image.width = display.contentWidth
@@ -631,61 +624,63 @@ function scene:create( event )
     life3.y = display.contentHeight * 1 / 7
 
     -- Insert the shapes for the questions
-    circle = display.newImageRect("Images/circleAliceR@2x.png", 100, 100)
-    circle.x = display.contentWidth * 0.6
-    circle.y = display.contentHeight * 0.9
+    circle = display.newImageRect("Images/circleAliceR@2x.png", 150, 150)
+    circle.x = display.contentWidth * 0.9
+    circle.y = display.contentHeight * 0.6
 
-    triangle = display.newImageRect("Images/triangleAliceR@2x.png", 100, 100)
-    triangle.x = display.contentWidth * 0.6
-    triangle.y = display.contentHeight * 0.9
+    circle.isVisible = false
+
+    triangle = display.newImageRect("Images/triangleAliceR@2x.png", 150, 150)
+    triangle.x = display.contentWidth * 0.9
+    triangle.y = display.contentHeight * 0.6
 
     triangle.isVisible = false
 
-    diamond = display.newImageRect("Images/diamondAliceR@2x.png", 100, 100)
-    diamond.x = display.contentWidth * 0.6
-    diamond.y = display.contentHeight * 0.9
+    diamond = display.newImageRect("Images/diamondAliceR@2x.png", 150, 150)
+    diamond.x = display.contentWidth * 0.9
+    diamond.y = display.contentHeight * 0.6
 
     diamond.isVisible = false
 
-    hexagon = display.newImageRect("Images/hexagonAliceR@2x.png", 100, 100)
-    hexagon.x = display.contentWidth * 0.6
-    hexagon.y = display.contentHeight * 0.9
+    hexagon = display.newImageRect("Images/hexagonAliceR@2x.png", 150, 150)
+    hexagon.x = display.contentWidth * 0.9
+    hexagon.y = display.contentHeight * 0.6
 
     hexagon.isVisible = false
 
     rectangle = display.newImageRect("Images/rectangleAliceR@2x.png", 200, 100)
-    rectangle.x = display.contentWidth * 0.6
-    rectangle.y = display.contentHeight * 0.9
+    rectangle.x = display.contentWidth * 0.9
+    rectangle.y = display.contentHeight * 0.6
 
     rectangle.isVisible = false
 
-    star = display.newImageRect("Images/starAliceR@2x.png", 100, 100)
-    star.x = display.contentWidth * 0.6
-    star.y = display.contentHeight * 0.9
+    star = display.newImageRect("Images/starAliceR@2x.png", 150, 150)
+    star.x = display.contentWidth * 0.9
+    star.y = display.contentHeight * 0.6
 
     star.isVisible = false
 
-    oval = display.newImageRect("Images/ovalAliceR@2x.png", 100, 100)
-    oval.x = display.contentWidth * 0.6
-    oval.y = display.contentHeight * 0.9
+    oval = display.newImageRect("Images/ovalAliceR@2x.png", 200, 100)
+    oval.x = display.contentWidth * 0.9
+    oval.y = display.contentHeight * 0.6
 
     oval.isVisible = false
 
-    pentagon = display.newImageRect("Images/pentagonAliceR@2x.png", 100, 100)
-    pentagon.x = display.contentWidth * 0.6
-    pentagon.y = display.contentHeight * 0.9
+    pentagon = display.newImageRect("Images/pentagonAliceR@2x.png", 150, 150)
+    pentagon.x = display.contentWidth * 0.9
+    pentagon.y = display.contentHeight * 0.6
 
     pentagon.isVisible = false
 
-    octagon = display.newImageRect("Images/octagonAliceR@2x.png", 100, 100)
-    octagon.x = display.contentWidth * 0.6
-    octagon.y = display.contentHeight * 0.9
+    octagon = display.newImageRect("Images/octagonAliceR@2x.png", 150, 150)
+    octagon.x = display.contentWidth * 0.9
+    octagon.y = display.contentHeight * 0.6
 
     octagon.isVisible = false
 
-    square = display.newImageRect("Images/squareAliceR@2x.png", 100, 100)
-    square.x = display.contentWidth * 0.6
-    square.y = display.contentHeight * 0.9
+    square = display.newImageRect("Images/squareAliceR@2x.png", 150, 150)
+    square.x = display.contentWidth * 0.9
+    square.y = display.contentHeight * 0.6
 
     square.isVisible = false
 
@@ -719,12 +714,17 @@ function scene:create( event )
 
 
     -- the black box where the user will drag the answer
-<<<<<<< HEAD
+
+    userAnswerPlaceholder = display.newImageRect("Images/userAnswerBoxPlaceholder.png",  200, 200)
+    userAnswerPlaceholder.x = display.contentWidth * 0.9
+    userAnswerPlaceholder.y = display.contentHeight * 0.6
+
     userAnswerPlaceholder = display.newImageRect("Images/userAnswerBoxPlaceholder.png",  200, 130)
     userAnswerPlaceholder.x = display.contentWidth * 0.6
     userAnswerPlaceholder.y = display.contentHeight * 0.9
 
-    userAnswerPlaceholder.isVisible = true
+
+    userAnswerPlaceholder.isVisible = false
 
     correctAnswer = display.newText( "", 10, 10, nil, 50)
  
@@ -736,7 +736,7 @@ function scene:create( event )
 
     alternateAnswer3 = display.newText( "", 10, 10, nil, 50)
 
-=======
+
     userAnswerBoxPlaceholder = display.newImageRect("Images/userAnswerBoxPlaceholder.png",  130, 130, 0, 0)
     userAnswerBoxPlaceholder.x = display.contentWidth * 0.6
     userAnswerBoxPlaceholder.y = display.contentHeight * 0.9
@@ -753,7 +753,7 @@ function scene:create( event )
     alternateAnswer3 = display.newText( "Square", 5, 40, nil, 50)
     alternateAnswer3.anchorX = 0
     alternateAnswer3.anchorY = 0
->>>>>>> parent of 9b45e25... update
+
 
     correctAnswer:setTextColor(0/255, 0/255, 0/255)
     alternateAnswer1:setTextColor(0/255, 0/255, 0/255)
