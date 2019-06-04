@@ -146,7 +146,18 @@ function scene:create( event )
     local sceneGroup = self.view
 
     -- Insert the background image and set it to the center of the screen
-    display.setDefault("background", 46/255, 139/255, 87/255)
+    bkg_image = display.newImage("Images/LevelSelectLinhH.png")
+    bkg_image.x = display.contentCenterX
+    bkg_image.y = display.contentCenterY
+    bkg_image.width = display.contentWidth
+    bkg_image.height = display.contentHeight
+
+
+    -- Associating display objects with this scene 
+    sceneGroup:insert( bkg_image )
+
+    -- Send the background image to the back layer so all other objects can be on top
+    bkg_image:toBack()
 
     -----------------------------------------------------------------------------------------
     -- BUTTON WIDGETS

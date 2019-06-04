@@ -70,15 +70,6 @@ local function CreditsTransition( )
     composer.gotoScene( "credits_screen", {effect = "slideRight", time = 500})
 end 
 
------------------------------------------------------------------------------------------
-
--- Creating Transition to Level1 Screen
-local function Level1ScreenTransition( )
-    composer.gotoScene( "level1_screen", {effect = "zoomInOutFade", time = 500})
-end    
-
------------------------------------------------------------------------------------------
-
 -- Creating Transition to Instructions Page
  
  local function InstructionsTransition( )
@@ -88,7 +79,7 @@ end
 -- Creating Transition to Level Select Page
  
  local function LevelSelectTransition( )
-    composer.gotoScene( "level_select", {effect = "zoomInOutFade", time = 500})
+    composer.gotoScene( "level_select", {effect = "fade", time = 500})
 end  
 
 local function Mute(touch)

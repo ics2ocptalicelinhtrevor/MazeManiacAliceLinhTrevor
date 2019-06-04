@@ -46,14 +46,14 @@ local youWinChannel
 -----------------------------------------------------------------------------------------
 
 -- Creating Transition Function to Level2 Screen
-local function Level2ScreenTransition( )       
+local function Level2ScreenTransition()       
     composer.gotoScene( "level2_screen", {effect = "slideRight", time = 500})
 end 
 
 -----------------------------------------------------------------------------------------
 
 -- Creating Transitioning Function back to main menu
-local function BackTransition( )
+local function BackTransition()
     composer.gotoScene( "main_menu", {effect = "zoomOutInFade", time = 500})
 end
 
