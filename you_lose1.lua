@@ -8,16 +8,17 @@
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
+-- hide the status bar
+display.setStatusBar(display.HiddenStatusBar)
 
 -- Calling Composer Library
 local composer = require( "composer" )
-
 local widget = require( "widget" )
 
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "you_lose"
+sceneName = "you_lose1"
 
 -----------------------------------------------------------------------------------------
 

@@ -40,6 +40,7 @@ local secondNumber
 local answer
 local wrongAnswer1
 local wrongAnswer2
+local wrongAnswer3
 
 local answerText 
 local wrongAnswerText1
