@@ -66,9 +66,17 @@ function scene:create( event )
     bkg.height = display.contentHeight
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
    -- Playing the you Win sound
    youWinChannel = audio.play(youWin)
+=======
+   -- Playing the you Win sound
+   youWinChannel = audio.play(youWin)
+
+    -- Creating level2 Button
+
+>>>>>>> parent of 9b45e25... update
 
     -- Creating level2 Button
 
@@ -132,8 +140,11 @@ function scene:show( event )
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
 <<<<<<< HEAD
+<<<<<<< HEAD
         -- play you win music
         audio.play(youWinChannel)
+=======
+>>>>>>> parent of 9b45e25... update
 =======
 >>>>>>> parent of 9b45e25... update
     end
