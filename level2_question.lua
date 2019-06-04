@@ -232,12 +232,18 @@ local function PositionAnswers()
         
         alternateAnswer1.x = X2
         alternateAnswer1.y = Y1
+        alternateAnswer1PreviousX = X2
+        alternateAnswer1PreviousY = Y1
         
         alternateAnswer2.x = X1
         alternateAnswer2.y = Y2
+        alternateAnswer2PreviousX = X1
+        alternateAnswer2PreviousY = Y2
 
         alternateAnswer3.x = X2
         alternateAnswer3.y = Y2
+        alternateAnswer3PreviousX = X2
+        alternateAnswer3PreviousY = Y2
 
         
     elseif (answerPosition == 2) then
@@ -249,12 +255,18 @@ local function PositionAnswers()
         
         alternateAnswer1.x = X1
         alternateAnswer1.y = Y1
+        alternateAnswer1PreviousX = X1
+        alternateAnswer1PreviousY = Y1
         
         alternateAnswer2.x = X1
         alternateAnswer2.y = Y2
+        alternateAnswer2PreviousX = X1
+        alternateAnswer2PreviousY = Y2
 
         alternateAnswer3.x = X2
         alternateAnswer3.y = Y2
+        alternateAnswer3PreviousX = X2
+        alternateAnswer3PreviousY = Y2
 
     elseif (answerPosition == 3) then
 
@@ -265,12 +277,18 @@ local function PositionAnswers()
         
         alternateAnswer1.x = X2
         alternateAnswer1.y = Y1
+        alternateAnswer1PreviousX = X2
+        alternateAnswer1PreviousY = Y1
         
         alternateAnswer2.x = X2
         alternateAnswer2.y = Y2
+        alternateAnswer2PreviousX = X2
+        alternateAnswer2PreviousY = Y2
 
         alternateAnswer3.x = X1
         alternateAnswer3.y = Y1 
+        alternateAnswer3PreviousX = X1
+        alternateAnswer3PreviousY = Y1
 
     elseif (answerPosition == 4) then
 
@@ -281,12 +299,18 @@ local function PositionAnswers()
         
         alternateAnswer1.x = X1
         alternateAnswer1.y = Y2
+        alternateAnswer1PreviousX = X1
+        alternateAnswer1PreviousY = Y2
         
         alternateAnswer2.x = X2
         alternateAnswer2.y = Y1
+        alternateAnswer2PreviousX = X2
+        alternateAnswer2PreviousY = Y1
 
         alternateAnswer3.x = X1
-        alternateAnswer3.y = Y1 
+        alternateAnswer3.y = Y1
+        alternateAnswer3PreviousX = X1
+        alternateAnswer3PreviousY = Y1 
     end
 end
 
@@ -378,8 +402,8 @@ local function TouchListenerAlternateAnswer1(touch)
                 ((userAnswerPlaceholder.y - userAnswerPlaceholder.height/2) < alternateAnswer1.y ) and 
                 ((userAnswerPlaceholder.y + userAnswerPlaceholder.height/2) > alternateAnswer1.y ) ) then
 
-                userAnswerPlaceholder.x = alternateAnswer1.x
-                userAnswerPlaceholder.y = alternateAnswer1.y
+                alternateAnswer1.x = userAnswerPlaceholder.x
+                alternateAnswer1.y = userAnswerPlaceholder.y
 
 
                 -- call the function to check if the user's input is correct or not
@@ -418,8 +442,8 @@ local function TouchListenerAlternateAnswer2(touch)
                 ((userAnswerPlaceholder.y - userAnswerPlaceholder.height/2) < alternateAnswer2.y ) and 
                 ((userAnswerPlaceholder.y + userAnswerPlaceholder.height/2) > alternateAnswer2.y ) ) then
 
-                userAnswerPlaceholder.x = alternateAnswer2.x
-                userAnswerPlaceholder.y = alternateAnswer2.y
+               alternateAnswer2.x = userAnswerPlaceholder.x
+               alternateAnswer2.y = userAnswerPlaceholder.y
 
                 -- call the function to check if the user's input is correct or not
                 CheckUserAnswerInput()
@@ -456,8 +480,8 @@ local function TouchListenerAlternateAnswer3(touch)
                 ((userAnswerPlaceholder.y - userAnswerPlaceholder.height/2) < alternateAnswer3.y ) and 
                 ((userAnswerPlaceholder.y + userAnswerPlaceholder.height/2) > alternateAnswer3.y ) ) then
 
-                userAnswerPlaceholder.x = alternateAnswer3.x
-                userAnswerPlaceholder.y = alternateAnswer3.y
+                alternateAnswer3.x = userAnswerPlaceholder.x
+                alternateAnswer3.y = userAnswerPlaceholder.y
 
                 -- call the function to check if the user's input is correct or not
                 CheckUserAnswerInput()
@@ -528,63 +552,63 @@ function scene:create( event )
     life3.y = display.contentHeight * 1 / 7
 
     -- Insert the shapes for the questions
-    circle = display.newImageRect("Images/circleAliceR@2x.png", 100, 100)
-    circle.x = display.contentWidth * 0.6
-    circle.y = display.contentHeight * 0.9
+    circle = display.newImageRect("Images/circleAliceR@2x.png", 150, 150)
+    circle.x = display.contentWidth * 0.9
+    circle.y = display.contentHeight * 0.6
 
     circle.isVisible = false
 
-    triangle = display.newImageRect("Images/triangleAliceR@2x.png", 100, 100)
-    triangle.x = display.contentWidth * 0.6
-    triangle.y = display.contentHeight * 0.9
+    triangle = display.newImageRect("Images/triangleAliceR@2x.png", 150, 150)
+    triangle.x = display.contentWidth * 0.9
+    triangle.y = display.contentHeight * 0.6
 
     triangle.isVisible = false
 
-    diamond = display.newImageRect("Images/diamondAliceR@2x.png", 100, 100)
-    diamond.x = display.contentWidth * 0.6
-    diamond.y = display.contentHeight * 0.9
+    diamond = display.newImageRect("Images/diamondAliceR@2x.png", 150, 150)
+    diamond.x = display.contentWidth * 0.9
+    diamond.y = display.contentHeight * 0.6
 
     diamond.isVisible = false
 
-    hexagon = display.newImageRect("Images/hexagonAliceR@2x.png", 100, 100)
-    hexagon.x = display.contentWidth * 0.6
-    hexagon.y = display.contentHeight * 0.9
+    hexagon = display.newImageRect("Images/hexagonAliceR@2x.png", 150, 150)
+    hexagon.x = display.contentWidth * 0.9
+    hexagon.y = display.contentHeight * 0.6
 
     hexagon.isVisible = false
 
     rectangle = display.newImageRect("Images/rectangleAliceR@2x.png", 200, 100)
-    rectangle.x = display.contentWidth * 0.6
-    rectangle.y = display.contentHeight * 0.9
+    rectangle.x = display.contentWidth * 0.9
+    rectangle.y = display.contentHeight * 0.6
 
     rectangle.isVisible = false
 
-    star = display.newImageRect("Images/starAliceR@2x.png", 100, 100)
-    star.x = display.contentWidth * 0.6
-    star.y = display.contentHeight * 0.9
+    star = display.newImageRect("Images/starAliceR@2x.png", 150, 150)
+    star.x = display.contentWidth * 0.9
+    star.y = display.contentHeight * 0.6
 
     star.isVisible = false
 
     oval = display.newImageRect("Images/ovalAliceR@2x.png", 200, 100)
-    oval.x = display.contentWidth * 0.6
-    oval.y = display.contentHeight * 0.9
+    oval.x = display.contentWidth * 0.9
+    oval.y = display.contentHeight * 0.6
 
     oval.isVisible = false
 
-    pentagon = display.newImageRect("Images/pentagonAliceR@2x.png", 100, 100)
-    pentagon.x = display.contentWidth * 0.6
-    pentagon.y = display.contentHeight * 0.9
+    pentagon = display.newImageRect("Images/pentagonAliceR@2x.png", 150, 150)
+    pentagon.x = display.contentWidth * 0.9
+    pentagon.y = display.contentHeight * 0.6
 
     pentagon.isVisible = false
 
-    octagon = display.newImageRect("Images/octagonAliceR@2x.png", 100, 100)
-    octagon.x = display.contentWidth * 0.6
-    octagon.y = display.contentHeight * 0.9
+    octagon = display.newImageRect("Images/octagonAliceR@2x.png", 150, 150)
+    octagon.x = display.contentWidth * 0.9
+    octagon.y = display.contentHeight * 0.6
 
     octagon.isVisible = false
 
-    square = display.newImageRect("Images/squareAliceR@2x.png", 100, 100)
-    square.x = display.contentWidth * 0.6
-    square.y = display.contentHeight * 0.9
+    square = display.newImageRect("Images/squareAliceR@2x.png", 150, 150)
+    square.x = display.contentWidth * 0.9
+    square.y = display.contentHeight * 0.6
 
     square.isVisible = false
 
@@ -612,11 +636,11 @@ function scene:create( event )
 
 
     -- the black box where the user will drag the answer
-    userAnswerPlaceholder = display.newImageRect("Images/userAnswerBoxPlaceholder.png",  200, 130)
-    userAnswerPlaceholder.x = display.contentWidth * 0.6
-    userAnswerPlaceholder.y = display.contentHeight * 0.9
+    userAnswerPlaceholder = display.newImageRect("Images/userAnswerBoxPlaceholder.png",  200, 200)
+    userAnswerPlaceholder.x = display.contentWidth * 0.9
+    userAnswerPlaceholder.y = display.contentHeight * 0.6
 
-    userAnswerPlaceholder.isVisible = true
+    userAnswerPlaceholder.isVisible = false
 
     correctAnswer = display.newText( "", 10, 10, nil, 50)
  
