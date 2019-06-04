@@ -65,6 +65,15 @@ function scene:create( event )
     bkg.width = display.contentWidth
     bkg.height = display.contentHeight
 
+<<<<<<< HEAD
+=======
+   -- Playing the you Win sound
+   youWinChannel = audio.play(youWin)
+
+    -- Creating level2 Button
+
+
+>>>>>>> parent of 9b45e25... update
     -- Creating Back Button
     backButton = widget.newButton( 
     {
@@ -122,8 +131,11 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
+<<<<<<< HEAD
         -- play you win music
         audio.play(youWinChannel)
+=======
+>>>>>>> parent of 9b45e25... update
     end
 
 end

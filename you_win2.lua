@@ -71,6 +71,30 @@ function scene:create( event )
     bkg.width = display.contentWidth
     bkg.height = display.contentHeight
 
+<<<<<<< HEAD
+=======
+   -- Playing the you Win sound
+   youWinChannel = audio.play(youWin)
+
+    -- Creating level2 Button
+    level3Button = widget.newButton( 
+        {
+            -- Set its position on the screen relative to the screen size
+            x = 925,
+            y = 700,
+
+            width = 200,
+            height = 100,
+            
+            -- Insert the images here
+            defaultFile = "Images/level3UnpressedLinhH@2x.png",
+            overFile = "Images/level3PressedLinhH@2x.png",
+
+            -- When the button is released, call the Credits transition function
+            onRelease = Level3ScreenTransition
+        } ) 
+
+>>>>>>> parent of 9b45e25... update
     -- Creating Back Button
     backButton = widget.newButton( 
     {
@@ -129,8 +153,11 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
+<<<<<<< HEAD
         -- play you win music
         audio.play(youWinChannel)
+=======
+>>>>>>> parent of 9b45e25... update
     end
 
 end
