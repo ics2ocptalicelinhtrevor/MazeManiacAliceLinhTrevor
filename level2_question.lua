@@ -227,6 +227,8 @@ local function PositionAnswers()
 
         correctAnswer.x = X1
         correctAnswer.y = Y1
+        correctAnswerPreviousX = X1
+        correctAnswerPreviousY = Y1
         
         alternateAnswer1.x = X2
         alternateAnswer1.y = Y1
@@ -242,6 +244,8 @@ local function PositionAnswers()
 
         correctAnswer.x = X2
         correctAnswer.y = Y1
+        correctAnswerPreviousX = X2
+        correctAnswerPreviousY = Y1
         
         alternateAnswer1.x = X1
         alternateAnswer1.y = Y1
@@ -256,6 +260,8 @@ local function PositionAnswers()
 
         correctAnswer.x = X1
         correctAnswer.y = Y2
+        correctAnswerPreviousX = X1
+        correctAnswerPreviousY = Y2
         
         alternateAnswer1.x = X2
         alternateAnswer1.y = Y1
@@ -270,6 +276,8 @@ local function PositionAnswers()
 
         correctAnswer.x = X2
         correctAnswer.y = Y2
+        correctAnswerPreviousX = X2
+        correctAnswerPreviousY = Y2
         
         alternateAnswer1.x = X1
         alternateAnswer1.y = Y2
@@ -309,6 +317,7 @@ local function TouchListenerCorrectAnswer(touch)
 
             --let other boxes know it has been clicked
             correctAnswerAlreadyTouched = true
+            print ("**clicked on correct answer")
 
         --drag the answer to follow the mouse
         elseif (touch.phase == "moved") then
@@ -321,7 +330,7 @@ local function TouchListenerCorrectAnswer(touch)
 
             correctAnswerAlreadyTouched = false
 
-              -- if the number is dragged into the usercorrectAnswer, place it in the center of it
+              -- if the correct answer is dragged into the answer placeholder, place it in the center of it
             if (((userAnswerPlaceholder.x - userAnswerPlaceholder.width/2) < correctAnswer.x ) and
                 ((userAnswerPlaceholder.x + userAnswerPlaceholder.width/2) > correctAnswer.x ) and 
                 ((userAnswerPlaceholder.y - userAnswerPlaceholder.height/2) < correctAnswer.y ) and 
@@ -329,8 +338,8 @@ local function TouchListenerCorrectAnswer(touch)
 
                 -- setting the position of the number to be in the center of the box
 
-                userAnswerPlaceholder.x = correctAnswer.x
-                userAnswerPlaceholder.y = correctAnswer.y
+                correctAnswer.x = userAnswerPlaceholder.x
+                correctAnswer.y = userAnswerPlaceholder.y
 
 
                 -- call the function to check if the user's input is correct or not
@@ -344,6 +353,7 @@ local function TouchListenerCorrectAnswer(touch)
         end
     end                
 end 
+
 
 local function TouchListenerAlternateAnswer1(touch)
     --only work if none of the other boxes have been touched
@@ -392,6 +402,7 @@ local function TouchListenerAlternateAnswer2(touch)
         if (touch.phase == "began") then
             --let other boxes know it has been clicked
             alternateAnswer2AlreadyTouched = true
+
             
         elseif (touch.phase == "moved") then
             --dragging function
@@ -497,7 +508,7 @@ function scene:create( event )
     ----------------------------------------------------------------------------------
 
     -- Insert the background image
-    bkg_image = display.newImageRect("Images/level2screenAliceR@2x.png", 2048, 1536)
+    bkg_image = display.newImageRect("Images/Level2ScreenAliceR@2x.png", 2048, 1536)
     bkg_image.anchorX = 0
     bkg_image.anchorY = 0
     bkg_image.width = display.contentWidth
@@ -601,27 +612,22 @@ function scene:create( event )
 
 
     -- the black box where the user will drag the answer
-    userAnswerPlaceholder = display.newImageRect("Images/userAnswerBoxPlaceholder.png",  130, 130, 0, 0)
+    userAnswerPlaceholder = display.newImageRect("Images/userAnswerBoxPlaceholder.png",  200, 130)
     userAnswerPlaceholder.x = display.contentWidth * 0.6
     userAnswerPlaceholder.y = display.contentHeight * 0.9
 
     userAnswerPlaceholder.isVisible = true
 
     correctAnswer = display.newText( "", 10, 10, nil, 50)
-    correctAnswer.anchorX = 0
-    correctAnswer.anchorY = 0
+ 
 
     alternateAnswer1 = display.newText( "", 10, 10, nil, 50)
-    alternateAnswer1.anchorX = 0
-    alternateAnswer1.anchorY = 0
 
     alternateAnswer2 = display.newText( "", 10, 10, nil, 50)
-    alternateAnswer2.anchorX = 0
-    alternateAnswer2.anchorY = 0
+
 
     alternateAnswer3 = display.newText( "", 10, 10, nil, 50)
-    alternateAnswer3.anchorX = 0
-    alternateAnswer3.anchorY = 0
+
 
     correctAnswer:setTextColor(0/255, 0/255, 0/255)
     alternateAnswer1:setTextColor(0/255, 0/255, 0/255)
