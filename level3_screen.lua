@@ -82,6 +82,7 @@ local floor
 local meat1
 local meat2
 local meat3
+local meat4
 local theMeat
 
 local questionsAnswered = 0
@@ -264,6 +265,7 @@ local function MakeMeatVisible()
     meat1.isVisible = true
     meat2.isVisible = true
     meat3.isVisible = true
+    meat4.isVisible = true
 end
 
 local function MakeHeartsVisible()
@@ -334,6 +336,7 @@ local function onCollision( self, event )
 
         if  (event.target.myName == "meat1") or
             (event.target.myName == "meat2") or
+            (event.target.myName == "meat4") or
             (event.target.myName == "meat3") then
 
             -- get the meat that the user hit
@@ -354,7 +357,7 @@ local function onCollision( self, event )
 
         if (event.target.myName == "door") then
             --check to see if the user has answered 3 questions
-            if (questionsAnswered == 3) then
+            if (questionsAnswered == 4) then
                 -- after getting 3 questions right, go to the you win screen
                 composer.gotoScene("you_win3")
             end
@@ -375,6 +378,8 @@ local function AddCollisionListeners()
     meat2:addEventListener( "collision" )
     meat3.collision = onCollision
     meat3:addEventListener( "collision" )
+    meat4.collision = onCollision
+    meat4:addEventListener( "collision" )
 
     door.collision = onCollision
     door:addEventListener( "collision" )
@@ -385,6 +390,7 @@ local function RemoveCollisionListeners()
     meat1:removeEventListener( "collision" )
     meat2:removeEventListener( "collision" )
     meat3:removeEventListener( "collision" )
+    meat4:removeEventListener( "collision" )
 
     door:removeEventListener( "collision")
 
@@ -415,6 +421,8 @@ local function AddPhysicsBodies()
     physics.addBody(meat1, "static",  {density=0, friction=0, bounce=0} )
     physics.addBody(meat2, "static",  {density=0, friction=0, bounce=0} )
     physics.addBody(meat3, "static",  {density=0, friction=0, bounce=0} )
+    physics.addBody(meat4, "static",  {density=0, friction=0, bounce=0} )
+
     physics.addBody(door, "static", {density=0, friction=0.0 } )
 
 end
@@ -554,28 +562,29 @@ function scene:create( event )
     wall6.rotation = 90
 
 
-    wall7 = display.newRect(0, 0, 10, display.contentHeight - 150)
-    wall7.x = 230
-    wall7.y = 100
+    wall7 = display.newRect(0, 0, 10, display.contentHeight - 350)
+    wall7.x = 315
+    wall7.y = 325
     wall7:setFillColor(0, 0, 0)
     wall7:toFront()
     
 
-    wall8 = display.newRect(0, 0, 10, display.contentHeight - 281)
-    wall8.x = 393
-    wall8.y = 100
+    wall8 = display.newRect(0, 0, 10, display.contentHeight - 201)
+    wall8.x = 603
+    wall8.y = 395
     wall8:setFillColor(0, 0, 0)
     wall8:toFront()
+    wall8.rotation = 90
     
     wall9 = display.newRect(0, 0, 150, 10)
-    wall9.x = 420
-    wall9.y = 100
+    wall9.x = 390
+    wall9.y = 120
     wall9:setFillColor(0, 0, 0)
     wall9:toFront()
 
     wall10 = display.newRect(0, 0, 10, display.contentHeight - 500)
     wall10.x = 590
-    wall10.y = 100
+    wall10.y = 700
     wall10:setFillColor(0, 0, 0)
     wall10:toFront()
 
@@ -585,9 +594,9 @@ function scene:create( event )
     wall11:setFillColor(0, 0, 0)
     wall11:toFront()
 
-    wall12 = display.newRect(0, 0, 150, 10)
-    wall12.x = 870
-    wall12.y = 100
+    wall12 = display.newRect(0, 0, 120, 10)
+    wall12.x = 845
+    wall12.y = 130
     wall12:setFillColor(0, 0, 0)
     wall12:toFront()
 
@@ -695,8 +704,15 @@ function scene:create( event )
     meat3.y = 700
     meat3.myName = "meat3"
 
+    meat4 = display.newImageRect ("Images/Plant.png", 70, 70)
+    meat4.x = 870
+    meat4.y = 50
+    meat4.myName = "meat4"
+
+
      -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( meat3 )
+    sceneGroup:insert( meat4 )
 
     -- creating mute button
     muteButton = display.newImageRect("Images/Mute Button Unpressed.png", 100, 100)
