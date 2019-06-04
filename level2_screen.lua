@@ -478,7 +478,11 @@ function scene:create( event )
     local sceneGroup = self.view
 
     -- Insert the background image
+<<<<<<< HEAD
     bkg_image = display.newImageRect("Images/Level2ScreenAliceR@2x.png", display.contentWidth, display.contentHeight)
+=======
+    bkg_image = display.newImageRect("Images/level2Screen1AliceR@2x.png", display.contentWidth, display.contentHeight)
+>>>>>>> parent of 9b45e25... update
     bkg_image.x = display.contentWidth / 2 
     bkg_image.y = display.contentHeight / 2
 
