@@ -8,7 +8,6 @@
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
-
 -- hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
 
@@ -27,16 +26,15 @@ sceneName = "you_win2"
 local scene = composer.newScene( sceneName )
 
 -----------------------------------------------------------------------------------------
--- FORWARD REFERENCES
+-- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
 
--- local variables for the scene
-local bkg
 local backButton
 local level3Button
+local bkg
 
 -----------------------------------------------------------------------------------------
--- SOUNDS 
+-- SOUNDS
 -----------------------------------------------------------------------------------------
 
 local youWin = audio.loadSound("Sounds/lvl1win.mp3")
@@ -46,21 +44,19 @@ local youWinChannel
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 
--- Creating Transition Function to Level2 Screen
-local function Level3ScreenTransition( )       
-    composer.gotoScene( "level3_screen", {effect = "slideRight", time = 500})
-end 
-
------------------------------------------------------------------------------------------
-
 -- Creating Transitioning Function back to main menu
 local function BackTransition( )
     composer.gotoScene( "main_menu", {effect = "zoomOutInFade", time = 500})
 end
 
---------------------------------------------------------------------------------------
+-- Creating Transition Function to Level3 Screen
+local function Level3ScreenTransition( )       
+    composer.gotoScene( "level3_screen", {effect = "slideRight", time = 500})
+end 
+
+-----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
---------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 
 -- The function called when the screen doesn't exist
 function scene:create( event )
@@ -74,26 +70,6 @@ function scene:create( event )
     bkg.y = display.contentCenterY
     bkg.width = display.contentWidth
     bkg.height = display.contentHeight
-
-
-
-    -- Creating level2 Button
-    level3Button = widget.newButton( 
-        {
-            -- Set its position on the screen relative to the screen size
-            x = 925,
-            y = 700,
-
-            width = 200,
-            height = 100,
-            
-            -- Insert the images here
-            defaultFile = "Images/level3UnpressedLinhH@2x.png",
-            overFile = "Images/level3PressedLinhH@2x.png",
-
-            -- When the button is released, call the Credits transition function
-            onRelease = Level3ScreenTransition
-        } ) 
 
     -- Creating Back Button
     backButton = widget.newButton( 
@@ -115,6 +91,8 @@ function scene:create( event )
 
     } )
 
+    -- send backButton to the front
+    backButton:toFront()
 
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg )
@@ -151,8 +129,8 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
-           -- Playing the you Win sound
-        youWinChannel = audio.play(youWin)
+        -- play you win music
+        audio.play(youWinChannel)
     end
 
 end
@@ -175,12 +153,12 @@ function scene:hide( event )
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
-
+        -- stop you win music
+        audio.stop(youWinChannel)
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
-        audio.stop(youWinChannel)
     end
 
 end

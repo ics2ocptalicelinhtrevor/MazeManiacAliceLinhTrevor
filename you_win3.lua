@@ -18,7 +18,7 @@ local widget = require( "widget" )
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "you_win3"
+sceneName = "you_lose3"
 
 -----------------------------------------------------------------------------------------
 
@@ -26,15 +26,14 @@ sceneName = "you_win3"
 local scene = composer.newScene( sceneName )
 
 -----------------------------------------------------------------------------------------
--- FORWARD REFERENCES
+-- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
 
--- local variables for the scene
-local bkg
 local backButton
+local bkg
 
 -----------------------------------------------------------------------------------------
--- SOUNDS 
+-- SOUNDS
 -----------------------------------------------------------------------------------------
 
 local youWin = audio.loadSound("Sounds/lvl1win.mp3")
@@ -44,18 +43,14 @@ local youWinChannel
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 
-
-
------------------------------------------------------------------------------------------
-
 -- Creating Transitioning Function back to main menu
 local function BackTransition( )
     composer.gotoScene( "main_menu", {effect = "zoomOutInFade", time = 500})
 end
 
---------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
---------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 
 -- The function called when the screen doesn't exist
 function scene:create( event )
@@ -69,7 +64,6 @@ function scene:create( event )
     bkg.y = display.contentCenterY
     bkg.width = display.contentWidth
     bkg.height = display.contentHeight
-
 
     -- Creating Back Button
     backButton = widget.newButton( 
@@ -91,11 +85,18 @@ function scene:create( event )
 
     } )
 
+    -- send backButton to the front
+    backButton:toFront()
+
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg )
     sceneGroup:insert( backButton )
   
 end    
+
+-----------------------------------------------------------------------------------------
+-- GLOBAL SCENE FUNCTIONS
+-----------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------
 
@@ -121,8 +122,8 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
-        -- Playing the you Win sound
-        youWinChannel = audio.play(youWin)
+        -- play you win music
+        audio.play(youWinChannel)
     end
 
 end
@@ -145,7 +146,8 @@ function scene:hide( event )
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
-
+        -- stop you win music
+        audio.stop(youWinChannel)
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
