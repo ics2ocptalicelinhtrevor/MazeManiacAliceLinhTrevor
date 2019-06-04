@@ -475,7 +475,7 @@ end
 -- GLOBAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 
-function ResumeGame()
+function ResumeLevel3()
 
     -- make character visible again
     character.isVisible = true

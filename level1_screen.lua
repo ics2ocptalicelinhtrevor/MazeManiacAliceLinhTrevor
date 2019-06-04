@@ -306,8 +306,12 @@ local function onCollision( self, event )
         (event.target.myName == "questionMark4") or
         (event.target.myName == "questionMark5") then
 
+
+
         -- get the question mark that the user hit
         theQuestion = event.target
+
+        print ("***Hit question " .. theQuestion.myName)
 
         -- stop the character from moving
         motionx = 0
@@ -320,13 +324,15 @@ local function onCollision( self, event )
 
         -- Increment questions answered
         questionsAnswered = questionsAnswered + 1
-        end
+    end
 
     if (event.target.myName == "door") then
+        print ("***Hit door")
         --check to see if the user has answered 5 questions
         if (questionsAnswered == 5) then
-        -- after getting 3 questions right, go to the you win screen
-        YouWinTransition()
+            -- after getting 3 questions right, go to the you win screen
+            print ("***Answered 5 questions")
+            YouWinTransition()
 
         end
     end       
@@ -415,6 +421,8 @@ local function RemovePhysicsBodies()
     physics.removeBody(leftW)
     physics.removeBody(topW)
     physics.removeBody(floor)
+
+    physics.removeBody(door)
 
 end
 
@@ -677,6 +685,7 @@ function scene:create( event )
     unmuteButton.isVisible = false
 
     sceneGroup:insert( analogStick )
+
     sceneGroup:insert( wall1 )
     sceneGroup:insert( wall2 )
     sceneGroup:insert( wall3 )
@@ -690,18 +699,23 @@ function scene:create( event )
     sceneGroup:insert( wall11 )
     sceneGroup:insert( wall12 )
     sceneGroup:insert( wall13 )
+
     sceneGroup:insert( door )
+
     sceneGroup:insert( heart1 )
     sceneGroup:insert( heart2 )
     sceneGroup:insert( heart3 )
+
     sceneGroup:insert( leftW )
     sceneGroup:insert( rightW )
     sceneGroup:insert( topW )
     sceneGroup:insert( floor )
+
     sceneGroup:insert( questionMark1 )
     sceneGroup:insert( questionMark2 )
     sceneGroup:insert( questionMark3 )
     sceneGroup:insert( questionMark5 )
+
     sceneGroup:insert( muteButton )
     sceneGroup:insert( unmuteButton )
 
@@ -770,7 +784,6 @@ function scene:show( event )
         ReplaceCharacter()
 
         -- activate the joystick
-        AddPhysicsBodies()
         analogStick:activate()
 
         -----------------------------------------------------------------------------------------

@@ -46,7 +46,8 @@ local youWinChannel
 -----------------------------------------------------------------------------------------
 
 -- Creating Transition Function to Level2 Screen
-local function Level2ScreenTransition()       
+local function Level2ScreenTransition()   
+    print ("***Clicked Level2")    
     composer.gotoScene( "level2_screen", {effect = "slideRight", time = 500})
 end 
 
@@ -54,6 +55,7 @@ end
 
 -- Creating Transitioning Function back to main menu
 local function BackTransition()
+    print ("***Clicked on Back button")
     composer.gotoScene( "main_menu", {effect = "zoomOutInFade", time = 500})
 end
 
@@ -74,8 +76,7 @@ function scene:create( event )
     bkg.width = display.contentWidth
     bkg.height = display.contentHeight
 
-   -- Playing the you Win sound
-   youWinChannel = audio.play(youWin)
+   
 
     -- Creating level2 Button
     level2Button = widget.newButton( 
@@ -149,6 +150,8 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
+        -- Playing the you Win sound
+        youWinChannel = audio.play(youWin)
     end
 
 end
