@@ -58,8 +58,8 @@ local Y2 = display.contentHeight*5/7
 local userAnswer
 local textTouched = false
 
-local totalSeconds = 31
-local secondsLeft = 31
+local totalSeconds = 16
+local secondsLeft = 16
 local clockText
 local countDownTimer
 -----------------------------------------------------------------------------------------
