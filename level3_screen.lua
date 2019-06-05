@@ -66,7 +66,6 @@ local character
 local heart1
 local heart2
 local heart3
-local numLives = 3
 
 local motionx = 0
 local SPEED = 6
@@ -241,7 +240,7 @@ local function RemoveRuntimeListeners()
 end
 
 
-local function ReplaceCharacter()
+local function ReplaceCharacterAndJoystick()
     character = display.newImageRect("Images/lion.png", 150, 150)
     character.x = 50
     character.y = 200
@@ -256,6 +255,17 @@ local function ReplaceCharacter()
     physics.addBody( character, "dynamic" )
     -- prevent character from being able to tip over
     character.isFixedRotation = true
+
+    -- Creating Joystick
+    analogStick = joystick.new( 50, 75 ) 
+
+    -- Setting Position
+    analogStick.x = 900
+    analogStick.y = display.contentHeight - 125
+
+    -- Changing transparency
+    analogStick.alpha = 0.5
+
 
     -- add back runtime listeners
     AddRuntimeListeners()
@@ -314,14 +324,14 @@ local function onCollision( self, event )
                 heart3.isVisible = false
                 heart2.isVisible = true
                 heart1.isVisible = true
-                timer.performWithDelay(200, ReplaceCharacter) 
+                timer.performWithDelay(200, ReplaceCharacterAndJoystick) 
 
             elseif (numLives == 1) then
                 -- update hearts
                 heart3.isVisible = false
                 heart2.isVisible = false
                 heart1.isVisible = true 
-                timer.performWithDelay(200, ReplaceCharacter)
+                timer.performWithDelay(200, ReplaceCharacterAndJoystick)
 
             elseif (numLives == 0) then
                 -- update hearts
@@ -347,6 +357,7 @@ local function onCollision( self, event )
 
             -- make the character invisible
             character.isVisible = false
+            analogStick.isVisible = false
 
             -- show overlay with math question
             composer.showOverlay( "level3_question", { isModal = true, effect = "fade", time = 100})
@@ -479,6 +490,22 @@ local function Unmute(touch)
     end
 end
 
+local function UpdatingLives()
+
+    if (numLives == 3) then
+        heart1.isVisible = true
+        heart2.isVisible = true
+        heart3.isVisible = true
+    elseif (numLives == 2) then
+        heart3.isVisible = false
+    elseif (numLives == 1) then
+        heart2.isVisible = false
+    elseif (numLives == 0) then
+        heart1.isVisible = false
+        YouLoseTransition()
+    end
+end
+
 -----------------------------------------------------------------------------------------
 -- GLOBAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -487,7 +514,8 @@ function ResumeLevel3()
 
     -- make character visible again
     character.isVisible = true
-    
+    analogStick.isVisible = true
+    UpdatingLives()
     if (questionsAnswered > 0) then
         if (theMeat ~= nil) and (theMeat.isBodyActive == true) then
             physics.removeBody(theMeat)
@@ -607,15 +635,6 @@ function scene:create( event )
     wall13:toFront()
     
 
-    -- Creating Joystick
-    analogStick = joystick.new( 50, 75 ) 
-
-    -- Setting Position
-    analogStick.x = 900
-    analogStick.y = display.contentHeight - 125
-
-    -- Changing transparency
-    analogStick.alpha = 0.5
 
     -- Insert the Door
     door = display.newImage("Images/Level-1Door.png", 100, 100)
@@ -726,7 +745,6 @@ function scene:create( event )
     unmuteButton.y = 60
     unmuteButton.isVisible = false
 
-    sceneGroup:insert( analogStick )
     sceneGroup:insert( wall1 )
     sceneGroup:insert( wall2 )
     sceneGroup:insert( wall3 )
@@ -800,7 +818,7 @@ function scene:show( event )
         AddCollisionListeners()
 
         -- create the character, add physics bodies and runtime listeners
-        ReplaceCharacter()
+        ReplaceCharacterAndJoystick()
 
         -- activate the joystick
         AddPhysicsBodies()
@@ -857,6 +875,7 @@ function scene:hide( event )
         physics.stop()
         RemoveRuntimeListeners()
         display.remove(character)
+        display.remove(analogStick)
     end
 
 end --function scene:hide( event )
