@@ -329,6 +329,7 @@ local function onCollision( self, event )
         -- make the character invisible
         character.isVisible = false
 
+        -- make the joystick invisible
         analogStick.isVisible = false
 
         -- show overlay with math question
@@ -494,6 +495,8 @@ function ResumeLevel1()
 
     -- make character visible again
     character.isVisible = true
+
+    -- make the joystick visible
     analogStick.isVisible = true
 
     -- Updating the lives
