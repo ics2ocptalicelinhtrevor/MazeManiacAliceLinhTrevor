@@ -61,6 +61,8 @@ local secondsLeft = 31
 local clockText
 local countDownTimer
 
+
+
 -----------------------------------------------------------------------------------------
 --LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -296,7 +298,7 @@ local function UpdateTime()
     if (secondsLeft == 0) then
         -- reset the number of seconds left
         numLives = numLives - 1
-        BackToLevel1()
+        BackToLevel3()
     end
 end
 

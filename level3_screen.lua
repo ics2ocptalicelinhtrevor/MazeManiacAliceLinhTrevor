@@ -66,7 +66,6 @@ local character
 local heart1
 local heart2
 local heart3
-local numLives = 3
 
 local motionx = 0
 local SPEED = 6
