@@ -234,7 +234,7 @@ local function RemoveRuntimeListeners()
     Runtime:removeEventListener("touch", stop )
 end
 
-local function ReplaceCharacter()
+local function ReplaceCharacterAndJoystick()
     character = display.newImageRect("Images/lion.png", 150, 150)
     character.x = 50
     character.y = 200
@@ -755,7 +755,7 @@ function scene:show( event )
         AddCollisionListeners()
 
         -- create the character, add physics bodies and runtime listeners
-        ReplaceCharacter()
+        ReplaceCharacterAndJoystick()
 
         -- activate the joystick
         AddPhysicsBodies()
