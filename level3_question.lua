@@ -66,10 +66,10 @@ local countDownTimer
 -----------------------------------------------------------------------------------------
 
 --making transition to next scene
-local function BackToLevel1() 
+local function BackToLevel3() 
     composer.hideOverlay("crossFade", 400 )
   
-    ResumeGame()
+    ResumeLevel3()
 end 
 
 -----------------------------------------------------------------------------------------
@@ -79,7 +79,7 @@ local function TouchListenerAnswer(touch)
     
     if (touch.phase == "ended") then
 
-        BackToLevel1( )
+        BackToLevel3( )
     
     end 
 end
@@ -90,7 +90,7 @@ local function TouchListenerWrongAnswer(touch)
     
     if (touch.phase == "ended") then
         
-        BackToLevel1( )
+        BackToLevel3( )
         
         
     end 
@@ -102,7 +102,7 @@ local function TouchListenerWrongAnswer2(touch)
     
     if (touch.phase == "ended") then
 
-        BackToLevel1( )
+        BackToLevel3( )
         
     end 
 end
@@ -113,7 +113,7 @@ local function TouchListenerWrongAnswer3(touch)
     
     if (touch.phase == "ended") then
 
-        BackToLevel1( )
+        BackToLevel3( )
         
     end 
 end
