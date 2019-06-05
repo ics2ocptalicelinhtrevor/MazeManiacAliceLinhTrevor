@@ -19,6 +19,7 @@ local widget = require( "widget" )
 
 -- Naming Scene
 sceneName = "you_win1"
+
 -----------------------------------------------------------------------------------------
 
 -- Creating Scene Object
@@ -45,16 +46,14 @@ local youWinChannel
 -----------------------------------------------------------------------------------------
 
 -- Creating Transition Function to Level2 Screen
-local function Level2ScreenTransition( )     
-    print ("***Calling transition to level2_screen")  
+local function Level2ScreenTransition()       
     composer.gotoScene( "level2_screen", {effect = "slideRight", time = 500})
 end 
 
 -----------------------------------------------------------------------------------------
 
 -- Creating Transitioning Function back to main menu
-local function BackTransition( )
-    print ("***Calling transition to main_menu")  
+local function BackTransition()
     composer.gotoScene( "main_menu", {effect = "zoomOutInFade", time = 500})
 end
 
@@ -75,7 +74,8 @@ function scene:create( event )
     bkg.width = display.contentWidth
     bkg.height = display.contentHeight
 
-
+   -- Playing the you Win sound
+   youWinChannel = audio.play(youWin)
 
     -- Creating level2 Button
     level2Button = widget.newButton( 
@@ -115,6 +115,8 @@ function scene:create( event )
 
     } )
 
+    -- send backButton to the front
+    backButton:toFront()
 
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg )
@@ -147,9 +149,6 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
-        -- Playing the you Win sound
-        print ("****Inside you_win1")
-        youWinChannel = audio.play(youWin)
     end
 
 end
@@ -172,13 +171,11 @@ function scene:hide( event )
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
-        -- stop you win music
-        audio.stop(youWinChannel)
+
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
-        
     end
 
 end
@@ -212,3 +209,4 @@ scene:addEventListener( "destroy", scene )
 -----------------------------------------------------------------------------------------
 
 return scene
+
