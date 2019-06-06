@@ -77,7 +77,7 @@ local alternateAnswer1PreviousY
 local alternateAnswer2PreviousY
 local alternateAnswer3PreviousY
 
-local correectAnswerPreviousX
+local correctAnswerPreviousX
 local alternateAnswer1PreviousX
 local alternateAnswer2PreviousX
 local alternateAnswer3PreviousX
@@ -371,7 +371,8 @@ end
 local function TouchListenercorrectAnswer1(touch)
     --only work if none of the other boxes have been touched
     if (correctAnswerAlreadyTouched == false) and 
-        (alternateAnswer2AlreadyTouched == false) then
+        (alternateAnswer2AlreadyTouched == false) and
+        (alternateAnswer3AlreadyTouched == false) then
 
         if (touch.phase == "began") then
             --let other boxes know it has been clicked
@@ -411,7 +412,8 @@ end
 local function TouchListenercorrectAnswer2(touch)
     --only work if none of the other boxes have been touched
     if (correctAnswerAlreadyTouched == false) and 
-        (alternateAnswer1AlreadyTouched == false) then
+        (alternateAnswer1AlreadyTouched == false) and
+        (alternateAnswer3AlreadyTouched == false) then
 
         if (touch.phase == "began") then
             --let other boxes know it has been clicked
@@ -453,7 +455,8 @@ end
 local function TouchListenercorrectAnswer3(touch)
     --only work if none of the other boxes have been touched
     if (correctAnswerAlreadyTouched == false) and 
-        (alternateAnswer1AlreadyTouched == false) then
+        (alternateAnswer1AlreadyTouched == false) and
+        (alternateAnswer2AlreadyTouched == false) then
 
         if (touch.phase == "began") then
             --let other boxes know it has been clicked
@@ -509,8 +512,7 @@ end
 ----------------------------------------------------------------------------------
 -- GLOBAL FUNCTIONS
 ----------------------------------------------------------------------------------
--- Number of lives
-numLives = 3
+
 
 ----------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS

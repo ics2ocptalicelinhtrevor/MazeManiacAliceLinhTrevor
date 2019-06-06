@@ -443,17 +443,24 @@ local function Unmute(touch)
 end
 
 local function UpdatingLives()
+    print("numLives = "..numLives)
 
     if (numLives == 3) then
         heart1.isVisible = true
         heart2.isVisible = true
         heart3.isVisible = true
     elseif (numLives == 2) then
+        heart1.isVisible = true
+        heart2.isVisible = true
         heart3.isVisible = false
     elseif (numLives == 1) then
+        heart1.isVisible = true
         heart2.isVisible = false
+        heart3.isVisible = false
     elseif (numLives == 0) then
         heart1.isVisible = false
+        heart2.isVisible = false
+        heart3.isVisible = false
         YouLoseTransition()
     end
 end
@@ -670,6 +677,7 @@ function scene:create( event )
     sceneGroup:insert( wall11 )
     sceneGroup:insert( wall12 )
     sceneGroup:insert( wall13 )
+    sceneGroup:insert( wall14 )
     sceneGroup:insert( door )
     sceneGroup:insert( heart1 )
     sceneGroup:insert( heart2 )
@@ -681,6 +689,7 @@ function scene:create( event )
     sceneGroup:insert( questionMark1 )
     sceneGroup:insert( questionMark2 )
     sceneGroup:insert( questionMark3 )
+    sceneGroup:insert( questionMark4 )
     sceneGroup:insert( questionMark5 )
     sceneGroup:insert( muteButton )
     sceneGroup:insert( unmuteButton )
