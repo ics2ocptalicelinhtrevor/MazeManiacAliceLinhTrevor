@@ -450,7 +450,7 @@ end
 -- GLOBAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 
-function ResumeLevel1()
+function ResumeLevel2()
 
     -- make character visible again
     character.isVisible = true

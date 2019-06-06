@@ -312,7 +312,7 @@ local function YouWinTransitionLevel2( )
     composer.gotoScene("you_win", {effect = "fade", time = 500})
 end
 
--- Function to Restart Level 1
+-- Function to Restart Level 2
 local function RestartLevel2()
     AskQuestion()
     PositionAnswers()    
