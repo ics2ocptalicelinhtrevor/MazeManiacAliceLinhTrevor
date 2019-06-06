@@ -57,6 +57,7 @@ local wall10
 local wall11
 local wall12
 local wall13
+local wall14
 
 local door
 local character
