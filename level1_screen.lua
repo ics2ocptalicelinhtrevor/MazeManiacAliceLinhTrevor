@@ -598,7 +598,7 @@ function scene:create( event )
 
     wall12 = display.newRect(0, 0, 150, 10)
     wall12.x = 670
-    wall12.y = 530
+    wall12.y = 525
     wall12:setFillColor(0, 0, 0)
     wall12:toFront()
 

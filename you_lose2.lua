@@ -30,7 +30,6 @@ local scene = composer.newScene( sceneName )
 -----------------------------------------------------------------------------------------
 
 local backButton
-
 local bkg
 
 -----------------------------------------------------------------------------------------
@@ -125,6 +124,8 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
+        -- start the audio
+        audio.play(youLoseChannel)
     end
 
 end
@@ -147,7 +148,8 @@ function scene:hide( event )
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
-
+        -- stop the you lose audio
+        audio.stop(youLoseChannel)
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
