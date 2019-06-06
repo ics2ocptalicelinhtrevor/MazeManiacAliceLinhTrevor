@@ -56,8 +56,8 @@ local incorrectAnswer1
 local incorrectAnswer2
 local incorrectAnswer3
 
-local totalSeconds = 31
-local secondsLeft = 31
+local totalSeconds = 16
+local secondsLeft = 16
 local clockText
 local countDownTimer
 
@@ -381,16 +381,16 @@ function scene:create( event )
     cover:setFillColor(96/255, 96/255, 96/255)
 
     -- create the question text object
-    questionText = display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 35)
+    questionText = display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 41)
 
     -- create the answer text object & wrong answer text objects
-    answerText = display.newText("", X1, Y2, Arial, 35)
+    answerText = display.newText("", X1, Y2, Arial, 37.000001)
     answerText.anchorX = 0
-    wrongText1 = display.newText("", X2, Y2, Arial, 35)
+    wrongText1 = display.newText("", X2, Y2, Arial, 37)
     wrongText1.anchorX = 0
-    wrongText2 = display.newText("", X1, Y1, Arial, 35)
+    wrongText2 = display.newText("", X1, Y1, Arial, 37)
     wrongText2.anchorX = 0
-    wrongText3 = display.newText("", X2, Y1, Arial, 35)
+    wrongText3 = display.newText("", X2, Y1, Arial, 37)
     wrongText3.anchorX = 0
 
     clockText = display.newText("", 500, 230, Arial, 50)
