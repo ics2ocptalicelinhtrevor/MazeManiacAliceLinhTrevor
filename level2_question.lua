@@ -539,7 +539,7 @@ function scene:create( event )
     --making a cover rectangle to have the background fully bolcked where the question is
     cover = display.newRoundedRect(display.contentCenterX, display.contentCenterY, display.contentWidth*0.8, display.contentHeight*0.95, 50 )
     --setting its colour
-    cover:setFillColor(96/255, 96/255, 96/255)
+    cover:setFillColor(224/255, 224/255, 224/255)
 
 
     -- Insert the shapes for the questions
