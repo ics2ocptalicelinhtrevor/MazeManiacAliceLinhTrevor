@@ -28,15 +28,13 @@ local scene = composer.newScene( sceneName )
 -----------------------------------------------------------------------------------------
 
 -- The background image and soccer ball for this scene
-local bkg_image
+local bkg
+local cover
 
-local questionText
+local questionNumber
 local question
 
--- display the lives
-local life1
-local life2
-local life3
+
 
 --the alternate numbers randomly generated
 local correctAnswer
@@ -104,16 +102,16 @@ local booSound
 local function BackToLevel2() 
     composer.hideOverlay("crossFade", 400 )
   
-    ResumeLevel2()
+   ResumeLevel2()
 end 
 ----------------------------------------------------------------------------------------
 
 local function AskQuestion()
     -- create random questions
-    questionText = math.random(1,10)
+    questionNumber = math.random(1,10)
 
     -- CIRCLE
-    if (questionText == 1) then
+    if (questionNumber == 1) then
 
         question.text = "Drag the answer into the shape."
         circle.isVisible = true
@@ -124,7 +122,7 @@ local function AskQuestion()
         alternateAnswer3.text = "rectangle"     
 
     --TRIANGLE
-    elseif (questionText == 2) then
+    elseif (questionNumber == 2) then
 
         question.text = "Drag the answer into the shape."
         triangle.isVisible = true
@@ -135,7 +133,7 @@ local function AskQuestion()
         alternateAnswer3.text = "rectangle"
 
     --RECTANGLE
-    elseif (questionText == 3) then
+    elseif (questionNumber == 3) then
 
         question.text = "Drag the answer into the shape."
         rectangle.isVisible = true
@@ -145,7 +143,7 @@ local function AskQuestion()
         alternateAnswer2.text = "star"
         alternateAnswer3.text = "oval"
        
-    elseif (questionText == 4) then
+    elseif (questionNumber == 4) then
 
         question.text = "Drag the answer into the shape."
         square.isVisible = true
@@ -155,7 +153,7 @@ local function AskQuestion()
         alternateAnswer2.text = "star"
         alternateAnswer3.text = "rectangle"
 
-    elseif (questionText == 5) then
+    elseif (questionNumber == 5) then
 
         question.text = "Drag the answer into the shape."
         oval.isVisible = true
@@ -163,8 +161,9 @@ local function AskQuestion()
         correctAnswer.text = "oval"
         alternateAnswer1.text = "triangle"
         alternateAnswer2.text = "circle"
+        alternateAnswer3.text = "star"
 
-    elseif (questionText == 6) then
+    elseif (questionNumber == 6) then
 
         question.text = "Drag the answer into the shape."
         octagon.isVisible = true
@@ -174,7 +173,7 @@ local function AskQuestion()
         alternateAnswer2.text = "circle"
         alternateAnswer3.text = "square"
 
-    elseif (questionText == 7) then
+    elseif (questionNumber == 7) then
 
         question.text = "Drag the answer into the shape."
         pentagon.isVisible = true
@@ -184,7 +183,7 @@ local function AskQuestion()
         alternateAnswer2.text = "star"
         alternateAnswer3.text = "square"
 
-    elseif (questionText == 8) then
+    elseif (questionNumber == 8) then
 
         question.text = "Drag the answer into the shape."
         hexagon.isVisible = true
@@ -194,7 +193,7 @@ local function AskQuestion()
         alternateAnswer2.text = "square"
         alternateAnswer3.text = "circle"
 
-    elseif (questionText == 9) then
+    elseif (questionNumber == 9) then
 
         question.text = "Drag the answer into the shape."
         star.isVisible = true
@@ -204,7 +203,7 @@ local function AskQuestion()
         alternateAnswer2.text = "circle"
         alternateAnswer3.text = "diamond"
 
-    elseif (questionText == 10) then
+    elseif (questionNumber == 10) then
 
         question.text = "Drag the answer into the shape."
         diamond.isVisible = true
@@ -319,17 +318,6 @@ local function YouWinTransitionLevel2( )
     composer.gotoScene("you_win", {effect = "fade", time = 500})
 end
 
--- Function to Restart Level 1
-local function RestartLevel2()
-    AskQuestion()
-    PositionAnswers()    
-end
-
--- Function to Check User Input
-local function CheckUserAnswerInput()
-          
-    timer.performWithDelay(1600, RestartLevel2) 
-end
 
 local function TouchListenercorrectAnswer(touch)
     --only work if none of the other boxes have been touched
@@ -367,7 +355,7 @@ local function TouchListenercorrectAnswer(touch)
 
 
                 -- call the function to check if the user's input is correct or not
-                CheckUserAnswerInput()
+                
                 BackToLevel2()
 
             --else make box go back to where it was
@@ -407,10 +395,9 @@ local function TouchListenercorrectAnswer1(touch)
                 alternateAnswer1.y = userAnswerPlaceholder.y
 
                 -- call the function to check if the user's input is correct or not
-                CheckUserAnswerInput()
-                BackToLevel2()
-
                 numLives = numLives - 1
+
+                BackToLevel2()
 
             --else make box go back to where it was
             else
@@ -449,10 +436,10 @@ local function TouchListenercorrectAnswer2(touch)
                alternateAnswer2.y = userAnswerPlaceholder.y
 
                 -- call the function to check if the user's input is correct or not
-                CheckUserAnswerInput()
+                numLives = numLives - 1
+
                 BackToLevel2()
 
-                numLives = numLives - 1
 
             --else make box go back to where it was
             else
@@ -490,10 +477,9 @@ local function TouchListenercorrectAnswer3(touch)
                 alternateAnswer3.y = userAnswerPlaceholder.y
 
                 -- call the function to check if the user's input is correct or not
-                CheckUserAnswerInput()
-                BackToLevel2()
-
                 numLives = numLives - 1
+
+                BackToLevel2()
 
             --else make box go back to where it was
             else
@@ -541,25 +527,18 @@ function scene:create( event )
     --Inserting backgroud image and lives
     ----------------------------------------------------------------------------------
 
-    -- Insert the background image
-    bkg_image = display.newImageRect("Images/Level2ScreenAliceR@2x.png", 2048, 1536)
-    bkg_image.anchorX = 0
-    bkg_image.anchorY = 0
-    bkg_image.width = display.contentWidth
-    bkg_image.height = display.contentHeight
+    --covering the other scene with a rectangle so it looks faded and stops touch from going through
+    bkg = display.newRect(display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight)
+    --setting to a semi black colour
+    bkg:setFillColor(0,0,0,0.5)
 
-    -- Insert the life images
-    life1 = display.newImageRect("Images/heart.png", 100, 100)
-    life1.x = display.contentWidth * 5 / 8
-    life1.y = display.contentHeight * 1 / 7
+    -----------------------------------------------------------------------------------------
+    
+    --making a cover rectangle to have the background fully bolcked where the question is
+    cover = display.newRoundedRect(display.contentCenterX, display.contentCenterY, display.contentWidth*0.8, display.contentHeight*0.95, 50 )
+    --setting its colour
+    cover:setFillColor(96/255, 96/255, 96/255)
 
-    life2 = display.newImageRect("Images/heart.png", 100, 100)
-    life2.x = display.contentWidth * 6 / 8
-    life2.y = display.contentHeight * 1 / 7
-
-    life3 = display.newImageRect("Images/heart.png", 100, 100)
-    life3.x = display.contentWidth * 7 / 8
-    life3.y = display.contentHeight * 1 / 7
 
     -- Insert the shapes for the questions
     circle = display.newImageRect("Images/circleAliceR@2x.png", 150, 150)
@@ -655,14 +634,14 @@ function scene:create( event )
 
     userAnswerPlaceholder.isVisible = true
 
-    correctAnswer = display.newText( "", 10, 10, nil, 50)
+    correctAnswer = display.newText( "", X1, Y1, nil, 50)
  
 
-    alternateAnswer1 = display.newText( "", 10, 10, nil, 50)
+    alternateAnswer1 = display.newText( "", X2, Y1, nil, 50)
 
-    alternateAnswer2 = display.newText( "", 10, 10, nil, 50)
+    alternateAnswer2 = display.newText( "", X1, Y2, nil, 50)
 
-    alternateAnswer3 = display.newText( "", 10, 10, nil, 50)
+    alternateAnswer3 = display.newText( "", X2, Y2, nil, 50)
 
 
     correctAnswer:setTextColor(0/255, 0/255, 0/255)
@@ -676,10 +655,8 @@ function scene:create( event )
     --adding objects to the scene group
     ----------------------------------------------------------------------------------
 
-    sceneGroup:insert( bkg_image ) 
-    sceneGroup:insert( life1 )
-    sceneGroup:insert( life2 )
-    sceneGroup:insert( life3 )
+    sceneGroup:insert( bkg ) 
+    sceneGroup:insert( cover )
     sceneGroup:insert( square )
     sceneGroup:insert( circle )
     sceneGroup:insert( triangle )
@@ -691,11 +668,11 @@ function scene:create( event )
     sceneGroup:insert( diamond )
     sceneGroup:insert( octagon )
     sceneGroup:insert( userAnswerPlaceholder )
+    sceneGroup:insert( question )
     sceneGroup:insert( correctAnswer )
     sceneGroup:insert( alternateAnswer1 )
     sceneGroup:insert( alternateAnswer2 )
     sceneGroup:insert( alternateAnswer3 )
-    sceneGroup:insert( question )
 
 end --function scene:create( event )
 
@@ -719,7 +696,8 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
-        BackToLevel2()
+        AskQuestion()
+        PositionAnswers()
         AddcorrectAnswerEventListeners() 
 
     end
@@ -747,7 +725,7 @@ function scene:hide( event )
 
     elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
-        audio.stop()
+    
         RemovecorrectAnswerEventListeners()
     end
 
