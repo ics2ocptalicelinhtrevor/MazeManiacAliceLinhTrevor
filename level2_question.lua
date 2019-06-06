@@ -100,6 +100,13 @@ local booSound
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 
+--making transition to next scene
+local function BackToLevel2() 
+    composer.hideOverlay("crossFade", 400 )
+  
+    ResumeLevel2()
+end 
+----------------------------------------------------------------------------------------
 
 local function AskQuestion()
     -- create random questions
@@ -312,7 +319,7 @@ local function YouWinTransitionLevel2( )
     composer.gotoScene("you_win", {effect = "fade", time = 500})
 end
 
--- Function to Restart Level 2
+-- Function to Restart Level 1
 local function RestartLevel2()
     AskQuestion()
     PositionAnswers()    
@@ -321,7 +328,7 @@ end
 -- Function to Check User Input
 local function CheckUserAnswerInput()
           
-    timer.performWithDelay(1600, RestartLevel1) 
+    timer.performWithDelay(1600, RestartLevel2) 
 end
 
 local function TouchListenercorrectAnswer(touch)
@@ -361,6 +368,7 @@ local function TouchListenercorrectAnswer(touch)
 
                 -- call the function to check if the user's input is correct or not
                 CheckUserAnswerInput()
+                BackToLevel2()
 
             --else make box go back to where it was
             else
@@ -400,6 +408,9 @@ local function TouchListenercorrectAnswer1(touch)
 
                 -- call the function to check if the user's input is correct or not
                 CheckUserAnswerInput()
+                BackToLevel2()
+
+                numLives = numLives - 1
 
             --else make box go back to where it was
             else
@@ -439,6 +450,9 @@ local function TouchListenercorrectAnswer2(touch)
 
                 -- call the function to check if the user's input is correct or not
                 CheckUserAnswerInput()
+                BackToLevel2()
+
+                numLives = numLives - 1
 
             --else make box go back to where it was
             else
@@ -477,6 +491,9 @@ local function TouchListenercorrectAnswer3(touch)
 
                 -- call the function to check if the user's input is correct or not
                 CheckUserAnswerInput()
+                BackToLevel2()
+
+                numLives = numLives - 1
 
             --else make box go back to where it was
             else
@@ -506,7 +523,8 @@ end
 ----------------------------------------------------------------------------------
 -- GLOBAL FUNCTIONS
 ----------------------------------------------------------------------------------
-
+-- Number of lives
+numLives = 3
 
 ----------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -701,7 +719,7 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
-        RestartLevel2()
+        BackToLevel2()
         AddcorrectAnswerEventListeners() 
 
     end
