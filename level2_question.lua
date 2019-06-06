@@ -31,6 +31,7 @@ local scene = composer.newScene( sceneName )
 local bkg_image
 
 local questionText
+local question
 
 -- display the lives
 local life1
@@ -66,30 +67,25 @@ local userAnswer
 
 -- boolean variables telling me which answer box was touched
 local answerboxAlreadyTouched = false
-local alternateAnswerBox1AlreadyTouched = false
-local alternateAnswerBox2AlreadyTouched = false
-local alternateAnswerBox3AlreadyTouched = false
+local alternateAnswer1AlreadyTouched = false
+local alternateAnswer2AlreadyTouched = false
+local alternateAnswer3AlreadyTouched = false
 
---create textboxes holding answer and alternate answers 
-local answerbox
-local alternateAnswerBox1
-local alternateAnswerBox2
-local alternateAnswerBox3
 
 -- create variables that will hold the previous x- and y-positions so that 
 -- each answer will return back to its previous position after it is moved
-local answerboxPreviousY
-local alternateAnswerBox1PreviousY
-local alternateAnswerBox2PreviousY
-local alternateAnswerBox3PreviousY
+local correctAnswerPreviousY
+local alternateAnswer1PreviousY
+local alternateAnswer2PreviousY
+local alternateAnswer3PreviousY
 
 local answerboxPreviousX
-local alternateAnswerBox1PreviousX
-local alternateAnswerBox2PreviousX
-local alternateAnswerBox3PreviousX
+local alternateAnswer1PreviousX
+local alternateAnswer2PreviousX
+local alternateAnswer3PreviousX
 
 -- the black box where the user will drag the answer
-local userAnswerBoxPlaceholder
+local userAnswerPlaceholder
 
 -- sound effects
 local correctSound
@@ -104,187 +100,113 @@ local booSound
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
 
-local function DisplayQuestion()
-
-
-    -- put the correct answer into the answerbox
-    answerbox.text = correctAnswer
-
-    -- make it possible to click on the answers again
-    answerboxAlreadyTouched = false
-    alternateAnswerBox1AlreadyTouched = false
-    alternateAnswerBox2AlreadyTouched = false
-    alternateAnswerBox3AlreadyTouched = false
-
--- RESET ALL X POSITIONS OF ANSWER BOXES 
-    answerbox.x = display.contentWidth * 0.9
-    alternateAnswerBox1.x = display.contentWidth * 0.9
-    alternateAnswerBox2.x = display.contentWidth * 0.9
-    alternateAnswerBox3.x = display.contentWidth * 0.9
-
-end
 
 local function AskQuestion()
     -- create random questions
     questionText = math.random(1,10)
 
+    -- CIRCLE
     if (questionText == 1) then
 
-        question.text = "Name the shape."
+        question.text = "drag the answer into the shape."
+        circle.isVisible = true
 
         correctAnswer.text = "circle"
         alternateAnswer1.text = "triangle"
         alternateAnswer2.text = "square"
-        alternateAnswer3.text = "rectangle"
+        alternateAnswer3.text = "rectangle"     
 
-        question.text = correctAnswer
-        alternateAnswer1.text = alternateAnswer1
-        alternateAnswer2.text = alternateAnswer2
-        alternateAnswer3.text = alternateAnswer3
-
-        circle.isVisible = true
-
+    --TRIANGLE
     elseif (questionText == 2) then
 
-        question.text = "Name the shape."
+        question.text = "drag the answer into the shape."
+        triangle.isVisible = true
 
         correctAnswer.text = "triangle"
         alternateAnswer1.text = "circle"
         alternateAnswer2.text = "star"
         alternateAnswer3.text = "rectangle"
 
-        question.text = correctAnswer
-        alternateAnswer1.text = alternateAnswer1
-        alternateAnswer2.text = alternateAnswer2
-        alternateAnswer3.text = alternateAnswer3
-
-        triangle.isVisible = true
-
+    --RECTANGLE
     elseif (questionText == 3) then
 
-        question.text = "Name the shape."
+        question.text = "drag the answer into the shape."
+        rectangle.isVisible = true
 
         correctAnswer.text = "rectangle"
         alternateAnswer1.text = "circle"
         alternateAnswer2.text = "star"
         alternateAnswer3.text = "oval"
-
-        question.text = correctAnswer
-        alternateAnswer1.text = alternateAnswer1
-        alternateAnswer2.text = alternateAnswer2
-        alternateAnswer3.text = alternateAnswer3
-
-        rectangle.isVisible = true
        
     elseif (questionText == 4) then
 
-        question.text = "Name the shape."
+        question.text = "drag the answer into the shape."
+        square.isVisible = true
 
         correctAnswer.text = "square"
         alternateAnswer1.text = "diamond"
         alternateAnswer2.text = "star"
         alternateAnswer3.text = "rectangle"
 
-        question.text = correctAnswer
-        alternateAnswer1.text = alternateAnswer1
-        alternateAnswer2.text = alternateAnswer2
-        alternateAnswer3.text = alternateAnswer3
-
-        square.isVisible = true
-
     elseif (questionText == 5) then
 
-        question.text = "Name the shape."
+        question.text = "drag the answer into the shape."
+        oval.isVisible = true
 
         correctAnswer.text = "oval"
         alternateAnswer1.text = "triangle"
         alternateAnswer2.text = "circle"
-        alternateAnswer3.text = "rectangle"
-
-        question.text = correctAnswer
-        alternateAnswer1.text = alternateAnswer1
-        alternateAnswer2.text = alternateAnswer2
-        alternateAnswer3.text = alternateAnswer3
-
-        oval.isVisible = true
 
     elseif (questionText == 6) then
 
-        question.text = "Name the shape."
+        question.text = "drag the answer into the shape."
+        octogon.isVisible = true
 
         correctAnswer.text = "octagon"
         alternateAnswer1.text = "hexagon"
         alternateAnswer2.text = "circle"
         alternateAnswer3.text = "square"
 
-        question.text = correctAnswer
-        alternateAnswer1.text = alternateAnswer1
-        alternateAnswer2.text = alternateAnswer2
-        alternateAnswer3.text = alternateAnswer3
-
-        octogon.isVisible = true
-
     elseif (questionText == 7) then
 
-        question.text = "Name the shape."
-
+        question.text = "drag the answer into the shape."
+        pentagon.isVisible = true
+        
         correctAnswer.text = "penatagon"
         alternateAnswer1.text = "octagon"
         alternateAnswer2.text = "star"
         alternateAnswer3.text = "square"
 
-        question.text = correctAnswer
-        alternateAnswer1.text = alternateAnswer1
-        alternateAnswer2.text = alternateAnswer2
-        alternateAnswer3.text = alternateAnswer3
-
-        pentagon.isVisible = true
-
     elseif (questionText == 8) then
 
-        question.text = "Name the shape."
+        question.text = "drag the answer into the shape."
+        hexagon.isVisible = true
 
         correctAnswer.text = "hexagon"
         alternateAnswer1.text = "pentagon"
         alternateAnswer2.text = "square"
         alternateAnswer3.text = "circle"
 
-        question.text = correctAnswer
-        alternateAnswer1.text = alternateAnswer1
-        alternateAnswer2.text = alternateAnswer2
-        alternateAnswer3.text = alternateAnswer3
-
-        hexagon.isVisible = true
-
     elseif (questionText == 9) then
 
-        question.text = "Name the shape."
+        question.text = "drag the answer into the shape."
+        star.isVisible = true
 
         correctAnswer.text = "star"
         alternateAnswer1.text = "rectangle"
         alternateAnswer2.text = "circle"
         alternateAnswer3.text = "diamond"
 
-        question.text = correctAnswer
-        alternateAnswer1.text = alternateAnswer1
-        alternateAnswer2.text = alternateAnswer2
-        alternateAnswer3.text = alternateAnswer3
-
-        circle.isVisible = true
-
     elseif (questionText == 10) then
 
-        question.text = "Name the shape."
+        question.text = "drag the answer into the shape."
+        diamond.isVisible = true
 
         correctAnswer.text = "diamond"
         alternateAnswer1.text = "hexagon"
         alternateAnswer2.text = "star"
         alternateAnswer3.text = "square"
 
-        question.text = correctAnswer
-        alternateAnswer1.text = alternateAnswer1
-        alternateAnswer2.text = alternateAnswer2
-        alternateAnswer3.text = alternateAnswer3
     end
 end
 
@@ -392,7 +314,7 @@ end
 
 -- Function to Restart Level 1
 local function RestartLevel2()
-    DisplayQuestion()
+    AskQuestion()
     PositionAnswers()    
 end
 
@@ -404,9 +326,9 @@ end
 
 local function TouchListenerAnswerbox(touch)
     --only work if none of the other boxes have been touched
-    if (alternateAnswerBox1AlreadyTouched == false) and 
-        (alternateAnswerBox2AlreadyTouched == false) and
-        (alternateAnswerBox3AlreadyTouched == false)  then
+    if (alternateAnswer1AlreadyTouched == false) and 
+        (alternateAnswer2AlreadyTouched == false) and
+        (alternateAnswer3AlreadyTouched == false)  then
 
         if (touch.phase == "began") then
 
@@ -450,41 +372,39 @@ local function TouchListenerAnswerbox(touch)
 end 
 
 
-local function TouchListenerAlternateAnswer1(touch)
+local function TouchListenerAnswerBox1(touch)
     --only work if none of the other boxes have been touched
     if (answerboxAlreadyTouched == false) and 
-        (alternateAnswerBox2AlreadyTouched == false) then
+        (alternateAnswer2AlreadyTouched == false) then
 
         if (touch.phase == "began") then
             --let other boxes know it has been clicked
-            alternateAnswerBox1AlreadyTouched = true
+            alternateAnswer1AlreadyTouched = true
             
         --drag the answer to follow the mouse
         elseif (touch.phase == "moved") then
-            alternateAnswerBox1.x = touch.x
-            alternateAnswerBox1.y = touch.y
+            alternateAnswer1.x = touch.x
+            alternateAnswer1.y = touch.y
 
         elseif (touch.phase == "ended") then
-            alternateAnswerBox1AlreadyTouched = false
+            alternateAnswer1AlreadyTouched = false
 
             -- if the box is in the userAnswerBox Placeholder  go to center of placeholder
-            if (((userAnswerBoxPlaceholder.x - userAnswerBoxPlaceholder.width/2) < alternateAnswerBox1.x ) and 
-                ((userAnswerBoxPlaceholder.x + userAnswerBoxPlaceholder.width/2) > alternateAnswerBox1.x ) and 
-                ((userAnswerBoxPlaceholder.y - userAnswerBoxPlaceholder.height/2) < alternateAnswerBox1.y ) and 
-                ((userAnswerBoxPlaceholder.y + userAnswerBoxPlaceholder.height/2) > alternateAnswerBox1.y ) ) then
+            if (((userAnswerPlaceholder.x - userAnswerPlaceholder.width/2) < alternateAnswer1.x ) and 
+                ((userAnswerPlaceholder.x + userAnswerPlaceholder.width/2) > alternateAnswer1.x ) and 
+                ((userAnswerPlaceholder.y - userAnswerPlaceholder.height/2) < alternateAnswer1.y ) and 
+                ((userAnswerPlaceholder.y + userAnswerPlaceholder.height/2) > alternateAnswer1.y ) ) then
 
                 alternateAnswer1.x = userAnswerPlaceholder.x
                 alternateAnswer1.y = userAnswerPlaceholder.y
-
-                userAnswer = alternateAnswer1
 
                 -- call the function to check if the user's input is correct or not
                 CheckUserAnswerInput()
 
             --else make box go back to where it was
             else
-                alternateAnswerBox1.x = alternateAnswerBox1PreviousX
-                alternateAnswerBox1.y = alternateAnswerBox1PreviousY
+                alternateAnswer1.x = alternateAnswer1PreviousX
+                alternateAnswer1.y = alternateAnswer1PreviousY
             end
         end
     end
@@ -493,7 +413,7 @@ end
 local function TouchListenerAnswerBox2(touch)
     --only work if none of the other boxes have been touched
     if (answerboxAlreadyTouched == false) and 
-        (alternateAnswerBox1AlreadyTouched == false) then
+        (alternateAnswer1AlreadyTouched == false) then
 
         if (touch.phase == "began") then
             --let other boxes know it has been clicked
@@ -502,17 +422,17 @@ local function TouchListenerAnswerBox2(touch)
             
         elseif (touch.phase == "moved") then
             --dragging function
-            alternateAnswerBox2.x = touch.x
-            alternateAnswerBox2.y = touch.y
+            alternateAnswer2.x = touch.x
+            alternateAnswer2.y = touch.y
 
         elseif (touch.phase == "ended") then
-            alternateAnswerBox2AlreadyTouched = false
+            alternateAnswer2AlreadyTouched = false
 
             -- if the box is in the userAnswerBox Placeholder  go to center of placeholder
-            if (((userAnswerBoxPlaceholder.x - userAnswerBoxPlaceholder.width/2) < alternateAnswerBox2.x ) and 
-                ((userAnswerBoxPlaceholder.x + userAnswerBoxPlaceholder.width/2) > alternateAnswerBox2.x ) and 
-                ((userAnswerBoxPlaceholder.y - userAnswerBoxPlaceholder.height/2) < alternateAnswerBox2.y ) and 
-                ((userAnswerBoxPlaceholder.y + userAnswerBoxPlaceholder.height/2) > alternateAnswerBox2.y ) ) then
+            if (((userAnswerPlaceholder.x - userAnswerPlaceholder.width/2) < alternateAnswer2.x ) and 
+                ((userAnswerPlaceholder.x + userAnswerPlaceholder.width/2) > alternateAnswer2.x ) and 
+                ((userAnswerPlaceholder.y - userAnswerPlaceholder.height/2) < alternateAnswer2.y ) and 
+                ((userAnswerPlaceholder.y + userAnswerPlaceholder.height/2) > alternateAnswer2.y ) ) then
 
                alternateAnswer2.x = userAnswerPlaceholder.x
                alternateAnswer2.y = userAnswerPlaceholder.y
@@ -522,8 +442,8 @@ local function TouchListenerAnswerBox2(touch)
 
             --else make box go back to where it was
             else
-                alternateAnswerBox2.x = alternateAnswerBox2PreviousX
-                alternateAnswerBox2.y = alternateAnswerBox2PreviousY
+                alternateAnswer2.x = alternateAnswer2PreviousX
+                alternateAnswer2.y = alternateAnswer2PreviousY
             end
         end
     end
@@ -532,25 +452,25 @@ end
 local function TouchListenerAnswerBox3(touch)
     --only work if none of the other boxes have been touched
     if (answerboxAlreadyTouched == false) and 
-        (alternateAnswerBox1AlreadyTouched == false) then
+        (alternateAnswer1AlreadyTouched == false) then
 
         if (touch.phase == "began") then
             --let other boxes know it has been clicked
-            alternateAnswerBox3AlreadyTouched = true
+            alternateAnswer3AlreadyTouched = true
             
         elseif (touch.phase == "moved") then
             --dragging function
-            alternateAnswerBox3.x = touch.x
-            alternateAnswerBox3.y = touch.y
+            alternateAnswer3.x = touch.x
+            alternateAnswer3.y = touch.y
 
         elseif (touch.phase == "ended") then
-            alternateAnswerBox3AlreadyTouched = false
+            alternateAnswer3AlreadyTouched = false
 
             -- if the box is in the userAnswerBox Placeholder  go to center of placeholder
-            if (((userAnswerBoxPlaceholder.x - userAnswerBoxPlaceholder.width/2) < alternateAnswerBox3.x ) and 
-                ((userAnswerBoxPlaceholder.x + userAnswerBoxPlaceholder.width/2) > alternateAnswerBox3.x ) and 
-                ((userAnswerBoxPlaceholder.y - userAnswerBoxPlaceholder.height/2) < alternateAnswerBox3.y ) and 
-                ((userAnswerBoxPlaceholder.y + userAnswerBoxPlaceholder.height/2) > alternateAnswerBox3.y ) ) then
+            if (((userAnswerPlaceholder.x - userAnswerPlaceholder.width/2) < alternateAnswer3.x ) and 
+                ((userAnswerPlaceholder.x + userAnswerPlaceholder.width/2) > alternateAnswer3.x ) and 
+                ((userAnswerPlaceholder.y - userAnswerPlaceholder.height/2) < alternateAnswer3.y ) and 
+                ((userAnswerPlaceholder.y + userAnswerPlaceholder.height/2) > alternateAnswer3.y ) ) then
 
                 alternateAnswer3.x = userAnswerPlaceholder.x
                 alternateAnswer3.y = userAnswerPlaceholder.y
@@ -560,8 +480,8 @@ local function TouchListenerAnswerBox3(touch)
 
             --else make box go back to where it was
             else
-                alternateAnswerBox3.x = alternateAnswerBox3PreviousX
-                alternateAnswerBox3.y = alternateAnswerBox3PreviousY
+                alternateAnswer3.x = alternateAnswer3PreviousX
+                alternateAnswer3.y = alternateAnswer3PreviousY
             end
         end
     end
@@ -570,17 +490,17 @@ end
 -- Function that Adds Listeners to each answer box
 local function AddAnswerBoxEventListeners()
     answerbox:addEventListener("touch", TouchListenerAnswerbox)
-    alternateAnswerBox1:addEventListener("touch", TouchListenerAnswerBox1)
-    alternateAnswerBox2:addEventListener("touch", TouchListenerAnswerBox2)
-    alternateAnswerBox3:addEventListener("touch", TouchListenerAnswerBox3)
+    alternateAnswer1:addEventListener("touch", TouchListenerAnswerBox1)
+    alternateAnswer2:addEventListener("touch", TouchListenerAnswerBox2)
+    alternateAnswer3:addEventListener("touch", TouchListenerAnswerBox3)
 end 
 
 -- Function that Removes Listeners to each answer box
 local function RemoveAnswerBoxEventListeners()
     answerbox:removeEventListener("touch", TouchListenerAnswerbox)
-    alternateAnswerBox1:removeEventListener("touch", TouchListenerAnswerBox1)
-    alternateAnswerBox2:removeEventListener("touch", TouchListenerAnswerBox2)
-    alternateAnswerBox3:removeEventListener("touch", TouchListenerAnswerBox3)
+    alternateAnswer1:removeEventListener("touch", TouchListenerAnswerBox1)
+    alternateAnswer2:removeEventListener("touch", TouchListenerAnswerBox2)
+    alternateAnswer3:removeEventListener("touch", TouchListenerAnswerBox3)
 end 
 
 ----------------------------------------------------------------------------------
@@ -685,7 +605,7 @@ function scene:create( event )
     square.isVisible = false
 
     --the text that displays the question
-    questionText = display.newText( "Drag the name onto the shape." , 0, 0, nil, 50)
+    questionText = display.newText( "" , 0, 0, nil, 50)
     questionText.anchorX = 0
     questionText.anchorY = 0
     questionText.x = display.contentWidth *0.2
@@ -696,21 +616,16 @@ function scene:create( event )
 
     -- boolean variables stating whether or not the answer was touched
     answerboxAlreadyTouched = false
-    alternateAnswerBox1AlreadyTouched = false
-    alternateAnswerBox2AlreadyTouched = false
-    alternateAnswerBox3AlreadyTouched = false
+    alternateAnswer1AlreadyTouched = false
+    alternateAnswer2AlreadyTouched = false
+    alternateAnswer3AlreadyTouched = false
 
-    --create answerbox alternate answers and the boxes to show them
-    answerbox = display.newText("", display.contentWidth * 0.9, 0, nil, 100)
-    alternateAnswerBox1 = display.newText("", display.contentWidth * 0.9, 0, nil, 100)
-    alternateAnswerBox2 = display.newText("", display.contentWidth * 0.9, 0, nil, 100)
-    alternateAnswerBox3 = display.newText("", display.contentWidth * 0.9, 0, nil, 100)
 
     -- set the x positions of each of the answer boxes
     answerboxPreviousX = display.contentWidth * 0.9
-    alternateAnswerBox1PreviousX = display.contentWidth * 0.9
-    alternateAnswerBox2PreviousX = display.contentWidth * 0.9
-    alternateAnswerBox3PreviousX = display.contentWidth * 0.9
+    alternateAnswer1PreviousX = display.contentWidth * 0.9
+    alternateAnswer2PreviousX = display.contentWidth * 0.9
+    alternateAnswer3PreviousX = display.contentWidth * 0.9
 
 
     -- the black box where the user will drag the answer
@@ -719,12 +634,8 @@ function scene:create( event )
     userAnswerPlaceholder.x = display.contentWidth * 0.9
     userAnswerPlaceholder.y = display.contentHeight * 0.6
 
-    userAnswerPlaceholder = display.newImageRect("Images/userAnswerBoxPlaceholder.png",  200, 130)
-    userAnswerPlaceholder.x = display.contentWidth * 0.6
-    userAnswerPlaceholder.y = display.contentHeight * 0.9
 
-
-    userAnswerPlaceholder.isVisible = false
+    userAnswerPlaceholder.isVisible = true
 
     correctAnswer = display.newText( "", 10, 10, nil, 50)
  
@@ -735,24 +646,6 @@ function scene:create( event )
 
 
     alternateAnswer3 = display.newText( "", 10, 10, nil, 50)
-
-
-    userAnswerBoxPlaceholder = display.newImageRect("Images/userAnswerBoxPlaceholder.png",  130, 130, 0, 0)
-    userAnswerBoxPlaceholder.x = display.contentWidth * 0.6
-    userAnswerBoxPlaceholder.y = display.contentHeight * 0.9
-
-    correctAnswer = display.newText( "Circle", 5, 10, nil, 50)
-    correctAnswer.anchorX = 0
-    correctAnswer.anchorY = 0
-    alternateAnswer1 = display.newText( "Triangle", 5, 20, nil, 50)
-    alternateAnswer1.anchorX = 0
-    alternateAnswer1.anchorY = 0
-    alternateAnswer2 = display.newText( "Rectangle", 5, 30, nil, 50)
-    alternateAnswer2.anchorX = 0
-    alternateAnswer2.anchorY = 0
-    alternateAnswer3 = display.newText( "Square", 5, 40, nil, 50)
-    alternateAnswer3.anchorX = 0
-    alternateAnswer3.anchorY = 0
 
 
     correctAnswer:setTextColor(0/255, 0/255, 0/255)
@@ -770,13 +663,13 @@ function scene:create( event )
     sceneGroup:insert( life1 )
     sceneGroup:insert( life2 )
     sceneGroup:insert( life3 )
-    sceneGroup:insert( userAnswerBoxPlaceholder )
+    sceneGroup:insert( userAnswerPlaceholder )
     sceneGroup:insert( correctAnswer )
     sceneGroup:insert( alternateAnswer1 )
     sceneGroup:insert( alternateAnswer2 )
     sceneGroup:insert( alternateAnswer3 )
     sceneGroup:insert( questionText )
-    sceneGroup:insert( alternateAnswerBox1 )
+    sceneGroup:insert( alternateAnswer1 )
     sceneGroup:insert( alternateAnswer2 )
 
 
