@@ -638,8 +638,8 @@ function scene:create( event )
 
     -- Insert the Door
     door = display.newImage("Images/Level-1Door.png", 100, 100)
-    door.x = 530
-    door.y = 222
+    door.x = 100
+    door.y = 650
     --door:scale(0.5, 0.5)
     door.myName = "door"
 
@@ -710,8 +710,8 @@ function scene:create( event )
 
     --meat2
     meat2 = display.newImageRect ("Images/Plant.png", 70, 70)
-    meat2.x = 500
-    meat2.y = 100
+    meat2.x = 380
+    meat2.y = 180
     meat2.myName = "meat2"
 
     -- Insert objects into the scene group in order to ONLY be associated with this scene
