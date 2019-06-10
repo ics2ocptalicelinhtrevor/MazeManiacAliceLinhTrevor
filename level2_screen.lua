@@ -527,7 +527,7 @@ function scene:create( event )
 
     wall5 = display.newRect(0, 0, 10, display.contentHeight - 150)
     wall5.x = 150
-    wall5.y = display.contentCenterY -15
+    wall5.y = display.contentCenterY - 75
     wall5:setFillColor(0, 0, 0)
     
     wall6 = display.newRect(0, 0, 10, display.contentHeight - 150)
@@ -550,7 +550,7 @@ function scene:create( event )
     wall8:setFillColor(0, 0, 0)
     
     wall9 = display.newRect(0, 0, 150, 10)
-    wall9.x = 520
+    wall9.x = 670
     wall9.y = 167
     wall9:setFillColor(0, 0, 0)
 
@@ -566,7 +566,7 @@ function scene:create( event )
     wall11:setFillColor(0, 0, 0)
 
     wall12 = display.newRect(0, 0, 150, 10)
-    wall12.x = 670
+    wall12.x = 520
     wall12.y = 530
     wall12:setFillColor(0, 0, 0)
 
@@ -582,8 +582,8 @@ function scene:create( event )
 
     -- Insert the Door
     door = display.newImage("Images/Level-1Door.png", 200, 200)
-    door.x = 955
-    door.y = 70
+    door.x = 670
+    door.y = 215
     door.myName = "door"
     door:scale( 0.6, 0.6 )
 
