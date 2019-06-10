@@ -57,6 +57,7 @@ local wall10
 local wall11
 local wall12
 local wall13
+local wall14
 
 local door
 local character
@@ -247,8 +248,20 @@ local function ReplaceCharacterAndJoystick()
 
     -- add physics body
     physics.addBody( character, "dynamic" )
+
     -- prevent character from being able to tip over
     character.isFixedRotation = true
+
+    -- Creating Joystick
+    analogStick = joystick.new( 50, 75 ) 
+
+    -- Setting Position
+    analogStick.x = 900
+    analogStick.y = display.contentHeight - 125
+
+    -- Changing transparency
+    analogStick.alpha = 0.5
+
 
     -- add back runtime listeners
     AddRuntimeListeners()
@@ -311,7 +324,7 @@ local function onCollision( self, event )
         --check to see if the user has answered 5 questions
         if (questionsAnswered == 5) then
         -- after getting 3 questions right, go to the you win screen
-        YouWinTransition()
+            YouWinTransition()
 
         end
     end       
@@ -431,17 +444,24 @@ local function Unmute(touch)
 end
 
 local function UpdatingLives()
+    print("numLives = "..numLives)
 
     if (numLives == 3) then
         heart1.isVisible = true
         heart2.isVisible = true
         heart3.isVisible = true
     elseif (numLives == 2) then
+        heart1.isVisible = true
+        heart2.isVisible = true
         heart3.isVisible = false
     elseif (numLives == 1) then
+        heart1.isVisible = true
         heart2.isVisible = false
+        heart3.isVisible = false
     elseif (numLives == 0) then
         heart1.isVisible = false
+        heart2.isVisible = false
+        heart3.isVisible = false
         YouLoseTransition()
     end
 end
@@ -482,44 +502,38 @@ function scene:create( event )
     bkg_image.x = display.contentWidth / 2 
     bkg_image.y = display.contentHeight / 2
 
-    -- Insert background image into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( bkg_image )   
+    
+
     -- Walls
     wall1 = display.newRect(0, 0,display.contentWidth, 20)
     wall1.x = display.contentCenterX
     wall1.y = 0
     wall1:setFillColor(0, 0, 0)
-    wall1:toFront()
     
     wall2 = display.newRect(0, 0,display.contentWidth, 20)
     wall2.x = display.contentCenterX
     wall2.y = display.contentHeight
     wall2:setFillColor(0, 0, 0)
-    wall2:toFront()
     
     wall3 = display.newRect(0, 0, 20, display.contentHeight)
     wall3.x = display.contentWidth
     wall3.y = display.contentCenterY
     wall3:setFillColor(0, 0, 0)
-    wall3:toFront()
     
     wall4 = display.newRect(0, 0, 20, display.contentHeight)
     wall4.x = 0
     wall4.y = display.contentCenterY
     wall4:setFillColor(0, 0, 0)
-    wall4:toFront()
 
     wall5 = display.newRect(0, 0, 10, display.contentHeight - 150)
     wall5.x = 150
     wall5.y = display.contentCenterY - 75
     wall5:setFillColor(0, 0, 0)
-    wall5:toFront()
     
     wall6 = display.newRect(0, 0, 10, display.contentHeight - 150)
     wall6.x = 600
     wall6.y = 650
     wall6:setFillColor(0, 0, 0)
-    wall6:toFront()
     wall6.rotation = 90
     
 
@@ -534,13 +548,11 @@ function scene:create( event )
     wall8.x = 450
     wall8.y = 405
     wall8:setFillColor(0, 0, 0)
-    wall8:toFront()
     
     wall9 = display.newRect(0, 0, 150, 10)
     wall9.x = 520
     wall9.y = 167
     wall9:setFillColor(0, 0, 0)
-    wall9:toFront()
 
     wall10 = display.newRect(0, 0, 10, display.contentHeight - 500)
     wall10.x = 890
@@ -552,35 +564,21 @@ function scene:create( event )
     wall11.x = 600
     wall11.y = 346
     wall11:setFillColor(0, 0, 0)
-    wall11:toFront()
 
     wall12 = display.newRect(0, 0, 150, 10)
     wall12.x = 670
     wall12.y = 530
     wall12:setFillColor(0, 0, 0)
-    wall12:toFront()
 
     wall13 = display.newRect(0, 0, 10, display.contentHeight - 395)
     wall13.x = 750
     wall13.y = 348
     wall13:setFillColor(0, 0, 0)
-    wall13:toFront()
 
     wall14 = display.newRect(0, 0, 10, display.contentHeight - 890)
     wall14.x = 904
     wall14.y = 710
     wall14:setFillColor(0, 0, 0)
-    wall14:toFront()    
-
-    -- Creating Joystick
-    analogStick = joystick.new( 50, 75 ) 
-
-    -- Setting Position
-    analogStick.x = 900
-    analogStick.y = display.contentHeight - 125
-
-    -- Changing transparency
-    analogStick.alpha = 0.5
 
     -- Insert the Door
     door = display.newImage("Images/Level-1Door.png", 200, 200)
@@ -664,7 +662,9 @@ function scene:create( event )
     unmuteButton.y = 60
     unmuteButton.isVisible = false
 
-    sceneGroup:insert( analogStick )
+    -- Insert background image into the scene group in order to ONLY be associated with this scene
+    sceneGroup:insert( bkg_image )   
+
     sceneGroup:insert( wall1 )
     sceneGroup:insert( wall2 )
     sceneGroup:insert( wall3 )
@@ -678,6 +678,7 @@ function scene:create( event )
     sceneGroup:insert( wall11 )
     sceneGroup:insert( wall12 )
     sceneGroup:insert( wall13 )
+    sceneGroup:insert( wall14 )
     sceneGroup:insert( door )
     sceneGroup:insert( heart1 )
     sceneGroup:insert( heart2 )
@@ -689,6 +690,7 @@ function scene:create( event )
     sceneGroup:insert( questionMark1 )
     sceneGroup:insert( questionMark2 )
     sceneGroup:insert( questionMark3 )
+    sceneGroup:insert( questionMark4 )
     sceneGroup:insert( questionMark5 )
     sceneGroup:insert( muteButton )
     sceneGroup:insert( unmuteButton )
@@ -813,6 +815,7 @@ function scene:hide( event )
         physics.stop()
         RemoveRuntimeListeners()
         display.remove(character)
+        display.remove(analogStick)
     end
 
 end --function scene:hide( event )
