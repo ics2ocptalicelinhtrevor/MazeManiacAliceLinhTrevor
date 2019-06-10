@@ -178,7 +178,7 @@ local function AskQuestion()
         question.text = "Drag the answer into the shape."
         pentagon.isVisible = true
         
-        correctAnswer.text = "penatagon"
+        correctAnswer.text = "pentagon"
         alternateAnswer1.text = "octagon"
         alternateAnswer2.text = "star"
         alternateAnswer3.text = "square"

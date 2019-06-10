@@ -527,7 +527,7 @@ function scene:create( event )
 
     wall5 = display.newRect(0, 0, 10, display.contentHeight - 150)
     wall5.x = 150
-    wall5.y = display.contentCenterY - 75
+    wall5.y = display.contentCenterY -15
     wall5:setFillColor(0, 0, 0)
     
     wall6 = display.newRect(0, 0, 10, display.contentHeight - 150)
