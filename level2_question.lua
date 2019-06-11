@@ -544,61 +544,61 @@ function scene:create( event )
 
     -- Insert the shapes for the questions
     circle = display.newImageRect("Images/circleAliceR@2x.png", 150, 150)
-    circle.x = display.contentWidth * 0.9
+    circle.x = display.contentWidth * 0.8
     circle.y = display.contentHeight * 0.6
 
     circle.isVisible = false
 
     triangle = display.newImageRect("Images/triangleAliceR@2x.png", 150, 150)
-    triangle.x = display.contentWidth * 0.9
+    triangle.x = display.contentWidth * 0.8
     triangle.y = display.contentHeight * 0.6
 
     triangle.isVisible = false
 
     diamond = display.newImageRect("Images/diamondAliceR@2x.png", 150, 150)
-    diamond.x = display.contentWidth * 0.9
+    diamond.x = display.contentWidth * 0.8
     diamond.y = display.contentHeight * 0.6
 
     diamond.isVisible = false
 
     hexagon = display.newImageRect("Images/hexagonAliceR@2x.png", 150, 150)
-    hexagon.x = display.contentWidth * 0.9
+    hexagon.x = display.contentWidth * 0.8
     hexagon.y = display.contentHeight * 0.6
 
     hexagon.isVisible = false
 
     rectangle = display.newImageRect("Images/rectangleAliceR@2x.png", 200, 100)
-    rectangle.x = display.contentWidth * 0.9
+    rectangle.x = display.contentWidth * 0.8
     rectangle.y = display.contentHeight * 0.6
 
     rectangle.isVisible = false
 
     star = display.newImageRect("Images/starAliceR@2x.png", 150, 150)
-    star.x = display.contentWidth * 0.9
+    star.x = display.contentWidth * 0.8
     star.y = display.contentHeight * 0.6
 
     star.isVisible = false
 
     oval = display.newImageRect("Images/ovalAliceR@2x.png", 200, 100)
-    oval.x = display.contentWidth * 0.9
+    oval.x = display.contentWidth * 0.8
     oval.y = display.contentHeight * 0.6
 
     oval.isVisible = false
 
     pentagon = display.newImageRect("Images/pentagonAliceR@2x.png", 150, 150)
-    pentagon.x = display.contentWidth * 0.9
+    pentagon.x = display.contentWidth * 0.8
     pentagon.y = display.contentHeight * 0.6
 
     pentagon.isVisible = false
 
     octagon = display.newImageRect("Images/octagonAliceR@2x.png", 150, 150)
-    octagon.x = display.contentWidth * 0.9
+    octagon.x = display.contentWidth * 0.8
     octagon.y = display.contentHeight * 0.6
 
     octagon.isVisible = false
 
     square = display.newImageRect("Images/squareAliceR@2x.png", 150, 150)
-    square.x = display.contentWidth * 0.9
+    square.x = display.contentWidth * 0.8
     square.y = display.contentHeight * 0.6
 
     square.isVisible = false
@@ -607,8 +607,8 @@ function scene:create( event )
     question = display.newText( "" , 0, 0, nil, 50)
     question.anchorX = 0
     question.anchorY = 0
-    question.x = display.contentWidth *0.2
-    question.y = display.contentHeight *0.3
+    question.x = display.contentWidth *0.15
+    question.y = display.contentHeight *0.2
 
     question:setTextColor(0/255, 0/255, 0/255)
 
@@ -630,11 +630,10 @@ function scene:create( event )
     -- the black box where the user will drag the answer
 
     userAnswerPlaceholder = display.newImageRect("Images/userAnswerBoxPlaceholder.png",  200, 200)
-    userAnswerPlaceholder.x = display.contentWidth * 0.9
+    userAnswerPlaceholder.x = display.contentWidth * 0.8
     userAnswerPlaceholder.y = display.contentHeight * 0.6
 
-
-    userAnswerPlaceholder.isVisible = true
+    userAnswerPlaceholder.isVisible = false
 
     correctAnswer = display.newText( "", X1, Y1, nil, 50)
  
