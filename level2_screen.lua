@@ -313,6 +313,9 @@ local function onCollision( self, event )
         -- make the character invisible
         character.isVisible = false
 
+        -- make the joystic invisible
+        analogStick.isVisible = false
+
         -- show overlay with math question
         composer.showOverlay( "level2_question", { isModal = true, effect = "fade", time = 100})
 
@@ -474,6 +477,9 @@ function ResumeLevel2()
 
     -- make character visible again
     character.isVisible = true
+
+    -- make the joystick visible again
+    analogStick.isVisible = true
 
     -- Updating the lives
     UpdatingLives()
