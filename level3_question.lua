@@ -347,7 +347,7 @@ local function DisplayQuestion()
 
     elseif (randomQuestion == 18) then
 
-        questionText.text = "_____ absorbs water and provides stability for the plant."
+        questionText.text = "____ absorbs water and provides stability for the plant."
 
     --creating answer text from list it corresponds with the animals list
         answerText.text = "Roots"
@@ -359,7 +359,7 @@ local function DisplayQuestion()
 
     elseif (randomQuestion == 19) then
 
-        questionText.text = "_____ absorbs the most water."
+        questionText.text = "____ absorbs the most water."
 
     --creating answer text from list it corresponds with the animals list
         answerText.text = "Clay"
