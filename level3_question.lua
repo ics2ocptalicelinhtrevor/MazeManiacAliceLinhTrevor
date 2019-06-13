@@ -143,7 +143,7 @@ local function DisplayQuestion()
     if (randomQuestion == 1) then
 
         --creating the question depending on the selcetion number
-        questionText.text = "What is the name of the process\nwhere oxygen is made?"
+        questionText.text = "What is the name of the process where oxygen is made?"
 
      --creating answer text from list it corispondes with the animals list
         answerText.text = "Photosynthesis"
@@ -215,7 +215,7 @@ local function DisplayQuestion()
 
     elseif (randomQuestion == 7) then
 
-        questionText.text = "What's the largest planet"
+        questionText.text = "What's the largest planet?"
 
     --creating answer text from list it corispondes with the animals list
         answerText.text = "Jupiter"
@@ -227,19 +227,19 @@ local function DisplayQuestion()
 
     elseif (randomQuestion == 8) then
 
-        questionText.text = "How do plants help you to survive"
+        questionText.text = "How do plants help you to survive?"
 
     --creating answer text from list it corispondes with the animals list
         answerText.text = "They make oxygen"
     
     --creating wrong answers
-        wrongText1.text = "They dont"
+        wrongText1.text = "They don't"
         wrongText2.text = "You eat them"
         wrongText3.text = "They are peaceful"
 
     elseif (randomQuestion == 9) then
 
-        questionText.text = "What's the smallest planet"
+        questionText.text = "What's the smallest planet?"
 
     --creating answer text from list it corispondes with the animals list
         answerText.text = "Mercury"
@@ -251,7 +251,7 @@ local function DisplayQuestion()
 
     elseif (randomQuestion == 10) then
 
-        questionText.text = "What's the coldest planet"
+        questionText.text = "What's the coldest planet?"
 
     --creating answer text from list it corispondes with the animals list
         answerText.text = "Neptune"
@@ -263,7 +263,7 @@ local function DisplayQuestion()
 
     elseif (randomQuestion == 11) then
 
-        questionText.text = "What's the hottest planet"
+        questionText.text = "What's the hottest planet?"
 
     --creating answer text from list it corispondes with the animals list
         answerText.text = "Venus"
@@ -275,15 +275,15 @@ local function DisplayQuestion()
 
     elseif (randomQuestion == 12) then
 
-        questionText.text = "How big is the sun"
+        questionText.text = "How big is the sun?"
 
     --creating answer text from list it corispondes with the animals list
-        answerText.text = "695,510Km"
+        answerText.text = "695,510km"
     
     --creating wrong answers
-        wrongText1.text = "10Km"
-        wrongText2.text = "10Mm"
-        wrongText3.text = "695,510Mm"
+        wrongText1.text = "10km"
+        wrongText2.text = "10mm"
+        wrongText3.text = "695,510mm"
     end
 end
 
