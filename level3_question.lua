@@ -145,7 +145,7 @@ local function DisplayQuestion()
         --creating the question depending on the selcetion number
         questionText.text = "What is the name of the process where oxygen is made?"
 
-     --creating answer text from list it corispondes with the animals list
+     --creating answer text from list it corresponds with the animals list
         answerText.text = "Photosynthesis"
     
         --creating wrong answers
@@ -157,7 +157,7 @@ local function DisplayQuestion()
 
         questionText.text = "What is the freezing temperature?"
 
-     --creating answer text from list it corispondes with the animals list
+     --creating answer text from list it corresponds with the animals list
         answerText.text = "0"
     
         --creating wrong answers
@@ -169,7 +169,7 @@ local function DisplayQuestion()
 
         questionText.text = "What is the compound for water?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "H2O"
     
     --creating wrong answers
@@ -181,7 +181,7 @@ local function DisplayQuestion()
 
         questionText.text = "What gas do you need to breath?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "Oxygen"
     
     --creating wrong answers
@@ -193,7 +193,7 @@ local function DisplayQuestion()
 
         questionText.text = "What is evaporation?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "Liquid becomes gas"
     
     --creating wrong answers
@@ -205,7 +205,7 @@ local function DisplayQuestion()
 
         questionText.text = "How many planets are there?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "8"
     
     --creating wrong answers
@@ -217,7 +217,7 @@ local function DisplayQuestion()
 
         questionText.text = "What's the largest planet?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "Jupiter"
     
     --creating wrong answers
@@ -229,7 +229,7 @@ local function DisplayQuestion()
 
         questionText.text = "How do plants help you to survive?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "They make oxygen"
     
     --creating wrong answers
@@ -241,7 +241,7 @@ local function DisplayQuestion()
 
         questionText.text = "What's the smallest planet?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "Mercury"
     
     --creating wrong answers
@@ -253,7 +253,7 @@ local function DisplayQuestion()
 
         questionText.text = "What's the coldest planet?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "Neptune"
     
     --creating wrong answers
@@ -265,7 +265,7 @@ local function DisplayQuestion()
 
         questionText.text = "What's the hottest planet?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "Venus"
     
     --creating wrong answers
@@ -277,7 +277,7 @@ local function DisplayQuestion()
 
         questionText.text = "How big is the sun?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "695,510km"
     
     --creating wrong answers
@@ -289,7 +289,7 @@ local function DisplayQuestion()
 
         questionText.text = "What is it called when a liquid forms into a solid state?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "freezing"
     
     --creating wrong answers
@@ -301,7 +301,7 @@ local function DisplayQuestion()
 
         questionText.text = "What part of the flower contains the pollen?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "Anther"
     
     --creating wrong answers
@@ -313,7 +313,7 @@ local function DisplayQuestion()
 
         questionText.text = "_____ is the most important to help plants make energy."
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "Sun"
     
     --creating wrong answers
@@ -325,7 +325,7 @@ local function DisplayQuestion()
 
         questionText.text = "What will prevent a plant from growing?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "Droughts"
     
     --creating wrong answers
@@ -337,7 +337,7 @@ local function DisplayQuestion()
 
         questionText.text = "_____ absorbs water and provides stability for the plant."
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "Roots"
     
     --creating wrong answers
@@ -349,7 +349,7 @@ local function DisplayQuestion()
 
         questionText.text = "_____ absorbs water and provides stability for the plant."
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "Roots"
     
     --creating wrong answers
@@ -361,7 +361,7 @@ local function DisplayQuestion()
 
         questionText.text = "_____ absorbs the most water."
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "Clay"
     
     --creating wrong answers
@@ -371,9 +371,9 @@ local function DisplayQuestion()
 
     elseif (randomQuestion == 20) then
 
-        questionText.text = "What is it called when plants convert sunlight into food"
+        questionText.text = "What is it called when plants convert sunlight into food?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "Photosynthesis"
     
     --creating wrong answers
@@ -510,7 +510,7 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
     -- insert all objects for this scene into the scene group
-    sceneGroup:insert(bkg)
+    sceneGroup:insert(bkg) 
     sceneGroup:insert(cover)
     sceneGroup:insert(questionText)
     sceneGroup:insert(answerText)
