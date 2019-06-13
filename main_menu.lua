@@ -67,19 +67,19 @@ soundOn = true
 
 -- Creating Transition Function to Credits Page
 local function CreditsTransition( )       
-    composer.gotoScene( "credits_screen", {effect = "slideRight", time = 500})
+    composer.gotoScene( "credits_screen", {effect = "fade", time = 200})
 end 
 
 -- Creating Transition to Instructions Page
  
  local function InstructionsTransition( )
-    composer.gotoScene( "instructions_screen", {effect = "slideLeft", time = 500})
+    composer.gotoScene( "instructions_screen", {effect = "fade", time = 200})
 end  
 
 -- Creating Transition to Level Select Page
  
  local function LevelSelectTransition( )
-    composer.gotoScene( "level_select", {effect = "fade", time = 500})
+    composer.gotoScene( "level_select", {effect = "fade", time = 300})
 end  
 
 local function Mute(touch)
