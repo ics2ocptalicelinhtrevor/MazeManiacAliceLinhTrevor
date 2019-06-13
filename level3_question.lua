@@ -233,7 +233,7 @@ local function DisplayQuestion()
         answerText.text = "They make oxygen"
     
     --creating wrong answers
-        wrongText1.text = "They dont"
+        wrongText1.text = "They don't"
         wrongText2.text = "You eat them"
         wrongText3.text = "They are peaceful"
 
@@ -282,8 +282,8 @@ local function DisplayQuestion()
     
     --creating wrong answers
         wrongText1.text = "10Km"
-        wrongText2.text = "10Mm"
-        wrongText3.text = "695,510Mm"
+        wrongText2.text = "10mm"
+        wrongText3.text = "695,510mm"
     end
 end
 
