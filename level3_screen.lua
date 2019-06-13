@@ -364,14 +364,13 @@ local function onCollision( self, event )
             questionsAnswered = questionsAnswered + 1
         end
     
+    if (event.target.myName == "door") then
+        print ("***Hit door")
     -- after getting 4 questions right, go to the you win screen
     if (questionsAnswered == 4) then
-        -- if touched door then go to youWin screen
-        if (event.target.myName == "door") then
-        print ("***Hit door")
-
         -- transition to you win screen
             YouWinTransition()
+            
             end
         end        
 
