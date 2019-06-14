@@ -89,8 +89,6 @@ local questionsAnswered = 0
 local muteButton
 local unmuteButton
 
-
-
 ------------------------------------------------------------------------------------------
 -- SOUNDS
 ------------------------------------------------------------------------------------------
@@ -365,12 +363,14 @@ local function onCollision( self, event )
             -- Increment questions answered
             questionsAnswered = questionsAnswered + 1
         end
-
-        if (event.target.myName == "door") then
-            --check to see if the user has answered 4 questions
-            if (questionsAnswered == 4) then
-                -- after getting 4 questions right, go to the you win screen
-                composer.gotoScene("you_win3")
+    
+    if (event.target.myName == "door") then
+        print ("***Hit door")
+    -- after getting 4 questions right, go to the you win screen
+    if (questionsAnswered == 4) then
+        -- transition to you win screen
+            YouWinTransition()
+            
             end
         end        
 

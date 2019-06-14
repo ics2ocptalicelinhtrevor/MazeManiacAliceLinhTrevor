@@ -73,9 +73,12 @@ local function BackToLevel1()
     ResumeLevel1()
 end 
 
+-----------------------------------------------------------------------------------------
+
 local function YouLoseTransition()
     composer.gotoScene( "you_lose1" )
 end
+
 -----------------------------------------------------------------------------------------
 
 -- if user pressed the right answer, bring them back to level 1
@@ -125,7 +128,6 @@ local function TouchListenerWrongAnswer3(touch)
     end 
 
 end
-
 
 -----------------------------------------------------------------------------------------
 
@@ -368,7 +370,7 @@ function scene:hide( event )
     elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
         RemoveTextListeners()
-        timer.cancel (countDownTimer)
+        timer.cancel(countDownTimer)
 
     end
 

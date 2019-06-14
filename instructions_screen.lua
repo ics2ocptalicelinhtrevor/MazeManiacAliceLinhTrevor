@@ -50,14 +50,14 @@ local instructionScreenChannel
 
 -- Creating Transition to Level1 Instructions Screen
 local function Level1ScreenTransition( )
-    composer.gotoScene( "instructions1", {effect = "zoomInOutFade", time = 500})
+    composer.gotoScene( "instructions1", {effect = "zoomOutInFade", time = 300})
 end    
 
 -----------------------------------------------------------------------------------------
 
 -- Creating Transition Function to Level2 Instructions Screen
 local function Level2ScreenTransition( )       
-    composer.gotoScene( "instructions2", {effect = "slideRight", time = 500})
+    composer.gotoScene( "instructions2", {effect = "fade", time = 300})
 end 
 
 -----------------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ end
 -- Creating Transition to Level3 Instructions Screen
  
  local function Level3ScreenTransition( )
-    composer.gotoScene( "instructions3", {effect = "slideLeft", time = 500})
+    composer.gotoScene( "instructions3", {effect = "zoomInOutFade", time = 300})
 end  
 
 ------------------------------------------------------------------------------------------

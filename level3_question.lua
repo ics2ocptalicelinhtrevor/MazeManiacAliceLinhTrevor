@@ -44,7 +44,7 @@ local cover
 local X1 = display.contentWidth*2/9
 local X2 = display.contentWidth*4/7
 local Y1 = display.contentHeight*1/2
-local Y2 = display.contentHeight*5.5/7
+local Y2 = display.contentHeight*5/7
 
 local userAnswer
 local textTouched = false
@@ -138,14 +138,14 @@ end
 
 local function DisplayQuestion()
     --chooses the question asked
-    randomQuestion = math.random(1,12)
+    randomQuestion = math.random(1, 20)
 
     if (randomQuestion == 1) then
 
         --creating the question depending on the selcetion number
         questionText.text = "What is the name of the process where oxygen is made?"
 
-     --creating answer text from list it corispondes with the animals list
+     --creating answer text from list it corresponds with the animals list
         answerText.text = "Photosynthesis"
     
         --creating wrong answers
@@ -157,7 +157,7 @@ local function DisplayQuestion()
 
         questionText.text = "What is the freezing temperature?"
 
-     --creating answer text from list it corispondes with the animals list
+     --creating answer text from list it corresponds with the animals list
         answerText.text = "0"
     
         --creating wrong answers
@@ -169,7 +169,7 @@ local function DisplayQuestion()
 
         questionText.text = "What is the compound for water?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "H2O"
     
     --creating wrong answers
@@ -181,7 +181,7 @@ local function DisplayQuestion()
 
         questionText.text = "What gas do you need to breath?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "Oxygen"
     
     --creating wrong answers
@@ -193,7 +193,7 @@ local function DisplayQuestion()
 
         questionText.text = "What is evaporation?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "Liquid becomes gas"
     
     --creating wrong answers
@@ -205,7 +205,7 @@ local function DisplayQuestion()
 
         questionText.text = "How many planets are there?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "8"
     
     --creating wrong answers
@@ -217,7 +217,7 @@ local function DisplayQuestion()
 
         questionText.text = "What's the largest planet?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "Jupiter"
     
     --creating wrong answers
@@ -229,7 +229,7 @@ local function DisplayQuestion()
 
         questionText.text = "How do plants help you to survive?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "They make oxygen"
     
     --creating wrong answers
@@ -241,7 +241,7 @@ local function DisplayQuestion()
 
         questionText.text = "What's the smallest planet?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "Mercury"
     
     --creating wrong answers
@@ -253,7 +253,7 @@ local function DisplayQuestion()
 
         questionText.text = "What's the coldest planet?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "Neptune"
     
     --creating wrong answers
@@ -265,7 +265,7 @@ local function DisplayQuestion()
 
         questionText.text = "What's the hottest planet?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "Venus"
     
     --creating wrong answers
@@ -277,13 +277,109 @@ local function DisplayQuestion()
 
         questionText.text = "How big is the sun?"
 
-    --creating answer text from list it corispondes with the animals list
+    --creating answer text from list it corresponds with the animals list
         answerText.text = "695,510km"
     
     --creating wrong answers
         wrongText1.text = "10km"
         wrongText2.text = "10mm"
         wrongText3.text = "695,510mm"
+
+    elseif (randomQuestion == 13) then
+
+        questionText.text = "What is it called when a liquid forms into a solid state?"
+
+    --creating answer text from list it corresponds with the animals list
+        answerText.text = "freezing"
+    
+    --creating wrong answers
+        wrongText1.text = "melting"
+        wrongText2.text = "hardening"
+        wrongText3.text = "dripping"
+
+    elseif (randomQuestion == 14) then
+
+        questionText.text = "What part of the flower contains the pollen?"
+
+    --creating answer text from list it corresponds with the animals list
+        answerText.text = "Anther"
+    
+    --creating wrong answers
+        wrongText1.text = "Stem"
+        wrongText2.text = "Leaves"
+        wrongText3.text = "Bees"
+
+    elseif (randomQuestion == 15) then
+
+        questionText.text = "_____ is the most important to help plants make energy."
+
+    --creating answer text from list it corresponds with the animals list
+        answerText.text = "Sun"
+    
+    --creating wrong answers
+        wrongText1.text = "Insects"
+        wrongText2.text = "Watering"
+        wrongText3.text = "Smelling"
+
+    elseif (randomQuestion == 16) then
+
+        questionText.text = "What will prevent a plant from growing?"
+
+    --creating answer text from list it corresponds with the animals list
+        answerText.text = "Droughts"
+    
+    --creating wrong answers
+        wrongText1.text = "Dry day"
+        wrongText2.text = "Windy day"
+        wrongText3.text = "Cloudy day"
+
+    elseif (randomQuestion == 17) then
+
+        questionText.text = "_____ absorbs water and provides stability for the plant."
+
+    --creating answer text from list it corresponds with the animals list
+        answerText.text = "Roots"
+    
+    --creating wrong answers
+        wrongText1.text = "Stem"
+        wrongText2.text = "Seed"
+        wrongText3.text = "Fruit"
+
+    elseif (randomQuestion == 18) then
+
+        questionText.text = "____ absorbs water and provides stability for the plant."
+
+    --creating answer text from list it corresponds with the animals list
+        answerText.text = "Roots"
+    
+    --creating wrong answers
+        wrongText1.text = "Stem"
+        wrongText2.text = "Seed"
+        wrongText3.text = "Fruit"
+
+    elseif (randomQuestion == 19) then
+
+        questionText.text = "____ absorbs the most water."
+
+    --creating answer text from list it corresponds with the animals list
+        answerText.text = "Clay"
+    
+    --creating wrong answers
+        wrongText1.text = "Soil"
+        wrongText2.text = "Plant parts"
+        wrongText3.text = "Roots"
+
+    elseif (randomQuestion == 20) then
+
+        questionText.text = "What is it called when plants convert sunlight into food?"
+
+    --creating answer text from list it corresponds with the animals list
+        answerText.text = "Photosynthesis"
+    
+    --creating wrong answers
+        wrongText1.text = "Food transfer"
+        wrongText2.text = "Sunfood"
+        wrongText3.text = "Weather cycle"
     end
 end
 
@@ -310,7 +406,7 @@ end
 local function PositionAnswers()
 
     --creating random start position in a cretain area
-    answerPosition = math.random(1,3)
+    answerPosition = math.random(1, 4)
 
     if (answerPosition == 1) then
 
@@ -355,6 +451,21 @@ local function PositionAnswers()
         
         wrongText3.x = X1
         wrongText3.y = Y2   
+
+    elseif (answerPosition == 4) then
+
+        answerText.x = X2
+        answerText.y = Y2
+            
+        wrongText1.x = X2
+        wrongText1.y = Y1
+            
+        wrongText2.x = X1
+        wrongText2.y = Y2
+        
+        wrongText3.x = X1
+        wrongText3.y = Y1   
+
     end
 end
 
@@ -375,22 +486,22 @@ function scene:create( event )
     bkg:setFillColor(0,0,0,0.5)
 
     -----------------------------------------------------------------------------------------
-    --making a cover rectangle to have the background fully bolcked where the question is
-    cover = display.newRoundedRect(display.contentCenterX, display.contentCenterY, display.contentWidth*0.8, display.contentHeight*0.95, 50 )
+    --making a cover rectangle to have the background overlay
+    cover = display.newRoundedRect(display.contentCenterX, display.contentCenterY, display.contentWidth*0.9, display.contentHeight*0.98, 60 )
     --setting its colour
     cover:setFillColor(96/255, 96/255, 96/255)
 
     -- create the question text object
-    questionText = display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 41)
+    questionText = display.newText("", display.contentCenterX, display.contentCenterY*3/8, Arial, 37)
 
     -- create the answer text object & wrong answer text objects
-    answerText = display.newText("", X1, Y2, Arial, 37.000001)
+    answerText = display.newText("", X1, Y2, Arial, 40)
     answerText.anchorX = 0
-    wrongText1 = display.newText("", X2, Y2, Arial, 37)
+    wrongText1 = display.newText("", X2, Y2, Arial, 40)
     wrongText1.anchorX = 0
-    wrongText2 = display.newText("", X1, Y1, Arial, 37)
+    wrongText2 = display.newText("", X1, Y1, Arial, 40)
     wrongText2.anchorX = 0
-    wrongText3 = display.newText("", X2, Y1, Arial, 37)
+    wrongText3 = display.newText("", X2, Y1, Arial, 40)
     wrongText3.anchorX = 0
 
     clockText = display.newText("", 500, 230, Arial, 50)
@@ -399,7 +510,7 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
     -- insert all objects for this scene into the scene group
-    sceneGroup:insert(bkg)
+    sceneGroup:insert(bkg) 
     sceneGroup:insert(cover)
     sceneGroup:insert(questionText)
     sceneGroup:insert(answerText)

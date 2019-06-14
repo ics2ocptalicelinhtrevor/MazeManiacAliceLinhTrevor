@@ -67,14 +67,6 @@ function scene:create( event )
 
    -- Playing the you Win sound
    youWinChannel = audio.play(youWin)
-   -- Playing the you Win sound
-   youWinChannel = audio.play(youWin)
-
-    -- Creating level2 Button
-
-
-    -- Creating level2 Button
-
 
     -- Creating Back Button
     backButton = widget.newButton( 
