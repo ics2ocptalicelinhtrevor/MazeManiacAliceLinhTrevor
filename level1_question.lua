@@ -336,10 +336,10 @@ function scene:create( event )
     wrongText3 = display.newText("", X2, Y1, Arial, 75)
     wrongText3.anchorX = 0
 
-        -- create the correct text object and make it invisible
-        correct = display.newText( "Correct!", display.contentWidth/2, 300, nil, 50)
-        correct:setTextColor(50/255, 128/255, 50/255)
-        correct.isVisible = false
+    -- create the correct text object and make it invisible
+    correct = display.newText( "Correct!", display.contentWidth/2, 300, nil, 50)
+    correct:setTextColor(50/255, 128/255, 50/255)
+    correct.isVisible = false
 
     -- display the timer
     clockText = display.newText("", 500, 230, Arial, 50)
@@ -403,7 +403,7 @@ function scene:hide( event )
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
-        --parent:resumeGame()
+        -- parent:resumeGame()
     
     -----------------------------------------------------------------------------------------
 
