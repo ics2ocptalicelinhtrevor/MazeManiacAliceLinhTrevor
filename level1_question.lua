@@ -45,6 +45,7 @@ local answerText
 local wrongAnswerText1
 local wrongAnswerText2
 local wrongAnswerText3
+local correct
 
 local answerPosition = 1
 local bkg
@@ -62,6 +63,19 @@ local totalSeconds = 16
 local secondsLeft = 16
 local clockText
 local countDownTimer
+
+-------------------------------------------------------------------------------------------
+-- SOUNDS
+-------------------------------------------------------------------------------------------
+
+-- Correct sound
+local correctSound = audio.loadSound("Sounds/correct.mp3")
+local correctSoundChannel
+
+-- Wrong Sound
+local wrongSound = audio.loadSound("Sounds/wrong.mp3")
+local wrongSoundChannel
+
 -----------------------------------------------------------------------------------------
 --LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -84,6 +98,11 @@ end
 -- if user pressed the right answer, bring them back to level 1
 local function TouchListenerAnswer(touch)
     
+    -- display correct and play correct sound
+    correct.isVisible = true 
+    correctSoundChannel = audio.play(correctSound)
+
+    timer.performWithDelay(1000, HideCorrect)
     if (touch.phase == "ended") then
 
         BackToLevel1()
@@ -95,6 +114,9 @@ end
 
 -- if user pressed wrong answer, bring them back to level 1
 local function TouchListenerWrongAnswer(touch)
+
+    -- play the wrong sound
+    wrongSoundChannel = audio.play(wrongSound)
 
     if (touch.phase == "ended") then
         
@@ -109,6 +131,9 @@ end
 -- if user pressed wrong answer, bring them back to level 1
 local function TouchListenerWrongAnswer2(touch)
    
+    -- play the wrong sound
+    wrongSoundChannel = audio.play(wrongSound)
+
     if (touch.phase == "ended") then
 
         BackToLevel1()
@@ -120,6 +145,9 @@ end
 
 -- if user pressed wrong answer, bring them back to level 1
 local function TouchListenerWrongAnswer3(touch)   
+
+    -- play the wrong sound
+    wrongSoundChannel = audio.play(wrongSound)
 
     if (touch.phase == "ended") then
 
@@ -227,6 +255,12 @@ end
 
 -----------------------------------------------------------------------------------------
 
+local function HideCorrect()
+    correct.isVisible = false
+    DisplayQuestion()
+end
+-----------------------------------------------------------------------------------------
+
 local function UpdateTime()
 
     -- decrement the number of seconds
@@ -302,6 +336,11 @@ function scene:create( event )
     wrongText3 = display.newText("", X2, Y1, Arial, 75)
     wrongText3.anchorX = 0
 
+        -- create the correct text object and make it invisible
+        correct = display.newText( "Correct!", display.contentWidth/2, 300, nil, 50)
+        correct:setTextColor(50/255, 128/255, 50/255)
+        correct.isVisible = false
+
     -- display the timer
     clockText = display.newText("", 500, 230, Arial, 50)
     clockText:setFillColor(1,0,0)
@@ -317,6 +356,7 @@ function scene:create( event )
     sceneGroup:insert(wrongText2)
     sceneGroup:insert(wrongText3)
     sceneGroup:insert(clockText)
+    sceneGroup:insert(correct)
 
 end --function scene:create( event )
 

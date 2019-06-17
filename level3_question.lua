@@ -36,6 +36,7 @@ local answerText
 local wrongAnswerText1
 local wrongAnswerText2
 local wrongAnswerText3
+local correct
 
 local answerPosition = 1
 local bkg
@@ -61,7 +62,17 @@ local secondsLeft = 16
 local clockText
 local countDownTimer
 
+-------------------------------------------------------------------------------------------
+-- SOUNDS
+-------------------------------------------------------------------------------------------
 
+-- Correct sound
+local correctSound = audio.loadSound("Sounds/correct.mp3")
+local correctSoundChannel
+
+-- Wrong Sound
+local wrongSound = audio.loadSound("Sounds/wrong.mp3")
+local wrongSoundChannel
 
 -----------------------------------------------------------------------------------------
 --LOCAL FUNCTIONS
