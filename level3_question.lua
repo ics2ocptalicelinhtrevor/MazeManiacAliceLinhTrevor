@@ -90,6 +90,12 @@ end
 local function TouchListenerAnswer(touch)
     userAnswer = answerText.text
     
+    -- display correct and play correct sound
+    correct.isVisible = true 
+    correctSoundChannel = audio.play(correctSound)
+
+    timer.performWithDelay(1000, HideCorrect)
+
     if (touch.phase == "ended") then
 
         BackToLevel3( )
@@ -100,7 +106,9 @@ end
 --checking to see if the user pressed the right answer and bring them back to level 1
 local function TouchListenerWrongAnswer(touch)
     userAnswer = wrongText1.text
-    
+        -- play the wrong sound
+    wrongSoundChannel = audio.play(wrongSound)
+
     if (touch.phase == "ended") then
         
         BackToLevel3( )
@@ -112,7 +120,9 @@ end
 --checking to see if the user pressed the right answer and bring them back to level 1
 local function TouchListenerWrongAnswer2(touch)
     userAnswer = wrongText2.text
-    
+        -- play the wrong sound
+    wrongSoundChannel = audio.play(wrongSound)
+
     if (touch.phase == "ended") then
 
         BackToLevel3( )
@@ -123,7 +133,9 @@ end
 --checking to see if the user pressed the right answer and bring them back to level 1
 local function TouchListenerWrongAnswer3(touch)
     userAnswer = wrongText3.text
-    
+        -- play the wrong sound
+    wrongSoundChannel = audio.play(wrongSound)
+
     if (touch.phase == "ended") then
 
         BackToLevel3( )
@@ -409,6 +421,11 @@ local function UpdateTime()
     end
 end
 
+local function HideCorrect()
+    correct.isVisible = false
+    DisplayQuestion()
+end
+
 local function StartTimer()
     -- create a countdown timer that loops infinitely
     countDownTimer = timer.performWithDelay(1000, UpdateTime, 0)
@@ -515,6 +532,11 @@ function scene:create( event )
     wrongText3 = display.newText("", X2, Y1, Arial, 40)
     wrongText3.anchorX = 0
 
+    -- create the correct text object and make it invisible
+    correct = display.newText( "Correct!", display.contentWidth/2, 300, nil, 50)
+    correct:setTextColor(50/255, 128/255, 50/255)
+    correct.isVisible = false
+    
     clockText = display.newText("", 500, 230, Arial, 50)
     clockText:setFillColor(1,0,0)
 
@@ -529,6 +551,7 @@ function scene:create( event )
     sceneGroup:insert(wrongText2)
     sceneGroup:insert(wrongText3)
     sceneGroup:insert(clockText)
+    sceneGroup:insert(correct)
 
 
 end --function scene:create( event )
